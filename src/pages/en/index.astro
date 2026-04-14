@@ -6,17 +6,171 @@ import IndustriesSection from '../../components/home/IndustriesSection.astro';
 import DriversSection from '../../components/home/DriversSection.astro';
 import WhySection from '../../components/home/WhySection.astro';
 import CtaBand from '../../components/home/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { technologies } from '../../data/technologies';
+import { services } from '../../data/services';
+
+const kbArticles = await getCollection('kb', ({ data }) => data.lang === 'en' && !data.draft);
+const latestKb = kbArticles
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  technologie: 'Technology',
+  produkty: 'Products',
+  automotive: 'Automotive',
+  letectvi: 'Aerospace',
+  elektronika: 'Electronics',
+  stavebnictvi: 'Construction',
+};
 ---
 
 <BaseLayout
   title="Kronteq — Industrial Adhesives and Bonding Systems"
-  description="Kronteq supplies industrial adhesives, sealants and bonding systems for automotive, electronics and industrial manufacturing. Technical consulting and fast delivery."
+  description="Kronteq supplies industrial adhesives, sealants and bonding systems for automotive, electronics and industrial manufacturing. EAE certified specialists, technical consulting and fast delivery."
   lang="en"
 >
   <Hero lang="en" />
+
+  <!-- Services overview -->
+  <section class="section services-teaser">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="label">What we do</span>
+        <h2>Services that go beyond selling adhesives</h2>
+        <p>We are not just a distributor — we are your technical partner. From product selection and surface preparation through to process validation.</p>
+      </div>
+      <div class="services-grid" data-reveal-stagger>
+        {services.slice(0, 6).map(s => (
+          <div class="service-tile card">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={s.icon} /></svg>
+            </div>
+            <h3>{s.nameEn}</h3>
+            <p>{s.taglineEn}</p>
+          </div>
+        ))}
+      </div>
+      <div class="section-cta" data-reveal>
+        <a href="/en/services/" class="btn-outline-dark">All services →</a>
+      </div>
+    </div>
+  </section>
+
   <ProductsGrid lang="en" />
   <IndustriesSection lang="en" />
   <DriversSection lang="en" />
+
+  <!-- Technology teaser -->
+  <section class="section tech-teaser">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="label">Bonding technology</span>
+        <h2>The science behind every bond</h2>
+        <p>Joint anatomy, adhesive types, hybrid technologies and the key to success — surface preparation. Expert articles from a certified EAE specialist.</p>
+      </div>
+      <div class="tech-grid" data-reveal-stagger>
+        {technologies.map(tech => (
+          <a href={`/en/technology/${tech.slugEn}/`} class="tech-card card-dark">
+            <div class="icon-box-dark">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={tech.icon} /></svg>
+            </div>
+            <div class="tech-info">
+              <h3>{tech.nameEn}</h3>
+              <p>{tech.perexEn}</p>
+              <span class="tech-time">{tech.readingTimeMinutes} min read</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-cta" data-reveal>
+        <a href="/en/technology/" class="btn-outline">Go to Technology →</a>
+      </div>
+    </div>
+  </section>
+
   <WhySection lang="en" />
+
+  <!-- Knowledge Base preview -->
+  {latestKb.length > 0 && (
+    <section class="section kb-preview">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="label">Knowledge Base</span>
+          <h2>Technical articles without marketing fluff</h2>
+          <p>Precise terminology, real numbers, answers to questions from industrial engineers and process technologists.</p>
+        </div>
+        <div class="kb-grid" data-reveal-stagger>
+          {latestKb.map(article => (
+            <a href={`/en/knowledge-base/${article.slug.replace(/^en\//, '')}/`} class="kb-card card">
+              <span class="kb-category">{categoryLabels[article.data.category] ?? article.data.category}</span>
+              <h3>{article.data.title}</h3>
+              <p>{article.data.description}</p>
+              <span class="kb-meta">{article.data.readingTimeMinutes} min read</span>
+            </a>
+          ))}
+        </div>
+        <div class="section-cta" data-reveal>
+          <a href="/en/knowledge-base/" class="btn-outline-dark">Full Knowledge Base →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
   <CtaBand lang="en" />
 </BaseLayout>
+
+<style>
+  .services-teaser { background: var(--bg-base); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+  }
+  .service-tile { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.5rem; }
+  .service-tile h3 { font-size: 1.05rem; }
+  .service-tile p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; max-width: none; }
+
+  .tech-teaser { background: var(--bg-dark); }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
+  }
+  .tech-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    text-decoration: none;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+  }
+  .tech-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .tech-info { display: flex; flex-direction: column; gap: 0.4rem; }
+  .tech-info h3 { font-size: 1rem; color: #fff; }
+  .tech-info p { font-size: 0.875rem; color: var(--text-dark-muted); line-height: 1.55; max-width: none; }
+  .tech-time { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+
+  .kb-preview { background: var(--bg-base); }
+  .kb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1.25rem;
+  }
+  .kb-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-decoration: none;
+    padding: 1.5rem;
+    transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+  }
+  .kb-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .kb-category { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .kb-card h3 { font-size: 1rem; line-height: 1.4; }
+  .kb-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; flex: 1; max-width: none; }
+  .kb-meta { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+  .section-cta { display: flex; justify-content: center; margin-top: 2.5rem; }
+</style>

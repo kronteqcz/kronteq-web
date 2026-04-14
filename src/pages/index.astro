@@ -6,30 +6,205 @@ import IndustriesSection from '../components/home/IndustriesSection.astro';
 import DriversSection from '../components/home/DriversSection.astro';
 import WhySection from '../components/home/WhySection.astro';
 import CtaBand from '../components/home/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { technologies } from '../data/technologies';
+import { services } from '../data/services';
+
+const kbArticles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
+const latestKb = kbArticles
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  technologie: 'Technologie',
+  produkty: 'Produkty',
+  automotive: 'Automotive',
+  letectvi: 'Letectví',
+  elektronika: 'Elektronika',
+  stavebnictvi: 'Stavebnictví',
+};
 ---
 
 <BaseLayout
   title="Kronteq — Průmyslová lepidla a lepicí systémy"
-  description="Kronteq dodává průmyslová lepidla, tmeliva a lepicí systémy pro automobilový průmysl, elektroniku a průmyslovou výrobu. Technická poradenství a rychlá dodávka."
+  description="Kronteq dodává průmyslová lepidla, tmeliva a lepicí systémy pro automotive, elektroniku a průmyslovou výrobu. Certifikovaní specialisté EAE, technická poradna a rychlá dodávka."
   lang="cs"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "Organization",
     "name": "Kronteq",
     "url": "https://www.kronteq.com",
-    "inLanguage": "cs-CZ",
+    "logo": "https://www.kronteq.com/assets/logo-monogram.png",
     "description": "Průmyslová lepidla a lepicí systémy pro evropský trh",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.kronteq.com/kontakt/"
-    }
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "technical support",
+      "email": "kristyna@kronteq.com",
+      "availableLanguage": ["Czech", "English"]
+    },
+    "sameAs": []
   })} />
 
   <Hero lang="cs" />
+
+  <!-- Services overview -->
+  <section class="section services-teaser">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="label">Co děláme</span>
+        <h2>Služby, které jdou za pouhý prodej</h2>
+        <p>Nejsme jen distributor lepidel — jsme technický partner. Od výběru produktu přes přípravu povrchu až po validaci procesu.</p>
+      </div>
+      <div class="services-grid" data-reveal-stagger>
+        {services.slice(0, 6).map(s => (
+          <div class="service-tile card">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={s.icon} /></svg>
+            </div>
+            <h3>{s.nameCs}</h3>
+            <p>{s.taglineCs}</p>
+          </div>
+        ))}
+      </div>
+      <div class="section-cta" data-reveal>
+        <a href="/sluzby/" class="btn-outline-dark">Všechny služby →</a>
+      </div>
+    </div>
+  </section>
+
   <ProductsGrid lang="cs" />
   <IndustriesSection lang="cs" />
   <DriversSection lang="cs" />
+
+  <!-- Technology teaser -->
+  <section class="section tech-teaser">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="label">Technologie lepení</span>
+        <h2>Věda za každým spojem</h2>
+        <p>Anatomie spoje, typy lepidel, hybridní technologie a klíč k úspěchu — příprava povrchu. Odborné články od certifikovaného EAE specialisty.</p>
+      </div>
+      <div class="tech-grid" data-reveal-stagger>
+        {technologies.map(tech => (
+          <a href={`/technologie/${tech.slug}/`} class="tech-card card-dark">
+            <div class="icon-box-dark">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={tech.icon} /></svg>
+            </div>
+            <div class="tech-info">
+              <h3>{tech.nameCs}</h3>
+              <p>{tech.perexCs}</p>
+              <span class="tech-time">{tech.readingTimeMinutes} min čtení</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-cta" data-reveal>
+        <a href="/technologie/" class="btn-outline">Přejít na technologie →</a>
+      </div>
+    </div>
+  </section>
+
   <WhySection lang="cs" />
+
+  <!-- Knowledge Base preview -->
+  {latestKb.length > 0 && (
+    <section class="section kb-preview">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="label">Znalostní báze</span>
+          <h2>Technické články bez marketingových frází</h2>
+          <p>Přesná terminologie, konkrétní čísla, odpovědi na otázky průmyslových konstruktérů a technologů.</p>
+        </div>
+        <div class="kb-grid" data-reveal-stagger>
+          {latestKb.map(article => (
+            <a href={`/znalostni-baze/${article.slug.replace(/^cs\//, '')}/`} class="kb-card card">
+              <span class="kb-category">{categoryLabels[article.data.category] ?? article.data.category}</span>
+              <h3>{article.data.title}</h3>
+              <p>{article.data.description}</p>
+              <span class="kb-meta">{article.data.readingTimeMinutes} min čtení</span>
+            </a>
+          ))}
+        </div>
+        <div class="section-cta" data-reveal>
+          <a href="/znalostni-baze/" class="btn-outline-dark">Celá znalostní báze →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
   <CtaBand lang="cs" />
 </BaseLayout>
+
+<style>
+  /* Services teaser */
+  .services-teaser { background: var(--bg-base); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+  }
+  .service-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+  .service-tile h3 { font-size: 1.05rem; }
+  .service-tile p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; max-width: none; }
+
+  /* Tech teaser */
+  .tech-teaser { background: var(--bg-dark); }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
+  }
+  .tech-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    text-decoration: none;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+  }
+  .tech-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .tech-info { display: flex; flex-direction: column; gap: 0.4rem; }
+  .tech-info h3 { font-size: 1rem; color: #fff; }
+  .tech-info p { font-size: 0.875rem; color: var(--text-dark-muted); line-height: 1.55; max-width: none; }
+  .tech-time { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+
+  /* KB preview */
+  .kb-preview { background: var(--bg-base); }
+  .kb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1.25rem;
+  }
+  .kb-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-decoration: none;
+    padding: 1.5rem;
+    transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+  }
+  .kb-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .kb-category {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .kb-card h3 { font-size: 1rem; line-height: 1.4; }
+  .kb-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; flex: 1; max-width: none; }
+  .kb-meta { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+  .section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+</style>

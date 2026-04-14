@@ -1,57 +1,116 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLang } from '../../i18n/strings';
 import { products } from '../../data/products';
+import { services } from '../../data/services';
 
-const t = getLang('cs');
+// reseni is kept for backward compatibility; we surface both products and services here
 ---
 
 <BaseLayout
   title="Řešení — Kronteq"
-  description="Kompletní portfolio lepicích systémů: strukturální lepidla, reaktivní lepidla, tavná lepidla, kyanoakrylátová lepidla, anaerobní lepidla a tmeliva."
+  description="Kompletní portfolio lepicích systémů Kronteq: strukturální lepidla, tmeliva, primery a aplikační poradenství. Technická konzultace od certifikovaných specialistů."
   lang="cs"
 >
   <div class="page-hero section-dark">
     <div class="container">
-      <p class="page-label">Kronteq</p>
-      <h1>{t.solutionsTitle}</h1>
-      <p class="page-desc">{t.solutionsDesc}</p>
+      <p class="page-label">Portfolio</p>
+      <h1>Komplexní řešení od A do Z</h1>
+      <p class="page-desc">Produkty, služby a technická podpora — vše pod jednou střechou. Vyberte kategorii nebo se rovnou ozvěte pro osobní doporučení.</p>
+      <div class="hero-btns">
+        <a href="/produkty/" class="btn-primary">Produktový katalog</a>
+        <a href="/sluzby/" class="btn-outline">Naše služby</a>
+      </div>
     </div>
   </div>
 
+  <!-- Quick links grid -->
   <section class="section">
     <div class="container">
-      <div class="solutions-grid" data-reveal-stagger>
-        {products.map(product => {
-          const name = product.nameCs;
-          const desc = product.descCs;
-          const uses = product.usesCs;
-          return (
-            <article class="card solution-card" id={product.slug}>
-              <div class="solution-header">
-                <div class="icon-box">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d={product.icon} />
-                  </svg>
-                </div>
-                <h2 class="solution-name">{name}</h2>
-              </div>
-              <p class="solution-desc">{desc}</p>
-              <div class="solution-uses">
-                <h3>Typické aplikace</h3>
-                <ul role="list">
-                  {uses.map(use => <li>{use}</li>)}
-                </ul>
-              </div>
-              <a href="/kontakt/" class="btn-outline-dark solution-cta">{t.solutionsCta}</a>
-            </article>
-          );
-        })}
+      <div class="section-header" data-reveal>
+        <span class="label">Kde hledáte?</span>
+        <h2>Navigace podle potřeby</h2>
+      </div>
+      <div class="nav-grid" data-reveal-stagger>
+        <a href="/produkty/" class="nav-tile card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div>
+            <h3>Produktový katalog</h3>
+            <p>9 kategorií průmyslových lepidel, tmeliv, pásek a aplikačních systémů s technickými parametry.</p>
+          </div>
+          <span class="tile-arrow">→</span>
+        </a>
+        <a href="/sluzby/" class="nav-tile card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div>
+            <h3>Technické služby</h3>
+            <p>Konzultace, výběr produktu, příprava povrchu, školení a poprodejní podpora od EAE specialistů.</p>
+          </div>
+          <span class="tile-arrow">→</span>
+        </a>
+        <a href="/technologie/" class="nav-tile card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div>
+            <h3>Technologie lepení</h3>
+            <p>Odborné články o anatomii spoje, typech lepidel, hybridních spojích a přípravě povrchu.</p>
+          </div>
+          <span class="tile-arrow">→</span>
+        </a>
+        <a href="/odvtvi/" class="nav-tile card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <div>
+            <h3>Odvětví</h3>
+            <p>Automotive, letectví, elektronika, stavebnictví — specializovaná řešení pro každý sektor.</p>
+          </div>
+          <span class="tile-arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <div class="contact-band">
+  <!-- Product overview (compact) -->
+  <section class="section-dark section">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="label">Produkty</span>
+        <h2>Co máme v portfoliu</h2>
+        <p>Přehled kategorií — podrobné parametry a popisy najdete v katalogu.</p>
+      </div>
+      <div class="products-compact" data-reveal-stagger>
+        {products.map(p => (
+          <div class="product-row card-dark">
+            <div class="icon-box-dark" style="flex-shrink:0">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={p.icon} /></svg>
+            </div>
+            <div>
+              <h3>{p.nameCs}</h3>
+              <p>{p.descCs}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="section-cta" data-reveal>
+        <a href="/produkty/" class="btn-outline">Kompletní katalog s parametry →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
     <div class="container">
       <p>Nenašli jste přesně to, co hledáte?</p>
       <a href="/kontakt/" class="btn-primary">Konzultace s odborníkem</a>
@@ -60,74 +119,29 @@ const t = getLang('cs');
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding-top: calc(72px + 4rem);
-    padding-bottom: 4rem;
-  }
-  .page-label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 1rem;
-    max-width: none;
-  }
-  .page-hero h1 { color: #fff; }
-  .page-desc {
-    color: var(--text-dark-muted);
-    font-size: 1.125rem;
-    margin-top: 1rem;
-    max-width: 56ch;
-  }
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; max-width: none; }
+  .page-hero h1 { color: #fff; font-size: clamp(1.875rem, 4vw, 3rem); }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.125rem; margin-top: 1rem; max-width: 60ch; }
+  .hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; margin-top: 1.75rem; }
 
-  .solutions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr));
-    gap: 1.5rem;
-  }
+  .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 1.25rem; }
+  .nav-tile { display: flex; align-items: flex-start; gap: 1rem; text-decoration: none; padding: 1.5rem; transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease); }
+  .nav-tile:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .nav-tile > div { flex: 1; }
+  .nav-tile h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .nav-tile p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; max-width: none; }
+  .tile-arrow { font-size: 1.25rem; color: var(--accent); flex-shrink: 0; align-self: center; transition: transform var(--duration) var(--ease); }
+  .nav-tile:hover .tile-arrow { transform: translateX(4px); }
 
-  .solution-card { display: flex; flex-direction: column; gap: 1rem; }
-  .solution-header { display: flex; align-items: flex-start; gap: 1rem; }
-  .solution-name { font-size: 1.25rem; margin-top: 0.25rem; }
-  .solution-desc { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.65; max-width: none; }
+  .products-compact { display: flex; flex-direction: column; gap: 0.75rem; }
+  .product-row { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.5rem; }
+  .product-row h3 { font-size: 1rem; color: #fff; margin-bottom: 0.25rem; }
+  .product-row p { font-size: 0.875rem; color: var(--text-dark-muted); line-height: 1.55; max-width: none; }
 
-  .solution-uses h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-  }
-  .solution-uses ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .solution-uses li {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 0.2rem 0.65rem;
-    max-width: none;
-  }
-  .solution-cta { align-self: flex-start; margin-top: auto; }
+  .section-cta { display: flex; justify-content: center; margin-top: 2rem; }
 
-  .contact-band {
-    background: var(--bg-2);
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 0;
-    text-align: center;
-  }
-  .contact-band .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  .contact-band p { color: var(--text-muted); font-size: 1.0625rem; max-width: none; }
+  .cta-band { background: var(--bg-2); border-top: 1px solid var(--border); padding: 2.5rem 0; text-align: center; }
+  .cta-band .container { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .cta-band p { color: var(--text-muted); font-size: 1.0625rem; max-width: none; }
 </style>

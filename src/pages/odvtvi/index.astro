@@ -1,21 +1,73 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLang } from '../../i18n/strings';
 import { industries } from '../../data/industries';
+import { getCollection } from 'astro:content';
 
-const t = getLang('cs');
+const kbArticles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
+
+// Map industries to relevant KB articles
+const industryKbMap: Record<string, string[]> = {
+  'automobilovy-prumysl': ['lepeni-v-automotive', 'hybridni-spoje-weld-bonding-rivet-bonding'],
+  'letecky-prumysl': ['lepeni-v-letectvi'],
+  'elektronika': ['lepeni-v-elektronice'],
+  'stavebnictvi': ['strukturalni-zaskleni-stavebnictvi'],
+};
+
+function getRelatedArticles(slug: string) {
+  const slugs = industryKbMap[slug] ?? [];
+  return kbArticles.filter(a => slugs.some(s => a.slug.endsWith(s)));
+}
+
+const stats = [
+  { value: '15–20 kg', label: 'průměrné množství lepidla v osobním automobilu' },
+  { value: '>50 %', label: 'podíl CFRP na Boeing 787 — kompozit lepený, ne svařovaný' },
+  { value: '25 let', label: 'normativní životnost strukturálního silikonu na fasádě' },
+  { value: '5× delší', label: 'životnost spoje při weld-bondingu vs. samotné svařování' },
+];
 ---
 
 <BaseLayout
-  title="Odvětví — Kronteq"
-  description="Lepicí systémy pro automobilový průmysl, elektroniku, stavebnictví a průmyslovou výrobu. Specializovaná řešení pro každé odvětví."
+  title="Odvětví — Kronteq | Automotive, Letectví, Elektronika, Stavebnictví"
+  description="Lepicí systémy pro automobilový průmysl, letectví, elektroniku a stavebnictví. Specializovaná technická řešení, která odpovídají nárokům každého odvětví."
   lang="cs"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Odvětví — Kronteq",
+    "description": "Lepicí systémy pro automotive, letectví, elektroniku a stavebnictví",
+    "url": "https://www.kronteq.com/odvtvi/",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Kronteq", "item": "https://www.kronteq.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Odvětví", "item": "https://www.kronteq.com/odvtvi/" }
+      ]
+    }
+  })} />
+
   <div class="page-hero section-dark">
     <div class="container">
-      <p class="page-label">Kronteq</p>
-      <h1>{t.industriesTitle}</h1>
-      <p class="page-desc">{t.industriesDesc}</p>
+      <p class="page-label">Aplikace</p>
+      <h1>Správné lepidlo pro každé odvětví</h1>
+      <p class="page-desc">Výrobní průmysl přechází od klasických kovových konstrukcí k lehkým multimateriálům. Lepicí technologie jsou klíčem k tomuto přechodu — dodáváme správná řešení pro každé odvětví.</p>
+    </div>
+  </div>
+
+  <!-- Industry stats bar -->
+  <div class="stats-band section-dark">
+    <div class="container">
+      <div class="stats-row">
+        {stats.map((s, i) => (
+          <>
+            {i > 0 && <div class="stat-div" aria-hidden="true"></div>}
+            <div class="stat-item">
+              <span class="stat-val">{s.value}</span>
+              <span class="stat-lbl">{s.label}</span>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
   </div>
 
@@ -23,9 +75,7 @@ const t = getLang('cs');
     <div class="container">
       <div class="industries-list" data-reveal-stagger>
         {industries.map((industry, idx) => {
-          const name = industry.nameCs;
-          const desc = industry.descCs;
-          const challenges = industry.challengesCs;
+          const related = getRelatedArticles(industry.slug);
           return (
             <article class="industry-detail" id={industry.slug}>
               <div class="industry-meta">
@@ -37,16 +87,31 @@ const t = getLang('cs');
                 </div>
               </div>
               <div class="industry-content">
-                <h2>{name}</h2>
-                <p>{desc}</p>
+                <h2>{industry.nameCs}</h2>
+                <p>{industry.descCs}</p>
                 <div class="challenges">
                   <h3>Výzvy, které řešíme</h3>
                   <ul role="list">
-                    {challenges.map(c => <li>{c}</li>)}
+                    {industry.challengesCs.map(c => <li>{c}</li>)}
                   </ul>
                 </div>
-                <a href="/kontakt/" class="btn-outline-dark">
-                  Poptávka pro {name}
+                {related.length > 0 && (
+                  <div class="industry-kb">
+                    <h3>Technické čtení</h3>
+                    <div class="kb-links">
+                      {related.map(a => (
+                        <a href={`/znalostni-baze/${a.slug.replace(/^cs\//, '')}/`} class="kb-link">
+                          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd" />
+                          </svg>
+                          {a.data.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <a href="/kontakt/" class="btn-outline-dark industry-cta">
+                  Poptávka pro {industry.nameCs}
                 </a>
               </div>
             </article>
@@ -55,35 +120,35 @@ const t = getLang('cs');
       </div>
     </div>
   </section>
+
+  <!-- Bottom CTA -->
+  <div class="cta-band section-dark">
+    <div class="container">
+      <p>Nenašli jste své odvětví nebo máte specifické požadavky?</p>
+      <div class="cta-btns">
+        <a href="/kontakt/" class="btn-primary">Nezávazná konzultace</a>
+        <a href="/znalostni-baze/" class="btn-outline">Znalostní báze</a>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
-  .page-hero {
-    padding-top: calc(72px + 4rem);
-    padding-bottom: 4rem;
-  }
-  .page-label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 1rem;
-    max-width: none;
-  }
-  .page-hero h1 { color: #fff; }
-  .page-desc {
-    color: var(--text-dark-muted);
-    font-size: 1.125rem;
-    margin-top: 1rem;
-    max-width: 56ch;
-  }
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; max-width: none; }
+  .page-hero h1 { color: #fff; font-size: clamp(1.875rem, 4vw, 3rem); }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.125rem; margin-top: 1rem; max-width: 60ch; }
 
-  .industries-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
+  /* Stats band */
+  .stats-band { padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .stats-row { display: flex; align-items: flex-start; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem; }
+  .stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.25rem; max-width: 160px; }
+  .stat-val { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 800; color: var(--accent-light); line-height: 1; }
+  .stat-lbl { font-size: 0.8rem; color: var(--text-dark-muted); line-height: 1.4; max-width: none; }
+  .stat-div { width: 1px; height: 40px; background: rgba(255,255,255,0.08); align-self: center; }
+  @media (max-width: 640px) { .stat-div { display: none; } }
+
+  .industries-list { display: flex; flex-direction: column; gap: 2rem; }
 
   .industry-detail {
     display: grid;
@@ -104,37 +169,40 @@ const t = getLang('cs');
     gap: 0.75rem;
     padding-right: 2rem;
     border-right: 1px solid var(--border);
+    min-width: 64px;
   }
-  .industry-num {
-    font-family: var(--font-sans);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent-dim);
-    color: rgba(124,58,237,0.25);
-    line-height: 1;
-  }
+  .industry-num { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 800; color: rgba(124,58,237,0.25); line-height: 1; }
 
   .industry-content { display: flex; flex-direction: column; gap: 1rem; }
   .industry-content h2 { font-size: 1.5rem; }
   .industry-content > p { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.65; max-width: none; }
 
-  .challenges h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
+  .challenges h3, .industry-kb h3 {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem;
   }
   .challenges ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
-  .challenges li {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    padding-left: 1.25rem;
-    position: relative;
-    max-width: none;
-  }
+  .challenges li { font-size: 0.875rem; color: var(--text-muted); padding-left: 1.25rem; position: relative; max-width: none; }
   .challenges li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
+
+  .industry-kb { padding-top: 0.5rem; }
+  .kb-links { display: flex; flex-direction: column; gap: 0.4rem; }
+  .kb-link {
+    display: flex; align-items: flex-start; gap: 0.5rem;
+    font-size: 0.875rem; color: var(--accent); text-decoration: none;
+    transition: color var(--duration) var(--ease);
+    line-height: 1.4;
+  }
+  .kb-link:hover { color: var(--accent-hover); }
+  .kb-link svg { flex-shrink: 0; margin-top: 0.15rem; fill: currentColor; }
+
+  .industry-cta { align-self: flex-start; margin-top: 0.5rem; }
+
+  /* CTA band */
+  .cta-band { padding: 3rem 0; }
+  .cta-band .container { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem; }
+  .cta-band p { color: var(--text-dark-muted); font-size: 1.0625rem; max-width: 52ch; }
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
   @media (max-width: 640px) {
     .industry-detail { grid-template-columns: 1fr; }
