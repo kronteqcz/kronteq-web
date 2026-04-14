@@ -7,6 +7,13 @@ export interface Product {
   descEn: string;
   usesCs: string[];
   usesEn: string[];
+  /** MPa range string, e.g. "20–40 MPa" */
+  strengthRangeCs?: string;
+  strengthRangeEn?: string;
+  /** elongation range, e.g. "400–800 %" */
+  elongationRange?: string;
+  /** max continuous service temp */
+  tempMaxC?: number;
 }
 
 export const products: Product[] = [
@@ -65,9 +72,43 @@ export const products: Product[] = [
     icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12',
     nameCs: 'Tmeliva a utěsňovače',
     nameEn: 'Sealants',
-    descCs: 'Polyuretanová, silikonová a MS polymerní tmeliva pro těsnění, vibrační tlumení a ochranu spár.',
-    descEn: 'Polyurethane, silicone and MS polymer sealants for sealing, vibration damping and joint protection.',
-    usesCs: ['Těsnění karoserií', 'Fasádní spáry', 'Průmyslová utěsnění'],
-    usesEn: ['Body sealing', 'Facade joints', 'Industrial sealing'],
+    descCs: 'Polyuretanová, silikonová a MS polymerní tmeliva pro těsnění, vibrační tlumení a ochranu spár. Odolnost vůči UV, vlhkosti a chemikáliím — desítky let bez degradace.',
+    descEn: 'Polyurethane, silicone and MS polymer sealants for sealing, vibration damping and joint protection. UV, moisture and chemical resistance — decades without degradation.',
+    usesCs: ['Těsnění karoserií', 'Fasádní spáry', 'Průmyslová utěsnění', 'Strukturální zasklívání'],
+    usesEn: ['Body sealing', 'Facade joints', 'Industrial sealing', 'Structural glazing'],
+    tempMaxC: 300,
+  },
+  {
+    slug: 'lepici-pasky-a-folie',
+    icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
+    nameCs: 'Lepicí pásky a fólie',
+    nameEn: 'Bonding Tapes & Films',
+    descCs: 'Oboustranné akrylátové a pěnové pásky pro montáž bez viditelných spojů. VHB (Very High Bond) pásky nahrazují šroubové spoje v automotive a elektronice — pevnost srovnatelná se strukturálními lepidly.',
+    descEn: 'Double-sided acrylic and foam tapes for assembly without visible fasteners. VHB (Very High Bond) tapes replace mechanical fasteners in automotive and electronics — strength comparable to structural adhesives.',
+    usesCs: ['Montáž plastových krytů', 'Přichycení displejů', 'Fasádní panely', 'Automobilové interiéry'],
+    usesEn: ['Plastic cover assembly', 'Display attachment', 'Facade panels', 'Automotive interiors'],
+    strengthRangeCs: '0,5–2,5 MPa (odlupová)',
+    strengthRangeEn: '0.5–2.5 MPa (peel)',
+    tempMaxC: 120,
+  },
+  {
+    slug: 'primery-a-aktivatory',
+    icon: 'M3 4a1 1 0 00-1 1v3a1 1 0 001 1h1v9a1 1 0 001 1h10a1 1 0 001-1V9h1a1 1 0 001-1V5a1 1 0 00-1-1H3zm2 4V5h10v3H5zm-1 2h12v8H4V10zm4 2a1 1 0 011-1h2a1 1 0 010 2H9a1 1 0 01-1-1z',
+    nameCs: 'Primery a aktivátory',
+    nameEn: 'Primers & Activators',
+    descCs: 'Chemické prostředky pro zvýšení povrchové energie a zajištění adheze na nesnadno lepitelných substrátech (PP, PE, PTFE, lakované povrchy, korozivzdorná ocel). Primer je prevence selhání.',
+    descEn: 'Chemical agents for increasing surface energy and ensuring adhesion on difficult-to-bond substrates (PP, PE, PTFE, coated surfaces, stainless steel). Primer is defect prevention.',
+    usesCs: ['Plasty PP a PE', 'Lakované díly', 'Anodizovaný hliník', 'PTFE těsnění'],
+    usesEn: ['PP and PE plastics', 'Coated parts', 'Anodised aluminium', 'PTFE seals'],
+  },
+  {
+    slug: 'cistice-a-odmastovadla',
+    icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+    nameCs: 'Čističe a odmašťovadla',
+    nameEn: 'Cleaners & Degreasers',
+    descCs: 'Průmyslová odmašťovadla na bázi IPA, acetonu, speciálních esterů nebo vodní báze. Bez správného odmaštění nemá žádné lepidlo šanci. Volba odmašťovadla závisí na substrátu a bezpečnostních požadavcích pracoviště.',
+    descEn: 'Industrial degreasers based on IPA, acetone, specialist esters or water. Without proper degreasing no adhesive has a chance. Degreaser selection depends on the substrate and workplace safety requirements.',
+    usesCs: ['Příprava kovových povrchů', 'Čištění plastů před lepením', 'Mezioperační čištění', 'Čistící prostředky pro optiku'],
+    usesEn: ['Metal surface preparation', 'Plastic cleaning before bonding', 'Inter-process cleaning', 'Cleaning agents for optics'],
   },
 ];

@@ -79,6 +79,53 @@ Zákazníkům nabízíme kompletní servis: od technické konzultace a výběru 
     contactResponseTitle: 'Doba odpovědi',
     contactResponseText: 'Do 24 hodin v pracovní dny',
 
+    // Nav — extended
+    navServices: 'Služby',
+    navProducts: 'Produkty',
+    navTechnology: 'Technologie',
+    navKnowledge: 'Znalostní báze',
+    navFaq: 'FAQ',
+
+    // Services page
+    servicesTitle: 'Naše služby',
+    servicesDesc: 'Nejsme jen dodavatel lepidel — jsme technický poradce. Pomůžeme s výběrem technologie, přípravou povrchu, návrhem spoje, validací i školením vašeho týmu.',
+    servicesCta: 'Poptejte konzultaci zdarma',
+    servicesBenefitsTitle: 'Co zahrnuje',
+
+    // Products page
+    productsTitle: 'Produkty',
+    productsDesc: 'Kompletní spektrum průmyslových lepidel, tmeliv, pásek, primerů a aplikačních systémů. Ke každé kategorii doporučíme správný produkt pro vaši aplikaci.',
+    productsCta: 'Poptejte konkrétní produkt',
+    productsStrength: 'Pevnost',
+    productsElongation: 'Tažnost',
+    productsTempMax: 'Max. teplota',
+    productsSampleCta: 'Pošleme vzorek',
+
+    // Technology pages
+    technologyTitle: 'Technologie lepení',
+    technologyDesc: 'Věda za lepidlem: anatomie spoje, typy lepidel, hybridní spoje a klíč k úspěchu — příprava povrchu.',
+    technologyReadMore: 'Číst článek',
+    technologyReadingTime: 'min čtení',
+
+    // Knowledge base
+    kbTitle: 'Znalostní báze',
+    kbDesc: 'Technické články pro průmyslové konstruktéry, technology a kupce. Přesná terminologie, konkrétní čísla, žádné marketingové fráze.',
+    kbReadMore: 'Číst celý článek',
+    kbRelated: 'Související články',
+    kbAuthor: 'Autor',
+    kbPublished: 'Publikováno',
+    kbUpdated: 'Aktualizováno',
+    kbReadingTime: 'min čtení',
+    kbFaqTitle: 'Časté otázky',
+    kbBackToKb: '← Znalostní báze',
+
+    // FAQ page
+    faqTitle: 'Časté otázky',
+    faqDesc: 'Odpovědi na nejčastější otázky o průmyslových lepidlech, přípravě povrchu, typech lepidel a spolupráci s Kronteq.',
+    faqAllCategories: 'Vše',
+    faqCta: 'Nenašli jste odpověď?',
+    faqCtaBtn: 'Zeptejte se nás',
+
     // Footer
     footerTagline: 'Průmyslová lepidla pro evropský trh.\nCertifikovaní specialisté, rychlá dodávka.',
     footerNavTitle: 'Navigace',
@@ -163,6 +210,53 @@ We offer customers a complete service: from technical consultation and product s
     contactAddressTitle: 'Address',
     contactResponseTitle: 'Response time',
     contactResponseText: 'Within 24 hours on business days',
+
+    // Nav — extended
+    navServices: 'Services',
+    navProducts: 'Products',
+    navTechnology: 'Technology',
+    navKnowledge: 'Knowledge Base',
+    navFaq: 'FAQ',
+
+    // Services page
+    servicesTitle: 'Our Services',
+    servicesDesc: "We're not just an adhesive supplier — we're your technical advisor. We help with technology selection, surface preparation, joint design, validation and team training.",
+    servicesCta: 'Request a free consultation',
+    servicesBenefitsTitle: 'What it includes',
+
+    // Products page
+    productsTitle: 'Products',
+    productsDesc: 'A comprehensive range of industrial adhesives, sealants, tapes, primers and application systems. For each category we recommend the right product for your application.',
+    productsCta: 'Request a specific product',
+    productsStrength: 'Strength',
+    productsElongation: 'Elongation',
+    productsTempMax: 'Max. temperature',
+    productsSampleCta: "We'll send a sample",
+
+    // Technology pages
+    technologyTitle: 'Bonding Technology',
+    technologyDesc: 'The science behind the adhesive: joint anatomy, adhesive types, hybrid joints and the key to success — surface preparation.',
+    technologyReadMore: 'Read article',
+    technologyReadingTime: 'min read',
+
+    // Knowledge base
+    kbTitle: 'Knowledge Base',
+    kbDesc: 'Technical articles for industrial designers, process engineers and buyers. Precise terminology, concrete numbers, no marketing fluff.',
+    kbReadMore: 'Read full article',
+    kbRelated: 'Related articles',
+    kbAuthor: 'Author',
+    kbPublished: 'Published',
+    kbUpdated: 'Updated',
+    kbReadingTime: 'min read',
+    kbFaqTitle: 'Frequently asked questions',
+    kbBackToKb: '← Knowledge Base',
+
+    // FAQ page
+    faqTitle: 'Frequently Asked Questions',
+    faqDesc: 'Answers to the most common questions about industrial adhesives, surface preparation, adhesive types and working with Kronteq.',
+    faqAllCategories: 'All',
+    faqCta: "Didn't find your answer?",
+    faqCtaBtn: 'Ask us',
 
     // Footer
     footerTagline: 'Industrial adhesives for the European market.\nCertified specialists, fast delivery.',
