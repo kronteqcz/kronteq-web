@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getLang } from '../../i18n/strings';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
+  return articles.map(article => ({
+    params: { slug: article.slug.replace(/^cs\//, '') },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+const t = getLang('cs');
+const cleanSlug = article.slug.replace(/^cs\//, '');
+
+const allArticles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
+const related = allArticles
+  .filter(a => a.slug !== article.slug && a.data.category === article.data.category)
+  .slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  technologie: 'Technologie',
+  produkty: 'Produkty',
+  automotive: 'Automotive',
+  letectvi: 'Letectví',
+  elektronika: 'Elektronika',
+  stavebnictvi: 'Stavebnictví',
+};
+
+const formattedDate = article.data.pubDate.toLocaleDateString('cs-CZ', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+
+const breadcrumb = [
+  { name: 'Kronteq', url: '/' },
+  { name: 'Znalostní báze', url: '/znalostni-baze/' },
+  { name: article.data.title, url: `/znalostni-baze/${cleanSlug}/` },
+];
+---
+
+<BaseLayout
+  title={`${article.data.title} | Kronteq`}
+  description={article.data.description}
+  lang="cs"
+  type="article"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": article.data.title,
+        "description": article.data.description,
+        "datePublished": article.data.pubDate.toISOString(),
+        ...(article.data.updatedDate && { "dateModified": article.data.updatedDate.toISOString() }),
+        "author": {
+          "@type": "Person",
+          "name": "Kristýna Ondráčková",
+          "jobTitle": "European Adhesive Engineer",
+        },
+        "publisher": { "@type": "Organization", "name": "Kronteq", "url": "https://www.kronteq.com" },
+        "inLanguage": "cs",
+        "keywords": article.data.tags.join(', '),
+        "about": { "@type": "Thing", "name": article.data.primaryKeyword },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumb.map((item, i) => ({
+          "@type": "ListItem", "position": i + 1,
+          "name": item.name, "item": `https://www.kronteq.com${item.url}`,
+        })),
+      },
+    ],
+  })} />
+
+  <div class="page-hero section-dark">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Drobečková navigace">
+        {breadcrumb.map((item, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < breadcrumb.length - 1
+              ? <a href={item.url}>{item.name}</a>
+              : <span aria-current="page">{item.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="article-header">
+        <span class="category-badge">{categoryLabels[article.data.category]}</span>
+      </div>
+      <h1>{article.data.title}</h1>
+      <p class="page-desc">{article.data.description}</p>
+      <div class="article-meta">
+        <span>Kristýna Ondráčková, EAE</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={article.data.pubDate.toISOString()}>{formattedDate}</time>
+        {article.data.readingTimeMinutes && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>{article.data.readingTimeMinutes} {t.kbReadingTime}</span>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <div class="article-layout section">
+    <div class="container article-container">
+      <article class="article-body prose kb-prose" data-reveal>
+        <Content />
+      </article>
+
+      <aside class="article-sidebar">
+        {related.length > 0 && (
+          <div class="sidebar-card card">
+            <h3>{t.kbRelated}</h3>
+            <ul class="sidebar-links">
+              {related.map(r => (
+                <li><a href={`/znalostni-baze/${r.slug.replace(/^cs\//, '')}/`}>{r.data.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div class="sidebar-cta card">
+          <h3>Máte dotaz k článku?</h3>
+          <p>Kristýna Ondráčková, European Adhesive Engineer, odpoví do 24 hodin.</p>
+          <a href="/kontakt/" class="btn-primary btn-small">Konzultace zdarma</a>
+        </div>
+        <div class="sidebar-tags card">
+          <h3>Klíčová slova</h3>
+          <div class="tags">
+            {article.data.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        </div>
+        <a href="/znalostni-baze/" class="back-link">{t.kbBackToKb}</a>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 3rem); padding-bottom: 3rem; }
+  .page-hero h1 { color: #fff; font-size: clamp(1.625rem, 3vw, 2.25rem); line-height: 1.25; }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.0625rem; margin-top: 0.75rem; max-width: 68ch; }
+
+  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; max-width: none; }
+  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+
+  .article-header { margin-bottom: 0.75rem; }
+  .category-badge { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.25); border-radius: 100px; padding: 0.2rem 0.6rem; }
+
+  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.4); max-width: none; flex-wrap: wrap; }
+
+  .article-container { display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: flex-start; }
+
+  /* KB prose styles */
+  .kb-prose { max-width: 72ch; }
+  .kb-prose :global(h2) { font-size: 1.375rem; margin: 2.5rem 0 0.875rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .kb-prose :global(h3) { font-size: 1.125rem; margin: 2rem 0 0.6rem; color: var(--accent); }
+  .kb-prose :global(p) { color: var(--text-muted); line-height: 1.8; margin-bottom: 1.125rem; max-width: none; }
+  .kb-prose :global(ul), .kb-prose :global(ol) { margin: 0.75rem 0 1.25rem 1.5rem; }
+  .kb-prose :global(li) { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem; max-width: none; }
+  .kb-prose :global(strong) { color: var(--text); font-weight: 600; }
+  .kb-prose :global(em) { color: var(--text-muted); }
+  .kb-prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
+  .kb-prose :global(th) { background: var(--bg-2); padding: 0.625rem 0.875rem; text-align: left; font-weight: 600; border: 1px solid var(--border); color: var(--text); }
+  .kb-prose :global(td) { padding: 0.5rem 0.875rem; border: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+  .kb-prose :global(tr:hover td) { background: var(--bg-2); }
+  .kb-prose :global(blockquote) { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.5rem 0; }
+  .kb-prose :global(blockquote p) { color: var(--text-dim); font-style: italic; }
+  .kb-prose :global(hr) { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  .kb-prose :global(code) { font-family: monospace; background: var(--bg-2); border: 1px solid var(--border); border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.875em; }
+  .kb-prose :global(pre) { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+  .kb-prose :global(pre code) { background: none; border: none; padding: 0; }
+
+  .article-sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 5rem; }
+  .sidebar-card h3, .sidebar-cta h3, .sidebar-tags h3 { font-size: 0.9375rem; margin-bottom: 0.75rem; }
+  .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-links a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; line-height: 1.45; }
+  .sidebar-links a:hover { color: var(--accent); }
+  .sidebar-cta p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem; max-width: none; }
+  .btn-small { padding: 0.5rem 1rem; font-size: 0.875rem; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .tag { font-size: 0.75rem; color: var(--text-dim); background: var(--bg-2); border: 1px solid var(--border); border-radius: 100px; padding: 0.15rem 0.5rem; }
+
+  .back-link { font-size: 0.875rem; color: var(--text-dim); text-decoration: none; padding: 0.5rem 0; }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .article-container { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .kb-prose { max-width: 100%; }
+  }
+</style>

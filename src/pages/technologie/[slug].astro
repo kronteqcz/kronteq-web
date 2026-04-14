@@ -1,0 +1,422 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { technologies } from '../../data/technologies';
+
+export function getStaticPaths() {
+  return technologies.map(tech => ({
+    params: { slug: tech.slug },
+    props: { tech },
+  }));
+}
+
+const { tech } = Astro.props;
+
+// Full article content keyed by slug
+const content: Record<string, { titleCs: string; bodyCs: string; faqCs: Array<{ q: string; a: string }> }> = {
+  'lepeni-prehled': {
+    titleCs: 'Konstrukční lepení: anatomie spoje a proč lepidlo přenáší zátěž lépe než šroub',
+    bodyCs: `## Co je konstrukční lepení?
+
+Konstrukční lepení (structural bonding) je způsob spojování materiálů pomocí adhesivních látek, které přenášejí mechanické zatížení — tahové, smykové nebo odlupové síly. Na rozdíl od těsnicích lepidel a montážních past jsou konstrukční lepidla navržena tak, aby spoj vydržel po celou životnost výrobku.
+
+Lepení proniklo do průmyslu jako přirozená odpověď na dva trendy: nové materiály (kompozity, hliníkové slitiny, termoplasty) a lehkost konstrukcí. Tam kde svár selže nebo tepelně poškodí materiál, lepidlo spolehlivě funguje.
+
+## Adheze a koheze: dva principy, jeden spoj
+
+Pevnost lepeného spoje závisí na dvou vzájemně nezávislých silách:
+
+**Adheze** je přilnavost lepidla k povrchu substrátu. Vzniká kombinací fyzikálních sil (van der Waalsovy interakce, kapilární efekt) a chemických vazeb (v případě primerů nebo reaktivních lepidel). Adheze závisí především na čistotě a povrchové energii substrátu — proto je příprava povrchu tak kritická.
+
+**Koheze** je vnitřní pevnost lepidla samotného — jak pevně drží molekulami pohromadě. Závisí na chemické struktuře polymeru, síťování a plnivech. Epoxidy mají vysokou kohezi a jsou tuhé; polyuretany mají nižší kohezi, ale mnohem vyšší elasticitu.
+
+**Princip nejslabšího článku** říká, že spoj selže vždy v místě s nejmenší pevností — a to je téměř vždy adheze (rozhraní lepidlo–substrát), ne koheze (střed lepidlové vrstvy). Z toho plyne zásadní závěr: investice do kvalitnějšího lepidla nic nepomůže, pokud příprava povrchu je slabá.
+
+## Geometrie spoje a přenos napětí
+
+Lepené spoje přenášejí napětí plošně — po celé ploše spoje. To je zásadní rozdíl oproti bodovým spojům (svary, nýty, šrouby), kde se napětí koncentruje do malé plochy. Plošné rozložení napětí má tři důsledky:
+
+1. **Vyšší únava** — lepený spoj nepropaguje trhliny od koncentrace napětí.
+2. **NVH tlumení** — pružná vrstva lepidla absorbuje vibrace a ráz.
+3. **Korozní ochrana** — lepidlo izoluje spoj od vlhkosti a elektrochemických reakcí.
+
+Kritickými faktory geometrie jsou tloušťka lepidlové vrstvy (optimum 0,1–0,3 mm pro strukturální lepidla), délka přesahu u přeplátovaných spojů a rovnoměrnost nanášení. Vzduchové bubliny a nezalitá místa jsou jako defekty svaru — skrytá slabina.
+
+## Kdy lepení nahradí svařování?
+
+Lepení je výhodné oproti svařování v těchto situacích:
+- **Různé materiály:** kov + plast, hliník + kompozit, sklo + kov — svár zde nefunguje.
+- **Tenké materiály:** pod 1,5 mm tloušťky hrozí deformace svárem.
+- **Tepelně citlivé povrchy:** lakované díly, elektronika, kompozity.
+- **Těsnost + pevnost najednou:** lepidlo současně těsní a drží.
+- **Vibrace:** lepidlo tlumí, svár přenáší vibrace na okolní strukturu.
+
+Svařování zůstává vhodné pro těžké ocelové konstrukce, extrémní teploty a tam, kde je vyžadována snadná kontrola kvality (RTG).
+
+## Limity lepení
+
+- Teplota: standardní lepidla do 120–150 °C, speciální až 300 °C.
+- Demontáž: lepený spoj je trvalý; rozebírání je destruktivní.
+- Kontrola kvality: vizuální inspekcí nelze ověřit vnitřní kvalitu spoje — nutný NDT.
+- Stárnutí: UV záření a vlhkost polymery degradují; výběr UV-stabilního lepidla je klíčový pro venkovní aplikace.`,
+    faqCs: [
+      { q: 'Jak silné je lepené spojení?', a: 'Závisí na lepidlu a substrátu. Epoxidová strukturální lepidla dosahují 70–90 MPa v tahu; PUR lepidla 20–40 MPa s vysokou pružností. Pro srovnání: ocelový svár dosahuje 400+ MPa, ale bodový svár přenáší zatížení jen v malé ploše.' },
+      { q: 'Lze lepit bez primeru?', a: 'Na dobře odmašťovaných kovových površích mnohá lepidla fungují bez primeru. Na plastové materiály (PP, PE, PTFE) a lakované povrchy je primer nezbytný nebo výrazně zvyšuje spolehlivost spoje.' },
+      { q: 'Jak dlouho vydrží lepený spoj?', a: 'Správně navržený a realizovaný lepený spoj vydrží životnost výrobku — klidně 20–30 let v průmyslových podmínkách. Letecké konstrukce s lepenými spoji létají desítky let.' },
+    ],
+  },
+  'typy-lepidel': {
+    titleCs: 'Typy průmyslových lepidel: PUR vs. epoxid vs. MMA vs. CA vs. silikon',
+    bodyCs: `## Proč záleží na výběru lepidla?
+
+Průmyslová lepidla se liší v pěti klíčových dimenzích: pevnost, pružnost, teplotní odolnost, chemická odolnost a rychlost vytvrzení. Žádné lepidlo není nejlepší ve všech kategoriích. Správný výběr je vždy kompromis mezi požadavky aplikace.
+
+Nejjednodušší způsob orientace je scatter diagram: osa X = pružnost (% tažnosti), osa Y = pevnost (MPa). Lepidla se pak rozdělují do čtyř kvadrantů.
+
+## Polyuretany (PUR): elasticita jako přednost
+
+**Pevnost:** 20–40 MPa tahová, 8–15 MPa smyková.
+**Tažnost:** 400–800 % — zdaleka nejvyšší ze všech konstrukčních lepidel.
+**Teplota:** −40 °C až +120 °C (speciální formulace až +150 °C).
+**Vytvrzení:** vlhkost vzduchu (jednosložkové) nebo dvousložkové míchání.
+
+PUR je volbou pro dynamicky zatížené spoje, kde hrozí odlupování nebo vibrace. Výborně se chová při nárazech. Používá se pro lepení skel v karoseriích (SSG), strukturální fasády, lepení podlah a průmyslové těsnění. Citlivý na vlhkost při skladování (jednosložkový PUR reaguje se vzdušnou vlhkostí).
+
+## Epoxidy: pevnost a teplotní odolnost
+
+**Pevnost:** 70–90 MPa tahová, 20–35 MPa smyková — nejvyšší ze standardních lepidel.
+**Tažnost:** 50–200 % (tuhé, málo pružné).
+**Teplota:** standardní do 120 °C; speciální do 300 °C.
+**Vytvrzení:** chemická reakce složky A (epoxidová pryskyřice) + složka B (tužidlo). Rychlost závisí na teplotě a formulaci — od 5 minut (rychlé epoxidy) po 24 hodin při pokojové teplotě.
+
+Epoxidy jsou základem strukturálního lepení v letectví, elektronice a průmyslu. Jsou nejteplotně a chemicky odolnější ze standardních lepidel. Nevýhoda: jsou křehké — při rázovém zatížení mohou prasknout. Existují elastifikované epoxidy, které jsou méně křehké za cenu nižší pevnosti.
+
+## MMA akryláty: rychlost + universálnost
+
+**Pevnost:** 40–70 MPa tahová.
+**Tažnost:** 100–400 %.
+**Teplota:** −40 °C až +120 °C.
+**Vytvrzení:** 5–30 minut (exotermická reakce iniciátorem). Vytvrzují i na ne zcela čistém povrchu.
+
+MMA (methylmethakrylát) jsou dvousložkové systémy s extrémně rychlým vytvrzením. Jejich výhoda je tolerance k nedokonale čistému povrchu — snesou mírné stopy oleje, kde epoxidy selhají. Výborné pro transport, zemědělskou techniku a kompozitní panely. Silný zápach při aplikaci; nutné větrání pracoviště.
+
+## Kyanoakryláty (CA): rychlost pro malé plochy
+
+**Pevnost:** 10–25 MPa smyková, ale nízká odlupová pevnost.
+**Teplota:** −55 °C až +80 °C (speciální až +120 °C).
+**Vytvrzení:** 5–60 sekund — nejrychlejší ze všech lepidel.
+
+CA lepidla jsou nenahraditelná pro montáž malých dílů, fixaci součástek a prototypování. Pro konstrukční aplikace s rozlehlejšími plochami nebo dynamickým zatížením jsou nevhodné: jsou křehká, citlivá na vlhkost při stárnutí a na odlupování.
+
+## Silikony: elasticita + tepelná odolnost
+
+**Pevnost:** 1–5 MPa — nepoužívají se pro strukturální spoje.
+**Tažnost:** 200–600 %.
+**Teplota:** −60 °C až +300 °C — nejlépe ze všech.
+**Vytvrzení:** vzdušná vlhkost, různá rychlost.
+
+Silikony jsou lepidla pro těsnění, nikoliv pro konstrukční spoje. Jejich síla je v teplotní a UV odolnosti. Používají se pro těsnění v motorovém prostoru, pecích, elektrických skříních a pro strukturální zasklívání (kde kombinace s PUR nebo epoxidem zajistí strukturální pevnost).
+
+## Rozhodovací strom
+
+1. Potřebujete maximální pevnost + teplotní odolnost? → **Epoxid**
+2. Potřebujete pružnost, absorpci vibrací nebo lepení skel? → **PUR**
+3. Potřebujete rychlé vytvrzení nebo toleranci k znečistění? → **MMA**
+4. Lepíte malé plochy, potřebujete sekundy? → **CA**
+5. Potřebujete těsnění nebo teplotní odolnost nad 150 °C? → **Silikon**`,
+    faqCs: [
+      { q: 'Lze kombinovat typy lepidel v jednom spoji?', a: 'V hybridních spojích se kombinuje lepidlo s mechanickou fixací (svár, nýt). Kombinace dvou různých lepidel v jednom spoji se nedoporučuje — chemická inkompatibilita může snížit pevnost obou.' },
+      { q: 'Jak poznám, že jsem zvolil špatné lepidlo?', a: 'Typické příznaky: kohezní lom (lepidlo se trhá uprostřed vrstvy) = lepidlo je příliš tuhé nebo slabé. Adhezní lom (lepidlo se odtrhne celé od povrchu) = špatná příprava povrchu nebo nesprávný typ lepidla pro daný substrát.' },
+      { q: 'Co znamená otevřená doba?', a: 'Otevřená doba (open time) je čas od nanesení lepidla do sestavení dílů. Po jejím uplynutí se lepidlo začne vytvrzovat a díly nelze správně sesadit. U CA je to sekund; u PUR a epoxidů minuty až hodiny.' },
+    ],
+  },
+  'hybridni-spoje': {
+    titleCs: 'Hybridní spoje: weld-bonding a rivet-bonding v průmyslové praxi',
+    bodyCs: `## Proč hybridní spoje?
+
+Lepení a mechanické spojování (svařování, nýtování) mají každé své přednosti a limity. Hybridní spoje kombinují obě technologie tak, aby výsledný spoj překonal obě metody samostatně.
+
+Základní princip: **mechanická fixace zajišťuje okamžitou pevnost** (díly drží ihned po sestavení, bez čekání na vytvrzení lepidla), **lepidlo zajišťuje plošnou pevnost, těsnost a ochranu** (plošný přenos napětí, korozní bariéra, absorpce vibrací).
+
+## Weld-bonding: lepení + bodové svařování
+
+Weld-bonding kombinuje lepidlo s odporovým bodovým svárem. Postup:
+
+1. Na sestavu se nanese lepidlo (vrstva ~0,2–0,3 mm pro přivaření).
+2. Díly se sestaví — lepidlo působí jako mezera udržující geometrii.
+3. Provede se bodový svár — fixuje polohu dílů a přenáší zatížení ihned.
+4. Lepidlo vytvrdí (v průběhu výrobního procesu, nebo v lázni kataforézy při lakování).
+
+**Výhody:**
+- Torzní tuhost karoserie roste o 20–40 % oproti pouhému sváru.
+- Korozní ochrana spoje — lepidlo utěsní spáru před vlhkostí.
+- Antikorozní bariéra — zabraňuje galvanické korozi (zejména Al + ocel).
+- Odpadá potřeba přídavných svěrek: svár fixuje ihned.
+
+**Kde se používá:** Automotive (karoserie, střecha, boky karoserie), letectví (panely trupu), průmyslové nádoby.
+
+**Pozor na:** Lepidlo musí snést teplotu sváru (krátký tepelný impuls ~6 000 °C v místě sváru, okolí <200 °C). Speciální crash-durable epoxidy jsou formulovány právě pro weld-bonding.
+
+## Rivet-bonding: lepení + nýty
+
+Rivet-bonding kombinuje nýty (nebo průvlakové spoje) s lepidlem. Nýt a lepidlo plní různé funkce:
+
+- **Nýt:** nese špičkové dynamické a rárazové zatížení v ose spoje. Fixuje díly ihned po nýtování.
+- **Lepidlo:** přenáší smykové napětí plošně, tlumí vibrace, brání šíření únavových trhlin od otvoru nýtu.
+
+Bez lepidla se trhliny šíří od otvoru nýtu — tento efekt se nazývá „fretting". S lepidlem lepidlo zaplní mezeru kolem otvoru a eliminuje vznik iniciačního místa trhliny.
+
+**Kde se používá:** Letecká průmysl (standardní u kompozitních panelů a hliníkových konstrukcí), autobusy a tramvaje, průmyslové boxy.
+
+**Parametry:** Lepidlo musí mít dostatečnou tažnost, aby kompenzovalo pohyb způsobený nýtem při teplotních změnách. PUR nebo elastifikované epoxidy jsou typicky preferovány.
+
+## Jak navrhnout hybridní spoj
+
+1. **Priorita: co musí spoj splnit jako první?** Okamžitá pevnost pro montáž (→ svár/nýt dimenzovány výrazně), nebo dlouhodobá pevnost a těsnost (→ lepidlo dimenzováno výrazně, spoj je redundantní).
+2. **Výběr lepidla pro hybridní aplikaci:** musí být kompatibilní s teplotami sváru (pro weld-bonding) nebo elastické pro kompenzaci pohybu (pro rivet-bonding).
+3. **Pořadí operací:** vždy nejprve povrch, pak lepidlo, pak sestavení a fixace.
+4. **Testování:** hybridní spoje je nutné validovat — samotné zkoušení nýtu nebo sváru není dostatečné.`,
+    faqCs: [
+      { q: 'Musím používat speciální lepidlo pro weld-bonding?', a: 'Ano. Standardní lepidla mohou být teplotním impulsem sváru degradována nebo může dojít k lokálnímu varu lepidla s vznikem bublin. Crash-durable epoxidy pro weld-bonding jsou formulovány pro odolnost tepelnému impulsu.' },
+      { q: 'Zvyšuje rivet-bonding únavu konstrukce?', a: 'Ano — výrazně. Lepidlo eliminuje fretting kolem otvoru nýtu, který je hlavním místem vzniku únavových trhlin. Studie v leteckém průmyslu prokázaly 2–5× vyšší únavovou životnost rivet-bonded spojů oproti pouhému nýtování.' },
+      { q: 'Jde hybridní spoj opravit?', a: 'Obtížně. Nýty lze vyvrtáním odstranit, ale lepidlo je trvalé. Oprava hybridního spoje zpravidla vyžaduje výměnu celého dílu, nebo lokální mechanické odloupnutí s abrazivními nástroji a renováci povrchu.' },
+    ],
+  },
+  'priprava-povrchu': {
+    titleCs: 'Příprava povrchu pro lepení: tři kroky, které rozhodují o 90 % výsledku',
+    bodyCs: `## Proč 90 % selhání?
+
+Analýzy průmyslových reklamací opakovaně ukazují tentýž vzorec: v 90 % případů selhání lepeného spoje byla příčina v nedostatečné přípravě povrchu — ne v lepidlu. Lepidlo bylo v pořádku. Povrch ne.
+
+Přitom výdaje na přípravu povrchu tvoří jen zlomek celkových nákladů na lepicí technologii. Investice do správného procesu odmašťování a aktivace je nejlepší prevencí nákladných reklamací.
+
+## Proč povrch rozhoduje?
+
+Lepidlo potřebuje tři věci, aby se „chytilo":
+
+1. **Čistý povrch** — bez olejů, tuků, oxidů, prachu, vosku. Oleje snižují smáčivost; oxidová vrstva na kovech je mechanicky slabá a odlupuje se.
+2. **Dostatečná povrchová energie** — aby se lepidlo rozlilo a smočilo každý detail povrchu. Plasty (PP, PE) mají přirozeně nízkou povrchovou energii (<30 mN/m), lepidla potřebují >38 mN/m.
+3. **Chemická reaktivita** — pro nejnáročnější substráty je nutné vytvořit chemické vazby primer–substrát.
+
+## Krok 1: Mechanické čištění
+
+**Cíl:** Odstranit volné oxidy, rzi, nečistoty. Zvětšit efektivní plochu kontaktu.
+
+**Metody:**
+- **Broušení** (brusný papír P80–P320, nebo brusná vlna) — pro kovy a dřevo. Vždy ve směru délky spoje, nikoli kruhovými pohyby.
+- **Pískování / tryskání** — Sa 2,5 nebo Sa 3 dle ISO 8501. Vytvoří kotvicí profil, který zvýší mechanické zaklesnutí lepidla.
+- **Kartáčování** (drátěný kartáč, nylon) — pro lehčí znečistění nebo pro plasty kde abraziva mohou zanést nečistoty do povrchu.
+
+**Pozor:** Po mechanickém čištění nesmíte povrch chytit holou rukou — mastný pot z pokožky znovu kontaminuje povrch a ruší odvod práce. Používejte čisté bavlněné nebo nitrilové rukavice.
+
+## Krok 2: Chemické odmašťování
+
+**Cíl:** Odstranit oleje, tuky, maziva, emulze. Dosáhnout maximální smáčivosti povrchu.
+
+**Metody:**
+- **IPA (izopropanol, 2-propanol)** — nejuniverzálnější. Bezpečný pro kovy, plasty i laky. Rychlé odpařování. Účinný na lehké oleje a otisky prstů.
+- **Aceton** — silnější než IPA. Opatrně na lakované povrchy a plasty — může je leptit. Rychlé odpařování.
+- **Speciální čisticí prostředky** — pro silně kontaminované plochy nebo pro automatizovanou ultrazvukovou nebo ponořovací čistírnu.
+
+**Technika:** Setřít jednosměrně čistou tkaninou (bez tkanin z mikrovlákna — zanechávají residua). Nikdy nedrhněte dvěma tkaninami najednou — první tkanina zvedne nečistotu, druhá ji rozetře.
+
+**Test čistoty:** Kapka vody (nebo IPA) na odmašťovaném povrchu — pokud se rozlije do plochého kruhu, povrch je čistý. Pokud se semkne do kapky, je stále znečistěn.
+
+## Krok 3: Aktivace povrchu
+
+**Cíl:** Zvýšit povrchovou energii. Vytvořit chemicky reaktivní povrch pro lepidlo nebo primer.
+
+**Metody:**
+- **Primer** — kapalná chemická látka nanesená setřením nebo nástřikem. Primer pro PP vytváří chemické vazby s inertním polypropylénem. Primer pro kov inhibuje korozi a zvyšuje adhezi. Nanášet minimálně, rovnoměrně; nechat uschnout (1–5 min).
+- **Plazma** — proud ionizovaného plynu (~15 000 °C v jádru). Čistí a aktivuje povrch v jednom kroku. Zvyšuje povrchovou energii plastů na >70 mN/m. Efekt vydrží desítky minut; nutné lepit brzy po aktivaci.
+- **Koróna** — elektrický výboj pro aktivaci fólií a pásek. Používá se při výrobě lepicích pásek a obalových materiálů.
+- **Plamenová aktivace** — rychlé přejetí plamenem. Dostupné a efektivní pro PP a PE; citlivé na nastavení výkonu.
+
+## Časové okno po přípravě
+
+Aktivovaný povrch degraduje — readsorbuje nečistoty a uvolňuje vzdušnou vlhkost. Pro plasty aktivované plazmou je typické okno 20–60 minut. Pro kovy odmašťované IPA je okno kratší (oxidace), doporučuje se lepit do 30 minut.
+
+**Zlaté pravidlo:** Připravit → hned lepit. Pokud musíte čekat, opakujte odmašťování.`,
+    faqCs: [
+      { q: 'Jak zjistím, zda je povrch dostatečně odmašťen?', a: 'Nejjednodušší test: naneste kapku vody (nebo IPA) na odmašťovaný povrch. Pokud se rozlije (kontaktní úhel <30°), povrch je čistý. Pokud se stáhne do kapky (kontaktní úhel >60°), stále je znečistěn. Pro přesnější měření existují zkušební fixy na povrchovou energii.' },
+      { q: 'Musím aktivovat povrch vždy?', a: 'Ne vždy. Na dobře odmašťovaném nerezovém nebo hliníkovém povrchu mnohá lepidla fungují bez primeru. Aktivace je nutná pro plasty s nízkou povrchovou energií (PP, PE, PTFE) a vždy, kdy je v prostředí vlhkost nebo chemikálie.' },
+      { q: 'Lze přípravný proces automatizovat?', a: 'Ano — a v sériové výrobě je automatizace klíčem ke konzistenci. Ultrazvukové čistírny, automatické odmašťovací tunely a robotické plazmové hlavy jsou standardem v moderních výrobních linkách. Konzistence procesu je důležitější než jednorázový ideální výsledek.' },
+    ],
+  },
+};
+
+const articleData = content[tech.slug];
+const breadcrumb = [
+  { name: 'Kronteq', url: '/' },
+  { name: 'Technologie', url: '/technologie/' },
+  { name: tech.nameCs, url: `/technologie/${tech.slug}/` },
+];
+---
+
+<BaseLayout
+  title={`${articleData?.titleCs || tech.nameCs} | Kronteq`}
+  description={tech.perexCs}
+  lang="cs"
+  type="article"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": articleData?.titleCs || tech.nameCs,
+        "description": tech.perexCs,
+        "author": { "@type": "Person", "name": "Kristýna Ondráčková", "jobTitle": "European Adhesive Engineer" },
+        "publisher": { "@type": "Organization", "name": "Kronteq" },
+        "inLanguage": "cs",
+        "keywords": tech.keywordsCs.join(', '),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumb.map((item, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": item.name,
+          "item": `https://www.kronteq.com${item.url}`,
+        })),
+      },
+      ...(articleData?.faqCs ? [{
+        "@type": "FAQPage",
+        "mainEntity": articleData.faqCs.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+        })),
+      }] : []),
+    ],
+  })} />
+
+  <div class="page-hero section-dark">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        {breadcrumb.map((item, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < breadcrumb.length - 1
+              ? <a href={item.url}>{item.name}</a>
+              : <span aria-current="page">{item.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <h1>{articleData?.titleCs || tech.nameCs}</h1>
+      <p class="page-desc">{tech.perexCs}</p>
+      <div class="article-meta">
+        <span>Kristýna Ondráčková, EAE</span>
+        <span aria-hidden="true">·</span>
+        <span>{tech.readingTimeMinutes} min čtení</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-layout section">
+    <div class="container article-container">
+      <article class="article-body prose" data-reveal>
+        {articleData?.bodyCs.split('\n\n').map(block => {
+          if (block.startsWith('## ')) {
+            return <h2>{block.slice(3)}</h2>;
+          } else if (block.startsWith('### ')) {
+            return <h3>{block.slice(4)}</h3>;
+          } else if (block.startsWith('- ')) {
+            const items = block.split('\n').filter(l => l.startsWith('- '));
+            return <ul>{items.map(item => <li>{item.slice(2)}</li>)}</ul>;
+          } else if (block.startsWith('1. ') || block.startsWith('2. ')) {
+            const items = block.split('\n').filter(l => /^\d+\.\s/.test(l));
+            return <ol>{items.map(item => <li>{item.replace(/^\d+\.\s/, '')}</li>)}</ol>;
+          } else if (block.startsWith('**')) {
+            // Bold lead paragraph
+            const parts = block.split(/(\*\*[^*]+\*\*)/g);
+            return <p>{parts.map(part => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return <strong>{part.slice(2, -2)}</strong>;
+              }
+              return part;
+            })}</p>;
+          }
+          return <p>{block}</p>;
+        })}
+
+        {articleData?.faqCs && (
+          <div class="article-faq">
+            <h2>Časté otázky</h2>
+            <dl class="faq-list">
+              {articleData.faqCs.map(faq => (
+                <>
+                  <dt>{faq.q}</dt>
+                  <dd>{faq.a}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+        )}
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card card">
+          <h3>Ostatní technologie</h3>
+          <ul class="sidebar-links">
+            {technologies.filter(t => t.slug !== tech.slug).map(other => (
+              <li><a href={`/technologie/${other.slug}/`}>{other.nameCs}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="sidebar-cta card">
+          <h3>Potřebujete poradit?</h3>
+          <p>Kristýna Ondráčková, European Adhesive Engineer, odpoví do 24 hodin.</p>
+          <a href="/kontakt/" class="btn-primary btn-small">Konzultace zdarma</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 3rem); padding-bottom: 3rem; }
+  .page-hero h1 { color: #fff; font-size: clamp(1.75rem, 3vw, 2.5rem); }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.0625rem; margin-top: 0.75rem; max-width: 64ch; }
+
+  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; max-width: none; }
+  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+
+  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.4); max-width: none; }
+
+  .article-container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .article-body { max-width: 72ch; }
+  .article-body h2 { font-size: 1.375rem; margin: 2rem 0 0.75rem; }
+  .article-body h3 { font-size: 1.125rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .article-body p { color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem; max-width: none; }
+  .article-body ul, .article-body ol { margin: 0.75rem 0 1rem 1.5rem; }
+  .article-body li { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.4rem; max-width: none; }
+  .article-body strong { color: var(--text); }
+
+  .article-faq { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+  .article-faq h2 { margin-top: 0; }
+  .faq-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .faq-list dt { font-weight: 600; color: var(--text); margin-bottom: 0.4rem; max-width: none; }
+  .faq-list dd { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7; margin: 0; max-width: 68ch; }
+
+  .article-sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 5rem; }
+  .sidebar-card h3, .sidebar-cta h3 { font-size: 0.9375rem; margin-bottom: 0.75rem; }
+  .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-links a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; }
+  .sidebar-links a:hover { color: var(--accent); }
+  .sidebar-cta p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem; max-width: none; }
+  .btn-small { padding: 0.5rem 1rem; font-size: 0.875rem; }
+
+  @media (max-width: 900px) {
+    .article-container { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .article-body { max-width: 100%; }
+  }
+</style>

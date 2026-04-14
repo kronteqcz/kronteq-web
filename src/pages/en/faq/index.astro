@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { faqItems, faqCategories } from '../../../data/faq';
+
+const categories = Object.entries(faqCategories.en) as [string, string][];
+---
+
+<BaseLayout
+  title="FAQ — Frequently Asked Questions about Industrial Adhesives | Kronteq"
+  description="Answers to the most common questions about industrial adhesives: adhesive selection, surface preparation, weld-bonding, delivery and working with Kronteq."
+  lang="en"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(faq => ({
+      "@type": "Question",
+      "name": faq.questionEn,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answerEn },
+    })),
+  })} />
+
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Kronteq</p>
+      <h1>Frequently Asked Questions</h1>
+      <p class="page-desc">Answers to the most common technical and commercial questions. Didn't find yours? <a href="/en/contact/">Ask us directly.</a></p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container faq-layout">
+      <nav class="faq-nav" aria-label="FAQ categories">
+        <button class="faq-nav-btn active" data-category="all">All</button>
+        {categories.map(([key, label]) => (
+          <button class="faq-nav-btn" data-category={key}>{label}</button>
+        ))}
+      </nav>
+
+      <div class="faq-list">
+        {categories.map(([catKey, catLabel]) => (
+          <div class="faq-category" data-cat={catKey}>
+            <h2 class="faq-cat-title">{catLabel}</h2>
+            {faqItems.filter(item => item.categoryEn === catKey).map(item => (
+              <details class="faq-item" id={`en-${item.id}`}>
+                <summary class="faq-question">
+                  <span>{item.questionEn}</span>
+                  <svg class="faq-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="currentColor" />
+                  </svg>
+                </summary>
+                <div class="faq-answer">
+                  <p>{item.answerEn}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band section-dark">
+    <div class="container cta-band-inner">
+      <div>
+        <h2>Didn't find your answer?</h2>
+        <p>Every application is different. Kristýna Ondráčková will respond to your specific technical question within 24 hours.</p>
+      </div>
+      <a href="/en/contact/" class="btn-primary">Ask us</a>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.faq-nav-btn');
+    const cats = document.querySelectorAll<HTMLElement>('.faq-category');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.category;
+        cats.forEach(el => { el.style.display = cat === 'all' || el.dataset.cat === cat ? '' : 'none'; });
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; max-width: none; }
+  .page-hero h1 { color: #fff; }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.0625rem; margin-top: 1rem; max-width: 56ch; }
+  .page-desc a { color: var(--accent-light); }
+  .faq-layout { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: flex-start; }
+  .faq-nav { display: flex; flex-direction: column; gap: 0.35rem; position: sticky; top: 5rem; }
+  .faq-nav-btn { background: none; border: none; cursor: pointer; text-align: left; padding: 0.5rem 0.75rem; font-size: 0.9rem; color: var(--text-muted); border-radius: var(--radius); transition: background var(--duration), color var(--duration); font-family: inherit; }
+  .faq-nav-btn:hover { background: var(--bg-2); color: var(--text); }
+  .faq-nav-btn.active { background: var(--bg-2); color: var(--accent); font-weight: 600; }
+  .faq-list { display: flex; flex-direction: column; gap: 2.5rem; }
+  .faq-cat-title { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
+  .faq-item { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color var(--duration); }
+  .faq-item[open] { border-color: var(--border-accent); }
+  .faq-item + .faq-item { margin-top: 0.5rem; }
+  .faq-question { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; cursor: pointer; list-style: none; font-weight: 500; font-size: 0.9375rem; color: var(--text); user-select: none; }
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question span { max-width: none; }
+  .faq-icon { flex-shrink: 0; color: var(--text-dim); transition: transform var(--duration); }
+  details[open] .faq-icon { transform: rotate(180deg); }
+  .faq-answer { padding: 0 1.25rem 1rem; }
+  .faq-answer p { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7; max-width: 70ch; }
+  .cta-band { padding: 4rem 0; }
+  .cta-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cta-band h2 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cta-band p { color: var(--text-dark-muted); max-width: 50ch; }
+  @media (max-width: 768px) { .faq-layout { grid-template-columns: 1fr; } .faq-nav { flex-direction: row; flex-wrap: wrap; position: static; } .cta-band-inner { flex-direction: column; align-items: flex-start; } }
+</style>

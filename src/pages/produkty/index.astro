@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLang } from '../../i18n/strings';
+import { products } from '../../data/products';
+
+const t = getLang('cs');
+
+const productDetails: Record<string, { longDescCs: string; longDescEn: string; keyParamsCs: string[]; keyParamsEn: string[] }> = {
+  'strukturalni-lepidla': {
+    longDescCs: 'Strukturální lepidla jsou základem moderního průmyslového spojování. Nahrazují svařování, nýtování a šroubování tam, kde je potřeba spojit různé materiály, eliminovat tepelné ovlivnění nebo rozložit napětí plošně. Typicky dvousložkové epoxidy a MMA akryláty s pevností 40–90 MPa. Pracovní teplota závisí na formulaci — standardně −40 až +150 °C.',
+    longDescEn: 'Structural adhesives are the foundation of modern industrial bonding. They replace welding, riveting and bolting where dissimilar materials must be joined, thermal damage is unacceptable or stress must be distributed across an area. Typically two-component epoxies and MMA acrylates with 40–90 MPa strength. Working temperature depends on formulation — typically −40 to +150 °C.',
+    keyParamsCs: ['Pevnost v tahu: 40–90 MPa', 'Pevnost ve smyku: 15–30 MPa', 'Teplota: −40 °C až +150 °C (speciální až +300 °C)', 'Vytvrzení: 5 min (MMA) až 24 h (epoxid při RT)'],
+    keyParamsEn: ['Tensile strength: 40–90 MPa', 'Shear strength: 15–30 MPa', 'Temperature: −40 °C to +150 °C (specialist grades to +300 °C)', 'Cure: 5 min (MMA) to 24 h (epoxy at RT)'],
+  },
+  'reaktivni-lepidla': {
+    longDescCs: 'Reaktivní lepidla zahrnují epoxidy, polyuretany a MS polymery. Dvousložkové systémy se mísí bezprostředně před aplikací a vytvrzují chemickou reakcí — nezávisle na teplotě nebo vlhkosti (na rozdíl od disperzí nebo tavných lepidel). Výsledkem je trvalý, teplotně odolný spoj.',
+    longDescEn: 'Reactive adhesives include epoxies, polyurethanes and MS polymers. Two-component systems are mixed immediately before application and cure by chemical reaction — independently of temperature or humidity (unlike dispersions or hot melts). The result is a permanent, thermally resistant bond.',
+    keyParamsCs: ['Pevnost: 10–90 MPa dle typu', 'Teplota: −60 °C až +300 °C dle formulace', 'Chemická odolnost: vysoká (epoxidy)', 'Míchací poměr: 1:1 až 10:1'],
+    keyParamsEn: ['Strength: 10–90 MPa by type', 'Temperature: −60 °C to +300 °C by formulation', 'Chemical resistance: high (epoxies)', 'Mix ratio: 1:1 to 10:1'],
+  },
+  'tavna-lepidla': {
+    longDescCs: 'Tavná lepidla (hot melt) jsou termoplastická — roztaví se při aplikaci a ztuhnou okamžitě při ochlazení. Žádná chemická reakce, žádná čekací doba. Ideální pro vysokorychlostní výrobní linky s automatizovanou aplikací. Při teplotním namáhání nad 80–100 °C ztrácejí pevnost.',
+    longDescEn: 'Hot melt adhesives are thermoplastic — they melt on application and solidify instantly on cooling. No chemical reaction, no waiting time. Ideal for high-speed production lines with automated application. Above 80–100 °C thermal loading they lose strength.',
+    keyParamsCs: ['Pevnost: 0,5–5 MPa', 'Aplikační teplota: 120–200 °C', 'Otevřená doba: 5–60 s', 'Maximální provozní teplota: 80–100 °C'],
+    keyParamsEn: ['Strength: 0.5–5 MPa', 'Application temperature: 120–200 °C', 'Open time: 5–60 s', 'Maximum service temperature: 80–100 °C'],
+  },
+  'kyanoakrylatova-lepidla': {
+    longDescCs: 'Kyanoakryláty (CA, vteřinová lepidla) vytvrzují sekundami při styku s vlhkostí na povrchu substrátu. Vynikají rychlostí a pevností na malých plochách. Křehké, citlivé na odlupování a vlhké prostředí. Ideální pro fixaci, drobnou montáž a prototypy.',
+    longDescEn: 'Cyanoacrylates (CA, instant adhesives) cure in seconds on contact with surface moisture. Excellent speed and strength on small areas. Brittle, sensitive to peel loads and humid environments. Ideal for fixation, small-part assembly and prototyping.',
+    keyParamsCs: ['Pevnost ve smyku: 10–25 MPa', 'Vytvrzení: 5–60 s při RT', 'Teplota: −55 °C až +80 °C (speciální až +120 °C)', 'Viskozita: 1–3000 mPa·s (různé aplikace)'],
+    keyParamsEn: ['Shear strength: 10–25 MPa', 'Cure: 5–60 s at RT', 'Temperature: −55 °C to +80 °C (specialist grades to +120 °C)', 'Viscosity: 1–3000 mPa·s (various applications)'],
+  },
+  'anaerobi-lepidla': {
+    longDescCs: 'Anaerobní lepidla vytvrzují v nepřítomnosti vzduchu v přítomnosti kovových iontů. Používají se jako zajišťovače závitů (různé pevnostní třídy), nalisovací lepidla pro hřídele a ložiska a pro těsnění závitových spojení. Jsou specifická pro kovové substráty.',
+    longDescEn: 'Anaerobic adhesives cure in the absence of air in the presence of metal ions. Used as thread lockers (various strength grades), retaining compounds for shafts and bearings, and for sealing threaded connections. Specific to metal substrates.',
+    keyParamsCs: ['Pevnost v kroucení: 5–25 N·m (dle třídy)', 'Teplota: do +180 °C', 'Vytvrzení: 10–30 min (úplné 24 h)', 'Třídy: nízká / střední / vysoká pevnost'],
+    keyParamsEn: ['Breakaway torque: 5–25 N·m (by grade)', 'Temperature: up to +180 °C', 'Cure: 10–30 min (full 24 h)', 'Grades: low / medium / high strength'],
+  },
+  'tmeliva-a-utesnovace': {
+    longDescCs: 'Polyuretanová, silikonová a MS polymerní tmeliva kombinují elasticitu s adhezí. Těsní spáry, absorbují pohyb a dilataci, odolávají UV a povětrnosti. Silikonová tmeliva jsou nejteplotně odolnější (−60 až +300 °C). MS polymery jsou základ moderního stavebního těsnění.',
+    longDescEn: 'Polyurethane, silicone and MS polymer sealants combine elasticity with adhesion. They seal joints, absorb movement and expansion, resist UV and weathering. Silicone sealants offer the highest temperature resistance (−60 to +300 °C). MS polymers are the basis of modern construction sealing.',
+    keyParamsCs: ['Tažnost: 300–800 %', 'Pevnost v tahu: 1–5 MPa', 'Teplota: −60 °C až +300 °C dle typu', 'UV odolnost: výborná (silikon, MS polymer)'],
+    keyParamsEn: ['Elongation: 300–800%', 'Tensile strength: 1–5 MPa', 'Temperature: −60 °C to +300 °C by type', 'UV resistance: excellent (silicone, MS polymer)'],
+  },
+  'lepici-pasky-a-folie': {
+    longDescCs: 'Oboustranné akrylátové VHB pásky (Very High Bond) přinášejí pevnost srovnatelnou se strukturálními tekutými lepidly — bez hnacího zařízení, bez míchání, bez doby vytvrzení. Pěnové jádro kompenzuje tolerance povrchu a absorbuje vibrace. Standardem v automotive, elektronice a fasádních systémech.',
+    longDescEn: 'Double-sided acrylic VHB tapes (Very High Bond) deliver strength comparable to structural liquid adhesives — without dispensing equipment, without mixing, without cure time. The foam core compensates surface tolerances and absorbs vibration. Standard in automotive, electronics and facade systems.',
+    keyParamsCs: ['Pevnost v odlupování: 0,5–2,5 MPa', 'Statická pevnost: srovnatelná s tekutým lepidlem', 'Teplota: −40 °C až +120 °C', 'Tloušťka: 0,1–3 mm'],
+    keyParamsEn: ['Peel strength: 0.5–2.5 MPa', 'Static strength: comparable to liquid adhesive', 'Temperature: −40 °C to +120 °C', 'Thickness: 0.1–3 mm'],
+  },
+  'primery-a-aktivatory': {
+    longDescCs: 'Bez primeru na nesnadno lepitelných substrátech jsou výsledky nevyzpytatelné. Primer chemicky modifikuje povrch a vytváří vazební vrstvu pro lepidlo. Různé primery jsou formulovány pro různé substráty: PP/PE, korozivzdorná ocel, hliník, lakované povrchy. Nanášejí se setřením, nástřikem nebo penzetou — minimální množství, maximální efekt.',
+    longDescEn: "Without a primer on difficult-to-bond substrates results are unpredictable. A primer chemically modifies the surface and creates a bonding layer for the adhesive. Different primers are formulated for different substrates: PP/PE, stainless steel, aluminium, coated surfaces. Applied by wipe, spray or brush — minimal quantity, maximum effect.",
+    keyParamsCs: ['Kompatibilita: PP, PE, PTFE, lakované povrchy, kov', 'Nanášení: setření, nástřik, pinzetou', 'Sušení: 1–5 min', 'Pokrytí: 5–20 m²/100 ml'],
+    keyParamsEn: ['Compatibility: PP, PE, PTFE, coated surfaces, metal', 'Application: wipe, spray, brush', 'Dry time: 1–5 min', 'Coverage: 5–20 m²/100 ml'],
+  },
+  'cistice-a-odmastovadla': {
+    longDescCs: 'Bez odmašťování nefunguje žádný primer ani lepidlo. IPA (izopropanol) a aceton jsou nejběžnější průmyslová odmašťovadla — rychlá, efektivní, bezpečná pro většinu substrátů. Pro silné kontaminace (obráběcí oleje, maziva) jsou vhodné specialní čisticí prostředky nebo vodní odmašťovadla pro automatizované linky.',
+    longDescEn: 'Without degreasing no primer or adhesive will work. IPA (isopropanol) and acetone are the most common industrial degreasers — fast, effective, safe for most substrates. For heavy contamination (machining oils, lubricants) specialist cleaners or aqueous degreasers for automated lines are appropriate.',
+    keyParamsCs: ['IPA: bezpečný pro většinu plastů i kovů', 'Aceton: silnější, pozor na lakované povrchy', 'Vodní báze: pro automatizované linky (bez zápachu)', 'Kritický parametr: čistota po setření (bílá tkanina)'],
+    keyParamsEn: ['IPA: safe for most plastics and metals', 'Acetone: stronger, care on coated surfaces', 'Water-based: for automated lines (odour-free)', 'Critical parameter: cleanliness after wiping (white cloth)'],
+  },
+};
+---
+
+<BaseLayout
+  title="Produkty — Průmyslová lepidla, primery, aplikační systémy | Kronteq"
+  description="Kompletní portfolio: PUR lepidla, epoxidy, MMA akryláty, kyanoakryláty, silikony, lepicí pásky, primery, čističe a aplikační systémy. Technická konzultace a vzorky zdarma."
+  lang="cs"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Produkty Kronteq",
+    "itemListElement": products.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Product",
+        "name": p.nameCs,
+        "description": p.descCs,
+        "brand": { "@type": "Brand", "name": "Kronteq" }
+      }
+    }))
+  })} />
+
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Kronteq</p>
+      <h1>{t.productsTitle}</h1>
+      <p class="page-desc">{t.productsDesc}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="products-grid" data-reveal-stagger>
+        {products.map(product => {
+          const detail = productDetails[product.slug];
+          return (
+            <article class="product-card card" id={product.slug}>
+              <div class="product-header">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={product.icon} />
+                  </svg>
+                </div>
+                <h2 class="product-name">{product.nameCs}</h2>
+              </div>
+              <p class="product-desc">{detail?.longDescCs || product.descCs}</p>
+
+              {detail && (
+                <div class="product-params">
+                  <h3>Klíčové parametry</h3>
+                  <ul role="list">
+                    {detail.keyParamsCs.map(p => <li>{p}</li>)}
+                  </ul>
+                </div>
+              )}
+
+              <div class="product-uses">
+                <h3>Typické aplikace</h3>
+                <ul role="list">
+                  {product.usesCs.map(use => <li>{use}</li>)}
+                </ul>
+              </div>
+
+              <div class="product-actions">
+                <a href="/kontakt/" class="btn-outline-dark">{t.productsSampleCta}</a>
+                <a href="/kontakt/" class="btn-text">Technická konzultace →</a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band section-dark">
+    <div class="container cta-band-inner">
+      <div>
+        <h2>Potřebujete poradit s výběrem?</h2>
+        <p>Správný produkt závisí na desítkách faktorů. Pošlete nám aplikaci a my vybereme za vás.</p>
+      </div>
+      <a href="/kontakt/" class="btn-primary">{t.productsCta}</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; max-width: none; }
+  .page-hero h1 { color: #fff; }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.125rem; margin-top: 1rem; max-width: 56ch; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card { display: flex; flex-direction: column; gap: 1rem; }
+  .product-header { display: flex; align-items: flex-start; gap: 1rem; }
+  .product-name { font-size: 1.25rem; margin-top: 0.25rem; }
+  .product-desc { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.65; max-width: none; }
+
+  .product-params h3,
+  .product-uses h3 {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem;
+  }
+  .product-params ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .product-params li { font-size: 0.8125rem; color: var(--text-muted); max-width: none; padding-left: 1rem; position: relative; }
+  .product-params li::before { content: '—'; position: absolute; left: 0; color: var(--accent-dim); }
+
+  .product-uses ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .product-uses li {
+    font-size: 0.8125rem; color: var(--text-muted);
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 100px; padding: 0.2rem 0.65rem; max-width: none;
+  }
+
+  .product-actions { display: flex; align-items: center; gap: 1rem; margin-top: auto; }
+  .btn-text { font-size: 0.875rem; color: var(--accent); text-decoration: none; }
+  .btn-text:hover { text-decoration: underline; }
+
+  .cta-band { padding: 4rem 0; }
+  .cta-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cta-band h2 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cta-band p { color: var(--text-dark-muted); max-width: 50ch; }
+  @media (max-width: 768px) { .cta-band-inner { flex-direction: column; align-items: flex-start; } }
+</style>

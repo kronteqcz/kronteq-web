@@ -1,0 +1,389 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { technologies } from '../../../data/technologies';
+
+export function getStaticPaths() {
+  return technologies.map(tech => ({
+    params: { slug: tech.slugEn },
+    props: { tech },
+  }));
+}
+
+const { tech } = Astro.props;
+
+const content: Record<string, { titleEn: string; bodyEn: string; faqEn: Array<{ q: string; a: string }> }> = {
+  'bonding-overview': {
+    titleEn: 'Structural Bonding: Joint Anatomy and Why Adhesive Transfers Load Better Than a Bolt',
+    bodyEn: `## What is structural bonding?
+
+Structural bonding is the method of joining materials using adhesive substances that transfer mechanical loading — tensile, shear or peel forces. Unlike sealing compounds and mounting pastes, structural adhesives are designed so that the bond survives the full service life of the product.
+
+Adhesive bonding entered industry as a natural response to two trends: new materials (composites, aluminium alloys, thermoplastics) and lightweight construction. Where a weld fails or thermally damages the material, adhesive bonding works reliably.
+
+## Adhesion and cohesion: two principles, one joint
+
+The strength of an adhesive bond depends on two independently acting forces:
+
+**Adhesion** is the bonding of the adhesive to the substrate surface. It arises from a combination of physical forces (van der Waals interactions, capillary effect) and chemical bonds (in the case of primers or reactive adhesives). Adhesion depends primarily on the cleanliness and surface energy of the substrate — which is why surface preparation is so critical.
+
+**Cohesion** is the internal strength of the adhesive itself — how strongly it holds its molecules together. This depends on the polymer's chemical structure, cross-linking and fillers. Epoxies have high cohesion and are rigid; polyurethanes have lower cohesion but much higher elasticity.
+
+**The weakest link principle** states that a joint always fails at the point of lowest strength — and that is almost always adhesion (the adhesive–substrate interface), not cohesion (the centre of the adhesive layer). The key conclusion: investing in a higher-quality adhesive does nothing if surface preparation is weak.
+
+## Joint geometry and stress transfer
+
+Bonded joints transfer stress over an area — across the entire bond surface. This is a fundamental difference from point joints (welds, rivets, bolts), where stress concentrates in a small area. Area-distributed stress has three consequences:
+
+1. **Higher fatigue life** — bonded joints do not propagate cracks from stress concentrations.
+2. **NVH damping** — the elastic adhesive layer absorbs vibration and impact.
+3. **Corrosion protection** — the adhesive isolates the joint from moisture and electrochemical reactions.
+
+Critical geometry factors include adhesive layer thickness (optimum 0.1–0.3 mm for structural adhesives), overlap length in lap joints, and uniformity of application. Air bubbles and unbonded areas are like weld defects — a hidden weakness.
+
+## When does bonding replace welding?
+
+Bonding is advantageous over welding in these situations:
+- **Dissimilar materials:** metal + plastic, aluminium + composite, glass + metal — welding does not work here.
+- **Thin materials:** below 1.5 mm thickness, distortion from welding is a risk.
+- **Heat-sensitive surfaces:** painted parts, electronics, composites.
+- **Sealing + strength simultaneously:** adhesive seals and holds at the same time.
+- **Vibration:** adhesive damps; a weld transmits vibration to the surrounding structure.
+
+Welding remains appropriate for heavy steel structures, extreme temperatures and where easy quality inspection (X-ray) is required.
+
+## Limits of bonding
+
+- Temperature: standard adhesives to 120–150 °C, specialist grades to 300 °C.
+- Disassembly: a bonded joint is permanent; disassembly is destructive.
+- Quality control: visual inspection cannot verify internal joint quality — NDT is required.
+- Ageing: UV radiation and humidity degrade polymers; selecting a UV-stable adhesive is critical for outdoor applications.`,
+    faqEn: [
+      { q: 'How strong is an adhesive bond?', a: 'Depends on the adhesive and substrate. Structural epoxy adhesives achieve 70–90 MPa in tension; PUR adhesives 20–40 MPa with high elasticity. For comparison: a steel weld achieves 400+ MPa, but a spot weld transfers load only in a small area.' },
+      { q: 'Can I bond without a primer?', a: 'On well-degreased metal surfaces many adhesives work without a primer. On plastic substrates (PP, PE, PTFE) and coated surfaces a primer is essential or significantly improves bond reliability.' },
+      { q: 'How long does an adhesive bond last?', a: 'A correctly designed and executed adhesive bond lasts the service life of the product — easily 20–30 years in industrial conditions. Aerospace structures with bonded joints fly for decades.' },
+    ],
+  },
+  'adhesive-types': {
+    titleEn: 'Types of Industrial Adhesives: PUR vs. Epoxy vs. MMA vs. CA vs. Silicone',
+    bodyEn: `## Why does adhesive selection matter?
+
+Industrial adhesives differ across five key dimensions: strength, flexibility, temperature resistance, chemical resistance and cure speed. No adhesive is best in all categories. The right selection is always a compromise between application requirements.
+
+The simplest orientation tool is a scatter diagram: X axis = flexibility (% elongation), Y axis = strength (MPa). Adhesives then fall into four quadrants.
+
+## Polyurethanes (PUR): elasticity as an advantage
+
+**Strength:** 20–40 MPa tensile, 8–15 MPa shear.
+**Elongation:** 400–800% — by far the highest of all structural adhesives.
+**Temperature:** −40 °C to +120 °C (specialist formulations to +150 °C).
+**Cure:** atmospheric moisture (one-component) or two-component mixing.
+
+PUR is the choice for dynamically loaded joints at risk of peel or vibration. Excellent impact performance. Used for automotive glass bonding (SSG), structural facades, floor bonding and industrial sealing. Sensitive to moisture during storage (one-component PUR reacts with atmospheric humidity).
+
+## Epoxies: strength and temperature resistance
+
+**Strength:** 70–90 MPa tensile, 20–35 MPa shear — highest of standard adhesives.
+**Elongation:** 50–200% (rigid, low flexibility).
+**Temperature:** standard to 120 °C; specialist to 300 °C.
+**Cure:** chemical reaction of component A (epoxy resin) + component B (hardener). Speed depends on temperature and formulation — from 5 minutes (fast epoxies) to 24 hours at room temperature.
+
+Epoxies are the foundation of structural bonding in aerospace, electronics and industry. They are the most temperature and chemically resistant of standard adhesives. Drawback: they are brittle — under impact loading they can crack. Toughened epoxies exist that are less brittle at the cost of lower strength.
+
+## MMA acrylates: speed + versatility
+
+**Strength:** 40–70 MPa tensile.
+**Elongation:** 100–400%.
+**Temperature:** −40 °C to +120 °C.
+**Cure:** 5–30 minutes (exothermic reaction initiated by initiator). Cures even on not perfectly clean surfaces.
+
+MMA (methyl methacrylate) are two-component systems with extremely fast cure. Their advantage is tolerance to imperfectly clean surfaces — they tolerate traces of oil where epoxies would fail. Excellent for transport, agricultural machinery and composite panels. Strong odour during application; workplace ventilation essential.
+
+## Cyanoacrylates (CA): speed for small areas
+
+**Strength:** 10–25 MPa shear, but low peel strength.
+**Temperature:** −55 °C to +80 °C (specialist to +120 °C).
+**Cure:** 5–60 seconds — fastest of all adhesives.
+
+CA adhesives are irreplaceable for small part assembly, component fixation and prototyping. For structural applications with larger bond areas or dynamic loading they are unsuitable: brittle, moisture-sensitive on ageing, and low peel strength.
+
+## Silicones: elasticity + thermal resistance
+
+**Strength:** 1–5 MPa — not used for structural bonds.
+**Elongation:** 200–600%.
+**Temperature:** −60 °C to +300 °C — best of all.
+**Cure:** atmospheric moisture, varying speed.
+
+Silicones are sealing adhesives, not structural ones. Their strength lies in thermal and UV resistance. Used for engine bay sealing, ovens, electrical enclosures and structural glazing (where combination with PUR or epoxy provides structural strength).
+
+## Decision tree
+
+1. Need maximum strength + temperature resistance? → **Epoxy**
+2. Need flexibility, vibration absorption or glass bonding? → **PUR**
+3. Need fast cure or tolerance to contamination? → **MMA**
+4. Bonding small areas, need seconds? → **CA**
+5. Need sealing or temperature resistance above 150 °C? → **Silicone**`,
+    faqEn: [
+      { q: 'Can adhesive types be combined in one joint?', a: 'In hybrid joints, adhesive is combined with mechanical fastening (weld, rivet). Combining two different adhesives in one joint is not recommended — chemical incompatibility can reduce the strength of both.' },
+      { q: 'How do I know if I chose the wrong adhesive?', a: 'Typical signs: cohesive failure (adhesive tears in the middle of the layer) = adhesive is too rigid or too weak. Adhesive failure (adhesive peels completely from the surface) = poor surface preparation or wrong adhesive type for the substrate.' },
+      { q: 'What is open time?', a: 'Open time is the period from adhesive application to part assembly. After it expires, the adhesive begins to cure and parts cannot be properly mated. For CA it is seconds; for PUR and epoxies, minutes to hours.' },
+    ],
+  },
+  'hybrid-joints': {
+    titleEn: 'Hybrid Joints: Weld-Bonding and Rivet-Bonding in Industrial Practice',
+    bodyEn: `## Why hybrid joints?
+
+Bonding and mechanical joining (welding, riveting) each have their strengths and limits. Hybrid joints combine both technologies so that the resulting joint outperforms either method alone.
+
+The basic principle: **mechanical fastening provides immediate strength** (parts hold right after assembly, without waiting for adhesive cure); **adhesive provides area strength, sealing and protection** (area stress transfer, corrosion barrier, vibration absorption).
+
+## Weld-bonding: adhesive + spot welding
+
+Weld-bonding combines adhesive with resistance spot welding. The process:
+
+1. Adhesive is applied to the assembly (~0.2–0.3 mm layer for welding through).
+2. Parts are assembled — the adhesive acts as a spacer maintaining geometry.
+3. Spot welding is performed — fixing part position and transferring load immediately.
+4. Adhesive cures (during the production process, or in the cataphoresis bath during painting).
+
+**Advantages:**
+- Body torsional stiffness increases by 20–40% compared to welding alone.
+- Corrosion protection of the joint — adhesive seals the gap from moisture.
+- Galvanic corrosion barrier — prevents galvanic corrosion (especially Al + steel).
+- Eliminates the need for additional clamps: the weld fixes immediately.
+
+**Where used:** Automotive (body, roof, body sides), aerospace (fuselage panels), industrial containers.
+
+**Note:** Adhesive must withstand welding temperature (short thermal pulse ~6,000 °C at the weld point, surroundings <200 °C). Crash-durable epoxies for weld-bonding are formulated specifically for thermal pulse resistance.
+
+## Rivet-bonding: adhesive + rivets
+
+Rivet-bonding combines rivets (or clinched joints) with adhesive. Rivet and adhesive serve different functions:
+
+- **Rivet:** carries peak dynamic and impact loading along the joint axis. Fixes parts immediately after riveting.
+- **Adhesive:** transfers shear stress over an area, damps vibration, prevents fatigue crack propagation from the rivet hole.
+
+Without adhesive, cracks propagate from the rivet hole — this effect is called fretting. With adhesive, the adhesive fills the gap around the hole and eliminates the crack initiation site.
+
+**Where used:** Aerospace industry (standard for composite panels and aluminium structures), buses and trams, industrial enclosures.
+
+**Parameters:** Adhesive must have sufficient elongation to compensate for movement caused by the rivet during thermal cycling. PUR or toughened epoxies are typically preferred.
+
+## How to design a hybrid joint
+
+1. **Priority: what must the joint achieve first?** Immediate assembly strength (→ weld/rivet sized significantly), or long-term strength and sealing (→ adhesive sized significantly, joint is redundant).
+2. **Adhesive selection for hybrid application:** must be compatible with welding temperatures (for weld-bonding) or elastic for movement compensation (for rivet-bonding).
+3. **Operation sequence:** always surface first, then adhesive, then assembly and fastening.
+4. **Testing:** hybrid joints must be validated — testing the rivet or weld alone is insufficient.`,
+    faqEn: [
+      { q: 'Do I need a special adhesive for weld-bonding?', a: 'Yes. Standard adhesives may be degraded by the welding thermal pulse, or local boiling of the adhesive can create voids. Crash-durable epoxies for weld-bonding are formulated for thermal pulse resistance.' },
+      { q: 'Does rivet-bonding improve fatigue life?', a: 'Yes — significantly. Adhesive eliminates fretting around the rivet hole, which is the main fatigue crack initiation site. Aerospace studies have shown 2–5× higher fatigue life for rivet-bonded joints versus riveting alone.' },
+      { q: 'Can a hybrid joint be repaired?', a: 'With difficulty. Rivets can be removed by drilling, but adhesive is permanent. Repair of a hybrid joint typically requires replacement of the entire part, or local mechanical stripping with abrasive tools and surface renewal.' },
+    ],
+  },
+  'surface-preparation': {
+    titleEn: 'Surface Preparation for Bonding: Three Steps that Determine 90% of the Result',
+    bodyEn: `## Why 90% of failures?
+
+Industrial warranty claim analyses repeatedly show the same pattern: in 90% of cases of adhesive bond failure, the cause was inadequate surface preparation — not the adhesive. The adhesive was fine. The surface was not.
+
+Yet expenditure on surface preparation represents only a fraction of total bonding technology costs. Investment in a proper degreasing and activation process is the best prevention against expensive warranty claims.
+
+## Why does the surface decide?
+
+An adhesive needs three things to "grip":
+
+1. **Clean surface** — free of oils, greases, oxides, dust, wax. Oils reduce wettability; the oxide layer on metals is mechanically weak and peels.
+2. **Sufficient surface energy** — so the adhesive spreads and wets every surface detail. Plastics (PP, PE) have inherently low surface energy (<30 mN/m); adhesives need >38 mN/m.
+3. **Chemical reactivity** — for the most demanding substrates, chemical bonds between primer and substrate must be created.
+
+## Step 1: Mechanical cleaning
+
+**Goal:** Remove loose oxides, rust, contamination. Increase effective contact area.
+
+**Methods:**
+- **Grinding** (abrasive paper P80–P320, or abrasive wool) — for metals and wood. Always along the joint length, never in circular motions.
+- **Sandblasting / grit blasting** — Sa 2.5 or Sa 3 per ISO 8501. Creates an anchor profile increasing mechanical interlocking of the adhesive.
+- **Brushing** (wire brush, nylon) — for lighter contamination or plastics where abrasives could embed contaminants into the surface.
+
+**Important:** After mechanical cleaning, do not touch the surface with bare hands — the fatty perspiration from skin re-contaminates the surface and negates the preparation work. Use clean cotton or nitrile gloves.
+
+## Step 2: Chemical degreasing
+
+**Goal:** Remove oils, greases, lubricants, emulsions. Achieve maximum surface wettability.
+
+**Methods:**
+- **IPA (isopropanol, 2-propanol)** — the most universal. Safe for metals, plastics and lacquers. Fast evaporation. Effective against light oils and fingerprints.
+- **Acetone** — stronger than IPA. Care on painted surfaces and plastics — can attack them. Fast evaporation.
+- **Specialist cleaners** — for heavily contaminated surfaces or automated ultrasonic or immersion cleaning systems.
+
+**Technique:** Wipe in one direction with a clean cloth (avoid microfibre cloths — they leave residues). Never use two cloths simultaneously — the first cloth lifts the contamination, the second smears it.
+
+**Cleanliness test:** A drop of water (or IPA) on the degreased surface — if it spreads into a flat circle, the surface is clean. If it contracts into a bead, it is still contaminated.
+
+## Step 3: Surface activation
+
+**Goal:** Increase surface energy. Create a chemically reactive surface for the adhesive or primer.
+
+**Methods:**
+- **Primer** — a liquid chemical applied by wipe or spray. PP primer creates chemical bonds with inert polypropylene. Metal primer inhibits corrosion and increases adhesion. Apply minimally and evenly; allow to dry (1–5 min).
+- **Plasma** — a stream of ionised gas (~15,000 °C in the core). Cleans and activates the surface in a single step. Increases plastic surface energy to >70 mN/m. Effect lasts tens of minutes; bonding must follow promptly.
+- **Corona** — electrical discharge for activating films and tapes. Used in the manufacture of bonding tapes and packaging materials.
+- **Flame treatment** — rapid pass with a flame. Accessible and effective for PP and PE; sensitive to power setting.
+
+## Time window after preparation
+
+An activated surface degrades — it re-adsorbs contaminants and releases atmospheric moisture. For plasma-activated plastics the typical window is 20–60 minutes. For metals degreased with IPA the window is shorter (oxidation); bonding within 30 minutes is recommended.
+
+**Golden rule:** Prepare → bond immediately. If you must wait, repeat degreasing.`,
+    faqEn: [
+      { q: 'How do I check if the surface is sufficiently degreased?', a: 'The simplest test: apply a drop of water (or IPA) to the degreased surface. If it spreads (contact angle <30°), the surface is clean. If it contracts into a bead (contact angle >60°), it is still contaminated. For more precise measurement, surface energy test pens are available.' },
+      { q: 'Do I always need to activate the surface?', a: 'Not always. On well-degreased stainless steel or aluminium surfaces many adhesives work without a primer. Activation is required for plastics with low surface energy (PP, PE, PTFE) and wherever the environment involves moisture or chemicals.' },
+      { q: 'Can the preparation process be automated?', a: 'Yes — and in series production, automation is the key to consistency. Ultrasonic cleaners, automatic degreasing tunnels and robotic plasma heads are standard in modern production lines. Process consistency is more important than a single ideal result.' },
+    ],
+  },
+};
+
+const articleData = content[tech.slugEn];
+const breadcrumb = [
+  { name: 'Kronteq', url: '/en/' },
+  { name: 'Technology', url: '/en/technology/' },
+  { name: tech.nameEn, url: `/en/technology/${tech.slugEn}/` },
+];
+---
+
+<BaseLayout
+  title={`${articleData?.titleEn || tech.nameEn} | Kronteq`}
+  description={tech.perexEn}
+  lang="en"
+  type="article"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": articleData?.titleEn || tech.nameEn,
+        "description": tech.perexEn,
+        "author": { "@type": "Person", "name": "Kristýna Ondráčková", "jobTitle": "European Adhesive Engineer" },
+        "publisher": { "@type": "Organization", "name": "Kronteq" },
+        "inLanguage": "en",
+        "keywords": tech.keywordsEn.join(', '),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumb.map((item, i) => ({
+          "@type": "ListItem", "position": i + 1,
+          "name": item.name, "item": `https://www.kronteq.com${item.url}`,
+        })),
+      },
+      ...(articleData?.faqEn ? [{
+        "@type": "FAQPage",
+        "mainEntity": articleData.faqEn.map(faq => ({
+          "@type": "Question", "name": faq.q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+        })),
+      }] : []),
+    ],
+  })} />
+
+  <div class="page-hero section-dark">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        {breadcrumb.map((item, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            {i < breadcrumb.length - 1
+              ? <a href={item.url}>{item.name}</a>
+              : <span aria-current="page">{item.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <h1>{articleData?.titleEn || tech.nameEn}</h1>
+      <p class="page-desc">{tech.perexEn}</p>
+      <div class="article-meta">
+        <span>Kristýna Ondráčková, EAE</span>
+        <span aria-hidden="true">·</span>
+        <span>{tech.readingTimeMinutes} min read</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-layout section">
+    <div class="container article-container">
+      <article class="article-body prose" data-reveal>
+        {articleData?.bodyEn.split('\n\n').map(block => {
+          if (block.startsWith('## ')) return <h2>{block.slice(3)}</h2>;
+          if (block.startsWith('### ')) return <h3>{block.slice(4)}</h3>;
+          if (block.startsWith('- ')) {
+            const items = block.split('\n').filter(l => l.startsWith('- '));
+            return <ul>{items.map(item => <li>{item.slice(2)}</li>)}</ul>;
+          }
+          if (block.startsWith('1. ') || block.startsWith('2. ')) {
+            const items = block.split('\n').filter(l => /^\d+\.\s/.test(l));
+            return <ol>{items.map(item => <li>{item.replace(/^\d+\.\s/, '')}</li>)}</ol>;
+          }
+          const parts = block.split(/(\*\*[^*]+\*\*)/g);
+          return <p>{parts.map(part => part.startsWith('**') && part.endsWith('**') ? <strong>{part.slice(2,-2)}</strong> : part)}</p>;
+        })}
+        {articleData?.faqEn && (
+          <div class="article-faq">
+            <h2>Frequently asked questions</h2>
+            <dl class="faq-list">
+              {articleData.faqEn.map(faq => (
+                <><dt>{faq.q}</dt><dd>{faq.a}</dd></>
+              ))}
+            </dl>
+          </div>
+        )}
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card card">
+          <h3>Other technology articles</h3>
+          <ul class="sidebar-links">
+            {technologies.filter(t => t.slugEn !== tech.slugEn).map(other => (
+              <li><a href={`/en/technology/${other.slugEn}/`}>{other.nameEn}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="sidebar-cta card">
+          <h3>Need advice?</h3>
+          <p>Kristýna Ondráčková, European Adhesive Engineer, will respond within 24 hours.</p>
+          <a href="/en/contact/" class="btn-primary btn-small">Free consultation</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 3rem); padding-bottom: 3rem; }
+  .page-hero h1 { color: #fff; font-size: clamp(1.75rem, 3vw, 2.5rem); }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.0625rem; margin-top: 0.75rem; max-width: 64ch; }
+  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; max-width: none; }
+  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.4); max-width: none; }
+  .article-container { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: flex-start; }
+  .article-body { max-width: 72ch; }
+  .article-body h2 { font-size: 1.375rem; margin: 2rem 0 0.75rem; }
+  .article-body h3 { font-size: 1.125rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .article-body p { color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem; max-width: none; }
+  .article-body ul, .article-body ol { margin: 0.75rem 0 1rem 1.5rem; }
+  .article-body li { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.4rem; max-width: none; }
+  .article-body strong { color: var(--text); }
+  .article-faq { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+  .article-faq h2 { margin-top: 0; }
+  .faq-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .faq-list dt { font-weight: 600; color: var(--text); margin-bottom: 0.4rem; max-width: none; }
+  .faq-list dd { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7; margin: 0; max-width: 68ch; }
+  .article-sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 5rem; }
+  .sidebar-card h3, .sidebar-cta h3 { font-size: 0.9375rem; margin-bottom: 0.75rem; }
+  .sidebar-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-links a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; }
+  .sidebar-links a:hover { color: var(--accent); }
+  .sidebar-cta p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem; max-width: none; }
+  .btn-small { padding: 0.5rem 1rem; font-size: 0.875rem; }
+  @media (max-width: 900px) { .article-container { grid-template-columns: 1fr; } .article-sidebar { position: static; } .article-body { max-width: 100%; } }
+</style>

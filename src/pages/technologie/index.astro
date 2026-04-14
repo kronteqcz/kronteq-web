@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLang } from '../../i18n/strings';
+import { technologies } from '../../data/technologies';
+
+const t = getLang('cs');
+---
+
+<BaseLayout
+  title="Technologie lepení — přehled | Kronteq"
+  description="Věda za lepidlem: anatomie spoje, typy lepidel, hybridní spoje a klíč k úspěchu — příprava povrchu. Technické články pro průmyslové konstruktéry."
+  lang="cs"
+>
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Znalosti</p>
+      <h1>{t.technologyTitle}</h1>
+      <p class="page-desc">{t.technologyDesc}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="tech-grid" data-reveal-stagger>
+        {technologies.map(tech => (
+          <a href={`/technologie/${tech.slug}/`} class="tech-card card">
+            <div class="tech-icon icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={tech.icon} />
+              </svg>
+            </div>
+            <div class="tech-content">
+              <h2>{tech.nameCs}</h2>
+              <p>{tech.perexCs}</p>
+              <div class="tech-meta">
+                <span class="reading-time">{tech.readingTimeMinutes} {t.technologyReadingTime}</span>
+                <span class="read-more">{t.technologyReadMore} →</span>
+              </div>
+              <div class="tech-keywords" aria-hidden="true">
+                {tech.keywordsCs.map(k => <span>{k}</span>)}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band section-dark">
+    <div class="container cta-band-inner">
+      <div>
+        <h2>Máte konkrétní technický problém?</h2>
+        <p>Artiky říkají teorii. Kristýna Ondráčková vám řekne, co konkrétně použít ve vaší aplikaci.</p>
+      </div>
+      <a href="/kontakt/" class="btn-primary">Technická konzultace</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; max-width: none; }
+  .page-hero h1 { color: #fff; }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.125rem; margin-top: 1rem; max-width: 56ch; }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .tech-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    text-decoration: none;
+    transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+  }
+  .tech-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+
+  .tech-icon { flex-shrink: 0; }
+
+  .tech-content { display: flex; flex-direction: column; gap: 0.625rem; }
+  .tech-content h2 { font-size: 1.25rem; color: var(--text); }
+  .tech-content p { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6; max-width: none; }
+
+  .tech-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8125rem;
+  }
+  .reading-time { color: var(--text-dim); }
+  .read-more { color: var(--accent); font-weight: 500; }
+
+  .tech-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+  }
+  .tech-keywords span {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .cta-band { padding: 4rem 0; }
+  .cta-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cta-band h2 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cta-band p { color: var(--text-dark-muted); max-width: 50ch; }
+  @media (max-width: 768px) { .cta-band-inner { flex-direction: column; align-items: flex-start; } }
+</style>
