@@ -1,0 +1,102 @@
+---
+// SurfacePrep3Steps.astro
+// Three-step surface preparation: clean → activate → apply
+interface Props {
+  width?: number;
+  height?: number;
+  class?: string;
+}
+const { width = 540, height = 180, class: className = '' } = Astro.props;
+
+const steps = [
+  {
+    n: '1',
+    title: 'Čištění',
+    subtitle: 'odmašťování IPA',
+    color: '#4ade80',
+    icon: 'M 26 18 L 14 30 M 22 18 L 30 26 M 18 14 C 18 14 26 10 34 18 S 38 30 30 34',
+  },
+  {
+    n: '2',
+    title: 'Aktivace',
+    subtitle: 'plazma / primer',
+    color: '#fb923c',
+    icon: 'M 24 10 L 26 18 L 32 14 L 26 24 L 28 20 L 22 24 Z',
+  },
+  {
+    n: '3',
+    title: 'Aplikace',
+    subtitle: 'lepidlo / sealant',
+    color: '#7c3aed',
+    icon: 'M 14 28 Q 20 20 26 24 Q 32 28 38 18',
+  },
+];
+---
+
+<svg
+  viewBox={`0 0 ${width} ${height}`}
+  width={width}
+  height={height}
+  class={className}
+  aria-label="Tři kroky přípravy povrchu před lepením"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width={width} height={height} fill="#1a0f35" rx="12"/>
+
+  {steps.map((step, i) => {
+    const cx = 90 + i * 180;
+    return (
+      <g>
+        <!-- Card background -->
+        <rect x={cx - 70} y="20" width="140" height="140" rx="10" fill="rgba(45,27,85,0.6)" stroke={`${step.color}33`} stroke-width="1.5"/>
+
+        <!-- Step number badge -->
+        <circle cx={cx} cy="52" r="22" fill={`${step.color}22`} stroke={step.color} stroke-width="1.5"/>
+        <text x={cx} y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill={step.color}>{step.n}</text>
+
+        <!-- Title -->
+        <text x={cx} y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#fff">{step.title}</text>
+
+        <!-- Subtitle -->
+        <text x={cx} y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">{step.subtitle}</text>
+
+        <!-- Connector arrow (not after last) -->
+        {i < 2 && (
+          <g>
+            <line x1={cx + 74} y1="90" x2={cx + 106} y2="90" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <polygon points={`${cx+102},86 ${cx+110},90 ${cx+102},94`} fill="rgba(255,255,255,0.2)"/>
+          </g>
+        )}
+
+        <!-- Water contact angle indicator (step 1 only) -->
+        {i === 0 && (
+          <g>
+            <!-- Before: bead -->
+            <ellipse cx={cx - 20} cy="144" rx="8" ry="8" fill="#60a5fa" opacity="0.7"/>
+            <text x={cx - 20} y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">před</text>
+            <!-- After: flat drop -->
+            <ellipse cx={cx + 20} cy="147" rx="14" ry="5" fill="#60a5fa" opacity="0.7"/>
+            <text x={cx + 20} y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">po</text>
+          </g>
+        )}
+
+        <!-- Surface energy indicator (step 2 only) -->
+        {i === 1 && (
+          <g>
+            <text x={cx} y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill={step.color}>↑ povrchová energie</text>
+            <text x={cx} y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.3)">&gt;38 mN/m</text>
+          </g>
+        )}
+
+        <!-- Bond strength indicator (step 3 only) -->
+        {i === 2 && (
+          <g>
+            <text x={cx} y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill={step.color}>max. adheze</text>
+            <text x={cx} y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.3)">do 24 h</text>
+          </g>
+        )}
+      </g>
+    );
+  })}
+</svg>

@@ -10,7 +10,10 @@ const { lang = 'cs' } = Astro.props;
 const t = getLang(lang);
 
 const navItems = [
-  { label: t.navSolutions, href: lang === 'en' ? '/en/solutions/' : '/reseni/' },
+  { label: t.navServices, href: lang === 'en' ? '/en/services/' : '/sluzby/' },
+  { label: t.navProducts, href: lang === 'en' ? '/en/products/' : '/produkty/' },
+  { label: t.navTechnology, href: lang === 'en' ? '/en/technology/' : '/technologie/' },
+  { label: t.navKnowledge, href: lang === 'en' ? '/en/knowledge-base/' : '/znalostni-baze/' },
   { label: t.navIndustries, href: lang === 'en' ? '/en/industries/' : '/odvtvi/' },
   { label: t.navAbout, href: lang === 'en' ? '/en/about/' : '/o-nas/' },
   { label: t.navContact, href: lang === 'en' ? '/en/contact/' : '/kontakt/' },

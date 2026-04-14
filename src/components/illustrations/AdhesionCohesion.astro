@@ -1,0 +1,64 @@
+---
+// AdhesionCohesion.astro
+// Illustrates adhesion (bond to substrate) vs cohesion (internal strength of adhesive)
+interface Props {
+  width?: number;
+  height?: number;
+  class?: string;
+}
+const { width = 480, height = 220, class: className = '' } = Astro.props;
+---
+
+<svg
+  viewBox={`0 0 ${width} ${height}`}
+  width={width}
+  height={height}
+  class={className}
+  aria-label="Adheze a koheeze lepeného spoje"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width={width} height={height} fill="#1a0f35" rx="12"/>
+
+  <!-- Substrate A (top) -->
+  <rect x="40" y="30" width="400" height="44" rx="4" fill="#2d1b55" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/>
+  <text x="240" y="57" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.6)" font-weight="600">SUBSTRÁT A</text>
+
+  <!-- Adhesion zone top — dotted boundary -->
+  <rect x="40" y="74" width="400" height="16" rx="0" fill="rgba(251,191,36,0.12)" stroke="rgba(251,191,36,0.5)" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="460" y="86" text-anchor="start" font-family="Inter, sans-serif" font-size="10" fill="rgba(251,191,36,0.8)"></text>
+
+  <!-- Adhesive layer -->
+  <rect x="40" y="90" width="400" height="40" rx="0" fill="rgba(124,58,237,0.3)" stroke="rgba(124,58,237,0.6)" stroke-width="1"/>
+  <text x="240" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="rgba(124,58,237,0.95)" font-weight="600">LEPIDLO</text>
+
+  <!-- Adhesion zone bottom -->
+  <rect x="40" y="130" width="400" height="16" rx="0" fill="rgba(251,191,36,0.12)" stroke="rgba(251,191,36,0.5)" stroke-width="1" stroke-dasharray="5,3"/>
+
+  <!-- Substrate B (bottom) -->
+  <rect x="40" y="146" width="400" height="44" rx="4" fill="#2d1b55" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/>
+  <text x="240" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.6)" font-weight="600">SUBSTRÁT B</text>
+
+  <!-- Cohesion arrow (horizontal, within adhesive) -->
+  <line x1="90" y1="110" x2="160" y2="110" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="156,106 164,110 156,114" fill="#7c3aed"/>
+  <line x1="390" y1="110" x2="320" y2="110" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="324,106 316,110 324,114" fill="#7c3aed"/>
+
+  <!-- Adhesion labels (left side) -->
+  <line x1="32" y1="82" x2="8" y2="82" stroke="rgba(251,191,36,0.7)" stroke-width="1.5"/>
+  <text x="6" y="78" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="rgba(251,191,36,0.9)" font-weight="600">ADHEZE</text>
+  <text x="6" y="90" text-anchor="end" font-family="Inter, sans-serif" font-size="9" fill="rgba(255,255,255,0.35)">přilnavost k substrátu</text>
+
+  <line x1="32" y1="138" x2="8" y2="138" stroke="rgba(251,191,36,0.7)" stroke-width="1.5"/>
+
+  <!-- Cohesion label (right side) -->
+  <line x1="448" y1="110" x2="468" y2="110" stroke="rgba(124,58,237,0.8)" stroke-width="1.5"/>
+  <text x="470" y="106" font-family="Inter, sans-serif" font-size="10" fill="rgba(124,58,237,0.95)" font-weight="600">KOHEEZE</text>
+  <text x="470" y="118" font-family="Inter, sans-serif" font-size="9" fill="rgba(255,255,255,0.35)">vnitřní pevnost lepidla</text>
+
+  <!-- Failure mode labels at bottom -->
+  <text x="120" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(251,191,36,0.7)">adhezní lom</text>
+  <text x="240" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(124,58,237,0.8)">kohezní lom</text>
+  <text x="360" y="208" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#4ade80">smíšený lom</text>
+</svg>

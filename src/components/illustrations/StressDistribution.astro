@@ -1,0 +1,94 @@
+---
+// StressDistribution.astro
+// Shows stress distribution: point load (rivet/screw) vs uniform distribution (adhesive)
+interface Props {
+  width?: number;
+  height?: number;
+  class?: string;
+}
+const { width = 560, height = 240, class: className = '' } = Astro.props;
+---
+
+<svg
+  viewBox={`0 0 ${width} ${height}`}
+  width={width}
+  height={height}
+  class={className}
+  aria-label="Srovnání distribuce napětí: bodové upevnění vs. lepení"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background -->
+  <rect width={width} height={height} fill="#1a0f35" rx="12"/>
+
+  <!-- Left panel: screw/rivet = concentrated stress -->
+  <text x="140" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">ŠROUB / NÝT</text>
+
+  <!-- Substrate plates -->
+  <rect x="30" y="40" width="220" height="28" rx="3" fill="#2d1b55" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <rect x="30" y="128" width="220" height="28" rx="3" fill="#2d1b55" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+
+  <!-- Screw/fastener -->
+  <rect x="133" y="60" width="14" height="76" rx="2" fill="#4ade80" opacity="0.8"/>
+  <polygon points="127,60 153,60 140,48" fill="#4ade80" opacity="0.8"/>
+  <rect x="131" y="132" width="18" height="8" rx="1" fill="#4ade80" opacity="0.6"/>
+
+  <!-- Stress arrows — concentrated at fastener point -->
+  {[0, 1, 2, 3, 4].map((_, i) => {
+    const x = 140;
+    const y1 = 40;
+    const y2 = 22 - i * 4;
+    const opacity = 1 - i * 0.18;
+    return null; // rendered below
+  })}
+
+  <!-- Stress arrows top (concentrated) -->
+  <line x1="140" y1="40" x2="140" y2="14" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="136,18 144,18 140,10" fill="#f87171"/>
+  <line x1="130" y1="40" x2="128" y2="18" stroke="#f87171" stroke-width="1.5" opacity="0.5"/>
+  <line x1="150" y1="40" x2="152" y2="18" stroke="#f87171" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Stress arrows bottom (concentrated) -->
+  <line x1="140" y1="156" x2="140" y2="182" stroke="#f87171" stroke-width="2.5"/>
+  <polygon points="136,178 144,178 140,186" fill="#f87171"/>
+  <line x1="130" y1="156" x2="128" y2="178" stroke="#f87171" stroke-width="1.5" opacity="0.5"/>
+  <line x1="150" y1="156" x2="152" y2="178" stroke="#f87171" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Stress concentration label -->
+  <text x="140" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#f87171" font-weight="500">Koncentrace napětí</text>
+  <text x="140" y="224" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">riziko únavového lomu</text>
+
+  <!-- Divider -->
+  <line x1="280" y1="20" x2="280" y2={height - 20} stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Right panel: adhesive = uniform stress -->
+  <text x="420" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">LEPIDLO</text>
+
+  <!-- Substrate plates -->
+  <rect x="310" y="40" width="220" height="28" rx="3" fill="#2d1b55" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+  <rect x="310" y="128" width="220" height="28" rx="3" fill="#2d1b55" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+
+  <!-- Adhesive layer -->
+  <rect x="310" y="68" width="220" height="60" rx="2" fill="rgba(124,58,237,0.25)" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
+  <text x="420" y="102" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(124,58,237,0.9)" font-weight="500">lepidlo</text>
+
+  <!-- Uniform stress arrows top -->
+  {[320, 345, 370, 395, 420, 445, 470, 495, 515].map((x) => (
+    <g>
+      <line x1={x} y1={40} x2={x} y2={16} stroke="#4ade80" stroke-width="1.5" opacity="0.75"/>
+      <polygon points={`${x-3},20 ${x+3},20 ${x},12`} fill="#4ade80" opacity="0.75"/>
+    </g>
+  ))}
+
+  <!-- Uniform stress arrows bottom -->
+  {[320, 345, 370, 395, 420, 445, 470, 495, 515].map((x) => (
+    <g>
+      <line x1={x} y1={156} x2={x} y2={180} stroke="#4ade80" stroke-width="1.5" opacity="0.75"/>
+      <polygon points={`${x-3},176 ${x+3},176 ${x},184`} fill="#4ade80" opacity="0.75"/>
+    </g>
+  ))}
+
+  <!-- Uniform distribution label -->
+  <text x="420" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#4ade80" font-weight="500">Rovnoměrná distribuce</text>
+  <text x="420" y="224" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">nižší špičkové napětí</text>
+</svg>
