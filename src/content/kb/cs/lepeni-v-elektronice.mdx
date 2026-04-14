@@ -1,0 +1,90 @@
+---
+title: "Lepení v elektronice: displeje, baterie, teplovodivá lepidla a zapouzdření"
+description: "Průmyslová lepidla v elektronice: fixace displejů, správa tepla baterií, teplovodivá lepidla pro výkonové prvky, zapouzdřovací hmoty pro PCB a odolnost vůči prostředí."
+lang: cs
+translationKey: bonding-electronics
+pubDate: 2026-04-14
+category: elektronika
+tags: [lepení elektronika, teplovodivá lepidla, displej fixace, baterie EV, zapouzdření PCB]
+primaryKeyword: "lepení elektronika teplovodivá lepidla"
+readingTimeMinutes: 7
+draft: false
+---
+
+## Proč je elektronika jiná než automotive nebo stavebnictví
+
+Lepení v elektronice pracuje s rozměry a tolerancemi řádu mikronů, s materiály extrémně odlišnými (kov, sklo, keramika, pryž, PCB substrát) a s požadavky, které jsou pro jiná odvětví neobvyklé: elektrická vodivost nebo izolace, tepelná vodivost, optická transparentnost, nebo kompatibilita s chemikáliemi při pájení.
+
+Zároveň je elektronika odvětvím, kde miniaturizace nikdy nekončí — a každá iterace produktu vyžaduje přehodnocení lepicí technologie.
+
+## Fixace displejů
+
+Moderní displeje (LCD, OLED, AMOLED) jsou lepeny do rámu zařízení místo mechanického upevnění. Důvody:
+- Tloušťka zařízení: šrouby a upínky by přidaly milimetry
+- Ochrana displeje: lepidlo absorbuje rázy
+- Těsnost: IP53/IP68 vyžaduje hermetické utěsnění perimetru displeje
+- Optická bonding: opticky čiré lepidlo (OCA — Optically Clear Adhesive) eliminuje vzduchovou mezeru mezi sklem a displejem, čímž zlepšuje čitelnost na slunci
+
+### OCA: opticky čiré akrylátové lepidlo
+
+OCA (Optically Clear Adhesive) je kategorie lepidel s propustností světla >99 %, minimálním rozptylem a extrémně nízkou žloutivostí po stárnutí UV. Používají se ve vrstvách 50–250 μm pro bonding skla a displejů. Aplikace je náročná — jediná vzduchová bublina nebo prachová částice je defekt viditelný uživatelem.
+
+## Tepelná správa: teplovodivá lepidla
+
+Výkonové elektronické prvky (silové tranzistory, LED čipy, výkonové moduly IGBT) generují teplo, které musí být odvedeno. Spojovacím prvkem mezi čipem a chladičem je *Thermal Interface Material* (TIM).
+
+### Typy TIM
+
+**Teplovodivá lepidla** (Thermally Conductive Adhesives): Dvousložkové epoxidy nebo silikony s plnivy (hliník, oxid hlinitý, nitridy bóru, stříbro). Tepelná vodivost: 0,8–5 W/(m·K). Přilepují chladič permanentně — demontáž destruktivní.
+
+**Teplovodivé phase-change materiály**: Tuhé při pokojové teplotě, měknou při provozní teplotě — samovolně vyplňují vzduchové mezery. Reverzibilní.
+
+**Gap fillers**: Měkké silikonové nebo PUR pěny pro vyplnění větších mezer (0,5–5 mm) s tepelnou vodivostí 1–5 W/(m·K). Standard v bateriových modulech EV.
+
+### Klíčové parametry
+
+- Tepelná vodivost λ [W/(m·K)]
+- Elektrická vodivost nebo izolace (U výkonové elektroniky zpravidla nutná izolace)
+- Smrstkování při vytvrzení (ovlivňuje termomechanické napětí)
+- Pracovní teplota (−40 °C až +150 °C pro automobilové, až +200 °C pro průmyslové)
+
+## Zapouzdření a potting
+
+Elektronické desky a moduly jsou chráněny zapouzdřením (potting/encapsulation): zalití do forem nebo do skříní polymerní hmotou.
+
+### Typy zapouzdřovacích systémů
+
+**Epoxidy**: Tvrdé zapouzdření pro pevné uložení komponentů. Výborná teplotní a chemická odolnost. Nevhodné tam kde je nutná demontáž.
+
+**Polyuretany**: Pružné zapouzdření — absorbuje vibrace a teplotní dilataci. Vhodné pro venkovní elektroniku.
+
+**Silikony**: Tepelně odolné a flexibilní. Pro aplikace s teplotními špičkami nebo tam kde je flexibilita komponentů nutná (konektory, vodiče).
+
+**Konformal coating**: Tenká vrstva (25–130 μm) epoxidu, akrylátu nebo silikonu nanášená stříkáním nebo ponoříním na PCB. Chrání před vlhkostí, prachem a kondenzací bez úplného zafixování komponentů.
+
+## Odolnost vůči prostředí
+
+Elektronika v průmyslovém nebo automotive prostředí musí splňovat přísné požadavky:
+
+**Vlhkost a kondenzace** (IEC 60068-2-78: 85 °C/85 % RH/1000 h): Lepidla musejí udržet adhezi a izolační vlastnosti.
+
+**Teplotní šok** (−40 °C → +125 °C, opakovaně): Rozdílné teplotní roztažnosti substrátů a lepidla vytvářejí smykové napětí — lepidlo musí být dostatečně elastické.
+
+**Chemická odolnost**: Čisticí prostředky, vlhkost, pájecí flux — lepidlo musí odolat procesu výroby i provozu.
+
+**Vibrační odolnost** (IEC 60068-2-64): Lepidlo fixuje komponenty a zabraňuje mechanické únavě vodičů a pájecích spojů.
+
+## Časté otázky
+
+**Je teplovodivé lepidlo nutné, nebo stačí teplotní pasta?**
+Záleží na požadavcích. Teplotní pasta je reverzibilní a vhodná pro aplikace kde je nutná výměna chladiče. Teplovodivé lepidlo je permanentní, ale dosahuje nižší termálního odporu díky trvalému kontaktu. Pro automobilové a průmyslové aplikace s vibracemi se preferuje lepidlo nebo gap filler.
+
+**Lze OCA aplikovat ručně?**
+Teoreticky ano, ale průmyslová aplikace vyžaduje cleanroom podmínky (třída ISO 7–8), laminační stroj a vakuové zařízení pro eliminaci bublin. Manuální aplikace je vhodná pouze pro prototypy a malé serie.
+
+**Jak postupovat při výběru zapouzdřovacího systému?**
+Klíčové otázky: Je nutná demontáž? (→ silikon nebo PUR). Je prioritou tepelná vodivost? (→ teplovodivý epoxid). Jsou splněny UL/ATEX bezpečnostní normy? (→ specifická formulace). Kontaktujte nás s rozsahem požadavků.
+
+---
+
+*Kristýna Ondráčková, European Adhesive Engineer | Kronteq*
