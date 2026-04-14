@@ -14,14 +14,14 @@
   --accent-glow: rgba(124, 58, 237, 0.25);
   --accent-hover: #6D28D9;
 
-  /* Backgrounds — light theme body */
-  --bg-base: #FAFAF9;
-  --bg-2: #F3F2F0;
+  /* Backgrounds — light theme body (slight purple tint for brand identity) */
+  --bg-base: #F7F5FC;
+  --bg-2: #EDE9F8;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F8F7FC;
-  --bg-dark: #100B1E;
-  --bg-dark-2: #1A1130;
-  --bg-nav: rgba(16, 11, 30, 0.92);
+  --bg-card-hover: #F4F1FB;
+  --bg-dark: #0D0820;
+  --bg-dark-2: #160F2E;
+  --bg-nav: rgba(13, 8, 32, 0.94);
 
   /* Borders */
   --border: rgba(45, 27, 85, 0.08);
@@ -53,8 +53,8 @@
   --duration: 0.3s;
 
   /* Typography */
-  --font-sans: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-sans: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
+  --font-body: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
 }
 
 /* ============================================================

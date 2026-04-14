@@ -26,7 +26,7 @@ const t = getLang(lang);
 
 <style>
   .cta-band {
-    background: var(--brand);
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 40%, #3D1F7A 100%);
     padding-block: 5rem;
     text-align: center;
     position: relative;
@@ -36,8 +36,9 @@ const t = getLang(lang);
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 100% at 20% 50%, rgba(124,58,237,0.3) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 80% at 80% 50%, rgba(167,139,250,0.15) 0%, transparent 60%);
+      radial-gradient(ellipse 50% 120% at 15% 50%, rgba(124,58,237,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 120% at 85% 50%, rgba(167,139,250,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 60% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 50%);
     pointer-events: none;
   }
   .container {

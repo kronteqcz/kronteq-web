@@ -15,63 +15,63 @@ export const strings = {
     navContactCta: 'Nezávazná poptávka',
 
     // Homepage
-    heroTagline: 'Průmyslová lepidla pro náročné aplikace',
-    heroTitle: 'Lepíme průmysl\ndohromady',
-    heroSubtitle: 'Technická poradenství, výběr správného lepicího systému a rychlá dodávka pro automobilový, elektronický a průmyslový sektor.',
+    heroTagline: 'European Adhesive Engineers',
+    heroTitle: 'Správné lepidlo.\nSprávný spoj.',
+    heroSubtitle: 'Průmyslová lepidla a lepicí systémy pro automotive, elektroniku a průmyslovou výrobu. Technická konzultace, výběr produktu a dodávka od certifikovaných specialistů.',
     heroCta1: 'Prozkoumat řešení',
     heroCta1Href: '/reseni/',
     heroCta2: 'Kontaktovat nás',
     heroCta2Href: '/kontakt/',
 
     sectionProducts: 'Naše řešení',
-    sectionProductsSub: 'Komplexní portfolio lepicích systémů pro každou průmyslovou aplikaci',
+    sectionProductsSub: 'Kompletní spektrum lepicích systémů — od okamžitých kyanoakrylátů po strukturální reaktivní lepidla. Vybíráme přesně pro váš materiál, teplotu a výrobní proces.',
     sectionIndustries: 'Odvětví',
-    sectionIndustriesSub: 'Specializujeme se na náročné průmyslové obory, kde záleží na každém spoji',
+    sectionIndustriesSub: 'Lepicí technologie mění způsob, jak průmysl spojuje materiály. Specializujeme se na odvětví, kde každý spoj rozhoduje.',
     sectionWhy: 'Proč Kronteq',
-    sectionWhySub: 'Přidaná hodnota, která rozhoduje',
-    sectionCta: 'Máte projekt nebo dotaz?',
-    sectionCtaSub: 'Napište nám nebo zavolejte — do 24 hodin se ozveme s konkrétním návrhem.',
+    sectionWhySub: 'Tři důvody, proč nás volí průmyslové firmy z celé Evropy',
+    sectionCta: 'Máte projekt? Poradíme vám.',
+    sectionCtaSub: 'Poptejte bezplatnou technickou konzultaci. Kristýna Ondráčková, European Adhesive Engineer, odpoví do 24 hodin s konkrétním doporučením.',
     sectionCtaBtn: 'Kontaktujte nás',
     sectionCtaBtnHref: '/kontakt/',
 
     // Why section items
-    why1Title: 'Certifikovaní inženýři',
-    why1Text: 'Tým evropských specialistů na lepicí technologie s odbornými certifikacemi přímo od výrobců.',
-    why2Title: 'Řešení na míru',
-    why2Text: 'Každý zákazník dostane lepicí systém přesně pro svůj materiál, teplotu, zatížení a výrobní proces.',
-    why3Title: 'Rychlá dodávka',
-    why3Text: 'Skladové zásoby vybraných produktů a logistika po celé Evropě. Urgentní dodávky do 24 hodin.',
+    why1Title: 'Certifikovaní specialisté EAE',
+    why1Text: 'Naše technická specialistka je držitelkou titulu European Adhesive Engineer (EAE) — nejvyšší oborové certifikace v Evropě. Spolupracujeme přímo s předními výrobci lepicích systémů.',
+    why2Title: 'Správný produkt pro každou aplikaci',
+    why2Text: 'PUR, epoxidy, MMA akryláty, kyanoakryláty, anaerobní lepidla — známe jejich vlastnosti do hloubky. Správný výběr závisí na desítkách faktorů. My je umíme posoudit.',
+    why3Title: 'Příprava povrchu je základ',
+    why3Text: '90 % selhání lepených spojů způsobuje nedostatečná příprava povrchu. Poradíme vám s mechanickým čištěním, odmašťováním i aktivací — a tím zajistíme, že lepidlo skutečně drží.',
 
     // Solutions page
     solutionsTitle: 'Řešení',
-    solutionsDesc: 'Komplexní portfolio lepicích systémů pro průmyslové aplikace. Od okamžitých kyanoakrylátů po strukturální reaktivní lepidla.',
+    solutionsDesc: 'Kompletní portfolio lepicích systémů pro průmyslové aplikace. Správný výběr lepidla závisí na materiálu, teplotě, zatížení a výrobním procesu — pomůžeme vám najít přesné řešení.',
     solutionsCta: 'Poptejte řešení',
 
     // Industries page
     industriesTitle: 'Odvětví',
-    industriesDesc: 'Dodáváme lepicí systémy do náročných průmyslových odvětví. Každé odvětví má specifické požadavky — my je známe.',
+    industriesDesc: 'Výrobní průmysl přechází od klasických kovových konstrukcí k lehkým multimateriálům. Lepicí technologie jsou klíčem k tomuto přechodu — dodáváme správná řešení pro každé odvětví.',
 
     // About page
     aboutTitle: 'O nás',
     aboutDesc: 'Kronteq je specializovaný dodavatel průmyslových lepicích systémů s pokrytím celého evropského trhu.',
-    aboutText: `Kronteq je česká společnost specializovaná na průmyslová lepidla, tmeliva a aplikační systémy pro náročné průmyslové aplikace.
+    aboutText: `Kronteq je česká společnost specializovaná na průmyslová lepidla, tmeliva a lepicí systémy pro náročné průmyslové aplikace.
 
-Disponujeme týmem certifikovaných inženýrů s přímou podporou od předních výrobců lepicích technologií. Naší specializací je automobilový průmysl, elektronika a průmyslová výroba.
+Vedoucí technická specialistka Kristýna Ondráčková je držitelkou titulu European Adhesive Engineer (EAE) — nejvyšší oborové certifikace v Evropě pro specialisty na lepicí technologie. Spolupracujeme přímo s předními světovými výrobci a přinášíme jejich know-how českým a evropským průmyslovým zákazníkům.
 
-Zákazníkům nabízíme komplexní servis: od technické konzultace a výběru správného produktu, přes testování vzorků, až po dodávku a poprodejní podporu.
+Víme, že úspěch lepeného spoje nestojí jen na výběru správného lepidla. Klíčem je precizní příprava povrchu — mechanické čištění, chemické odmašťování a aktivace. Právě v tom vám radíme jako první.
 
-TODO: Doplnit z prezentace — história firmy, klíčová čísla, certifikace.`,
+Zákazníkům nabízíme kompletní servis: od technické konzultace a výběru správného produktu, přes testování vzorků, až po dodávku a poprodejní technickou podporu. Pracujeme s odvětvími od automotive a leteckého průmyslu přes elektroniku až po stavebnictví.`,
     aboutTeamTitle: 'Kontaktní osoba',
 
     // Contact page
     contactTitle: 'Kontakt',
-    contactDesc: 'Ozvěte se nám. Do 24 hodin odpoví náš technický specialista.',
+    contactDesc: 'Ozvěte se nám. Kristýna Ondráčková, European Adhesive Engineer, odpoví do 24 hodin.',
     contactFormName: 'Jméno a příjmení',
     contactFormCompany: 'Společnost',
     contactFormEmail: 'E-mail',
     contactFormPhone: 'Telefon',
     contactFormMessage: 'Zpráva / poptávka',
-    contactFormMessagePlaceholder: 'Popište vaši aplikaci, materiály nebo dotaz...',
+    contactFormMessagePlaceholder: 'Popište vaši aplikaci, materiály, teploty nebo dotaz...',
     contactFormSubmit: 'Odeslat poptávku',
     contactFormNote: 'Reagujeme do 24 hodin v pracovní dny.',
     contactDirectTitle: 'Přímý kontakt',
@@ -80,7 +80,7 @@ TODO: Doplnit z prezentace — história firmy, klíčová čísla, certifikace.
     contactResponseText: 'Do 24 hodin v pracovní dny',
 
     // Footer
-    footerTagline: 'Průmyslová lepidla pro evropský trh.\nTechnická expertíza, rychlá dodávka.',
+    footerTagline: 'Průmyslová lepidla pro evropský trh.\nCertifikovaní specialisté, rychlá dodávka.',
     footerNavTitle: 'Navigace',
     footerContactTitle: 'Kontakt',
     footerCopy: '© %year% Kronteq. Všechna práva vyhrazena.',
@@ -100,63 +100,63 @@ TODO: Doplnit z prezentace — história firmy, klíčová čísla, certifikace.
     navContactCta: 'Get a Quote',
 
     // Homepage
-    heroTagline: 'Industrial adhesives for demanding applications',
-    heroTitle: 'Bonding industry\ntogether',
-    heroSubtitle: 'Technical consulting, adhesive system selection and fast delivery for automotive, electronics and industrial manufacturing.',
+    heroTagline: 'European Adhesive Engineers',
+    heroTitle: 'The right adhesive.\nThe right bond.',
+    heroSubtitle: 'Industrial adhesives and bonding systems for automotive, electronics and industrial manufacturing. Technical consulting, product selection and delivery from certified specialists.',
     heroCta1: 'Explore solutions',
     heroCta1Href: '/en/solutions/',
     heroCta2: 'Contact us',
     heroCta2Href: '/en/contact/',
 
     sectionProducts: 'Our Solutions',
-    sectionProductsSub: 'A comprehensive portfolio of adhesive systems for every industrial application',
+    sectionProductsSub: 'A complete spectrum of adhesive systems — from instant cyanoacrylates to structural reactive adhesives. We match the exact system to your material, temperature and production process.',
     sectionIndustries: 'Industries',
-    sectionIndustriesSub: 'We specialise in demanding industrial sectors where every bond matters',
+    sectionIndustriesSub: 'Adhesive technology is reshaping how industry joins materials. We specialise in sectors where every bond matters.',
     sectionWhy: 'Why Kronteq',
-    sectionWhySub: 'The added value that makes the difference',
-    sectionCta: 'Have a project or question?',
-    sectionCtaSub: 'Write to us or call — we will respond within 24 hours with a concrete proposal.',
+    sectionWhySub: 'Three reasons why industrial companies across Europe choose us',
+    sectionCta: 'Have a project? We can help.',
+    sectionCtaSub: 'Request a free technical consultation. Kristýna Ondráčková, European Adhesive Engineer, will respond within 24 hours with a specific recommendation.',
     sectionCtaBtn: 'Contact us',
     sectionCtaBtnHref: '/en/contact/',
 
     // Why section items
-    why1Title: 'Certified engineers',
-    why1Text: 'A team of European adhesive technology specialists with professional certifications directly from manufacturers.',
-    why2Title: 'Tailored solutions',
-    why2Text: 'Every customer receives an adhesive system precisely matched to their material, temperature, load and production process.',
-    why3Title: 'Fast delivery',
-    why3Text: 'Stock inventory of selected products and logistics across Europe. Urgent deliveries within 24 hours.',
+    why1Title: 'EAE Certified Specialists',
+    why1Text: 'Our technical specialist holds the European Adhesive Engineer (EAE) title — the highest professional certification in Europe for bonding technology. We work directly with leading adhesive manufacturers.',
+    why2Title: 'The right product for every application',
+    why2Text: 'PUR, epoxies, MMA acrylates, cyanoacrylates, anaerobic adhesives — we know their properties in depth. The right choice depends on dozens of factors. We know how to assess them.',
+    why3Title: 'Surface preparation is the foundation',
+    why3Text: '90% of adhesive bond failures are caused by inadequate surface preparation. We advise on mechanical cleaning, degreasing and activation — ensuring your bond actually holds.',
 
     // Solutions page
     solutionsTitle: 'Solutions',
-    solutionsDesc: 'A comprehensive portfolio of adhesive systems for industrial applications. From instant cyanoacrylates to structural reactive adhesives.',
+    solutionsDesc: 'A comprehensive portfolio of adhesive systems for industrial applications. The right adhesive depends on material, temperature, load and production process — we help you find the precise solution.',
     solutionsCta: 'Request a solution',
 
     // Industries page
     industriesTitle: 'Industries',
-    industriesDesc: 'We supply adhesive systems to demanding industrial sectors. Each sector has specific requirements — we know them.',
+    industriesDesc: 'Manufacturing is shifting from classic metal constructions to lightweight multi-materials. Adhesive technology is the key to this transition — we deliver the right solutions for each sector.',
 
     // About page
     aboutTitle: 'About us',
     aboutDesc: 'Kronteq is a specialised supplier of industrial adhesive systems with European market coverage.',
-    aboutText: `Kronteq is a Czech company specialising in industrial adhesives, sealants and application systems for demanding industrial applications.
+    aboutText: `Kronteq is a Czech company specialising in industrial adhesives, sealants and bonding systems for demanding industrial applications.
 
-We have a team of certified engineers with direct support from leading adhesive technology manufacturers. Our specialisation is the automotive industry, electronics and industrial manufacturing.
+Our lead technical specialist Kristýna Ondráčková holds the European Adhesive Engineer (EAE) title — the highest professional certification in Europe for bonding technology specialists. We work directly with leading global manufacturers and bring their expertise to Czech and European industrial customers.
 
-We offer customers a comprehensive service: from technical consultation and selection of the right product, through sample testing, to delivery and after-sales support.
+We know that the success of a bonded joint doesn't rely on adhesive selection alone. The key is precise surface preparation — mechanical cleaning, chemical degreasing and activation. That's where we advise first.
 
-TODO: Fill in from presentation — company history, key figures, certifications.`,
+We offer customers a complete service: from technical consultation and product selection, through sample testing, to delivery and after-sales technical support. We work across sectors from automotive and aerospace to electronics and construction.`,
     aboutTeamTitle: 'Contact person',
 
     // Contact page
     contactTitle: 'Contact',
-    contactDesc: 'Get in touch. Our technical specialist will respond within 24 hours.',
+    contactDesc: 'Get in touch. Kristýna Ondráčková, European Adhesive Engineer, will respond within 24 hours.',
     contactFormName: 'Full name',
     contactFormCompany: 'Company',
     contactFormEmail: 'Email',
     contactFormPhone: 'Phone',
     contactFormMessage: 'Message / inquiry',
-    contactFormMessagePlaceholder: 'Describe your application, materials or question...',
+    contactFormMessagePlaceholder: 'Describe your application, materials, temperatures or question...',
     contactFormSubmit: 'Send inquiry',
     contactFormNote: 'We respond within 24 hours on business days.',
     contactDirectTitle: 'Direct contact',
@@ -165,7 +165,7 @@ TODO: Fill in from presentation — company history, key figures, certifications
     contactResponseText: 'Within 24 hours on business days',
 
     // Footer
-    footerTagline: 'Industrial adhesives for the European market.\nTechnical expertise, fast delivery.',
+    footerTagline: 'Industrial adhesives for the European market.\nCertified specialists, fast delivery.',
     footerNavTitle: 'Navigation',
     footerContactTitle: 'Contact',
     footerCopy: '© %year% Kronteq. All rights reserved.',

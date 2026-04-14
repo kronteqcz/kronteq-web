@@ -10,7 +10,7 @@ const { lang = 'cs' } = Astro.props;
 const t = getLang(lang);
 ---
 
-<section class="section">
+<section class="section why-section">
   <div class="container">
     <div class="section-header" data-reveal>
       <span class="label">{t.sectionWhy}</span>
@@ -56,6 +56,9 @@ const t = getLang(lang);
 </section>
 
 <style>
+  .why-section {
+    background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-2) 100%);
+  }
   .why-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));

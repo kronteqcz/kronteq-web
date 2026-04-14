@@ -41,9 +41,10 @@ const t = getLang(lang);
     <!-- Visual element -->
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-badge">
-        <div class="badge-kq">KQ</div>
+        <img src="/assets/logo-full.png" alt="Kronteq" class="badge-logo" />
         <div class="badge-ring badge-ring-1"></div>
         <div class="badge-ring badge-ring-2"></div>
+        <div class="badge-ring badge-ring-3"></div>
       </div>
     </div>
   </div>
@@ -53,8 +54,8 @@ const t = getLang(lang);
     <div class="container">
       <div class="stats-row" data-reveal-stagger>
         <div class="stat">
-          <span class="stat-number">25+</span>
-          <span class="stat-label">{lang === 'en' ? 'Years of experience' : 'Let zkušeností'}</span>
+          <span class="stat-number">5+</span>
+          <span class="stat-label">{lang === 'en' ? 'Years in adhesives' : 'Let v oboru'}</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
         <div class="stat">
@@ -98,16 +99,16 @@ const t = getLang(lang);
     filter: blur(80px);
   }
   .hero-orb-1 {
-    width: 600px; height: 600px;
-    top: -100px; right: -150px;
+    width: 700px; height: 700px;
+    top: -150px; right: -200px;
     background: var(--brand);
-    opacity: 0.3;
+    opacity: 0.5;
   }
   .hero-orb-2 {
-    width: 400px; height: 400px;
-    bottom: 0; left: -100px;
+    width: 500px; height: 500px;
+    bottom: -50px; left: -150px;
     background: var(--accent);
-    opacity: 0.1;
+    opacity: 0.18;
   }
   .hero-grid {
     position: absolute;
@@ -177,36 +178,29 @@ const t = getLang(lang);
   }
   .hero-badge {
     position: relative;
-    width: 240px;
-    height: 240px;
+    width: 320px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .badge-kq {
-    font-family: var(--font-sans);
-    font-weight: 800;
-    font-size: 3.5rem;
-    letter-spacing: 0.08em;
-    color: #fff;
+  .badge-logo {
+    width: 200px;
+    height: auto;
+    border-radius: 22px;
     z-index: 2;
-    background: var(--brand);
-    width: 120px;
-    height: 120px;
-    border-radius: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 60px rgba(124,58,237,0.3);
+    box-shadow: 0 0 80px rgba(124,58,237,0.5), 0 0 30px rgba(45,27,85,0.8);
+    position: relative;
   }
   .badge-ring {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.1);
     animation: spin-slow linear infinite;
   }
-  .badge-ring-1 { width: 200px; height: 200px; border-top-color: rgba(167,139,250,0.35); animation-duration: 12s; }
-  .badge-ring-2 { width: 240px; height: 240px; border-right-color: rgba(167,139,250,0.2); animation-duration: 20s; animation-direction: reverse; }
+  .badge-ring-1 { width: 260px; height: 260px; border-top-color: rgba(167,139,250,0.4); animation-duration: 10s; }
+  .badge-ring-2 { width: 300px; height: 300px; border-right-color: rgba(124,58,237,0.25); animation-duration: 18s; animation-direction: reverse; }
+  .badge-ring-3 { width: 320px; height: 320px; border-bottom-color: rgba(167,139,250,0.15); animation-duration: 25s; }
   @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   @media (prefers-reduced-motion: reduce) { .badge-ring { animation: none; } }
 
