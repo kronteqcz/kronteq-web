@@ -1,0 +1,100 @@
+---
+import type { Lang } from '../../i18n/strings';
+import { getLang } from '../../i18n/strings';
+import { industries } from '../../data/industries';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'cs' } = Astro.props;
+const t = getLang(lang);
+---
+
+<section class="section-dark">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="label">{t.sectionIndustries}</span>
+      <h2>{t.sectionIndustries}</h2>
+      <p>{t.sectionIndustriesSub}</p>
+    </div>
+
+    <div class="grid-2" data-reveal-stagger>
+      {industries.map(industry => {
+        const name = lang === 'en' ? industry.nameEn : industry.nameCs;
+        const desc = lang === 'en' ? industry.descEn : industry.descCs;
+        const challenges = lang === 'en' ? industry.challengesEn : industry.challengesCs;
+        return (
+          <article class="card-dark industry-card">
+            <div class="icon-box-dark">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={industry.icon} />
+              </svg>
+            </div>
+            <h3 class="industry-name">{name}</h3>
+            <p class="industry-desc">{desc}</p>
+            <ul class="industry-challenges" role="list">
+              {challenges.map(c => <li>{c}</li>)}
+            </ul>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="industries-cta" data-reveal>
+      <a href={lang === 'en' ? '/en/industries/' : '/odvtvi/'} class="btn-outline">
+        {lang === 'en' ? 'All industries' : 'Všechna odvětví'}
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .industry-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .industry-name {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-top: 0.25rem;
+  }
+  .industry-desc {
+    color: var(--text-dark-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: none;
+  }
+  .industry-challenges {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .industry-challenges li {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.45);
+    padding-left: 1rem;
+    position: relative;
+    max-width: none;
+  }
+  .industry-challenges li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-size: 0.75rem;
+  }
+  .industries-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+</style>

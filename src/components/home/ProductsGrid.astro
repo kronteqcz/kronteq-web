@@ -1,0 +1,99 @@
+---
+import type { Lang } from '../../i18n/strings';
+import { getLang } from '../../i18n/strings';
+import { products } from '../../data/products';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'cs' } = Astro.props;
+const t = getLang(lang);
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="label">{t.sectionProducts}</span>
+      <h2>{t.sectionProducts}</h2>
+      <p>{t.sectionProductsSub}</p>
+    </div>
+
+    <div class="grid-3" data-reveal-stagger>
+      {products.map(product => {
+        const name = lang === 'en' ? product.nameEn : product.nameCs;
+        const desc = lang === 'en' ? product.descEn : product.descCs;
+        const uses = lang === 'en' ? product.usesEn : product.usesCs;
+        return (
+          <article class="card product-card">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={product.icon} />
+              </svg>
+            </div>
+            <h3 class="product-name">{name}</h3>
+            <p class="product-desc">{desc}</p>
+            <ul class="product-uses" role="list">
+              {uses.map(use => <li>{use}</li>)}
+            </ul>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="products-cta" data-reveal>
+      <a href={lang === 'en' ? '/en/solutions/' : '/reseni/'} class="btn-outline-dark">
+        {lang === 'en' ? 'View all solutions' : 'Všechna řešení'}
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .product-name {
+    font-size: 1.1rem;
+    margin-top: 0.25rem;
+  }
+  .product-desc {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    flex: 1;
+    max-width: none;
+  }
+  .product-uses {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .product-uses li {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .product-uses li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+  .products-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+</style>

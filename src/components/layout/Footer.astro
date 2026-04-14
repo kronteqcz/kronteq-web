@@ -1,0 +1,190 @@
+---
+import type { Lang } from '../../i18n/strings';
+import { getLang } from '../../i18n/strings';
+import { contact } from '../../data/contact';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'cs' } = Astro.props;
+const t = getLang(lang);
+const year = new Date().getFullYear();
+
+const navItems = [
+  { label: t.navSolutions, href: lang === 'en' ? '/en/solutions/' : '/reseni/' },
+  { label: t.navIndustries, href: lang === 'en' ? '/en/industries/' : '/odvtvi/' },
+  { label: t.navAbout, href: lang === 'en' ? '/en/about/' : '/o-nas/' },
+  { label: t.navContact, href: lang === 'en' ? '/en/contact/' : '/kontakt/' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href={lang === 'en' ? '/en/' : '/'} class="footer-logo" aria-label="Kronteq">
+          <span class="footer-kq">KQ</span>
+          <span class="footer-name">KRONTEQ</span>
+        </a>
+        <p class="footer-tagline">
+          {t.footerTagline.split('\n').map((line, i) => (
+            <>{line}{i < t.footerTagline.split('\n').length - 1 ? <br /> : null}</>
+          ))}
+        </p>
+      </div>
+
+      <!-- Nav -->
+      <div class="footer-nav">
+        <h4 class="footer-nav-title">{t.footerNavTitle}</h4>
+        <ul role="list">
+          {navItems.map(item => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-nav">
+        <h4 class="footer-nav-title">{t.footerContactTitle}</h4>
+        <ul role="list">
+          <li>
+            <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
+          </li>
+          <li>
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          </li>
+          <li class="address">
+            {contact.addressLine1}<br />
+            {contact.addressLine2}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        {t.footerCopy.replace('%year%', String(year))}
+      </p>
+      <p class="footer-made">
+        Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-glow" aria-hidden="true"></div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    background: var(--bg-dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .footer-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+
+  /* Brand */
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    margin-bottom: 1rem;
+  }
+  .footer-kq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 0.8125rem;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .footer-name {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: 0.12em;
+    color: #fff;
+  }
+  .footer-tagline {
+    color: var(--text-dark-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    max-width: none;
+  }
+
+  /* Nav */
+  .footer-nav-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1rem;
+  }
+  .footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .footer-nav a {
+    color: var(--text-dark-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color var(--duration) var(--ease);
+  }
+  .footer-nav a:hover { color: var(--accent-light); }
+  .footer-nav .address {
+    color: var(--text-dark-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* Bottom */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.25);
+  }
+  .footer-copy { max-width: none; }
+  .footer-made a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color var(--duration) var(--ease); }
+  .footer-made a:hover { color: var(--accent-light); }
+</style>

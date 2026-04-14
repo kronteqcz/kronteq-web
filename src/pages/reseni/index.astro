@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLang } from '../../i18n/strings';
+import { products } from '../../data/products';
+
+const t = getLang('cs');
+---
+
+<BaseLayout
+  title="Řešení — Kronteq"
+  description="Kompletní portfolio lepicích systémů: strukturální lepidla, reaktivní lepidla, tavná lepidla, kyanoakrylátová lepidla, anaerobní lepidla a tmeliva."
+  lang="cs"
+>
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Kronteq</p>
+      <h1>{t.solutionsTitle}</h1>
+      <p class="page-desc">{t.solutionsDesc}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="solutions-grid" data-reveal-stagger>
+        {products.map(product => {
+          const name = product.nameCs;
+          const desc = product.descCs;
+          const uses = product.usesCs;
+          return (
+            <article class="card solution-card" id={product.slug}>
+              <div class="solution-header">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={product.icon} />
+                  </svg>
+                </div>
+                <h2 class="solution-name">{name}</h2>
+              </div>
+              <p class="solution-desc">{desc}</p>
+              <div class="solution-uses">
+                <h3>Typické aplikace</h3>
+                <ul role="list">
+                  {uses.map(use => <li>{use}</li>)}
+                </ul>
+              </div>
+              <a href="/kontakt/" class="btn-outline-dark solution-cta">{t.solutionsCta}</a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-band">
+    <div class="container">
+      <p>Nenašli jste přesně to, co hledáte?</p>
+      <a href="/kontakt/" class="btn-primary">Konzultace s odborníkem</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(72px + 4rem);
+    padding-bottom: 4rem;
+  }
+  .page-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+  .page-hero h1 { color: #fff; }
+  .page-desc {
+    color: var(--text-dark-muted);
+    font-size: 1.125rem;
+    margin-top: 1rem;
+    max-width: 56ch;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .solution-card { display: flex; flex-direction: column; gap: 1rem; }
+  .solution-header { display: flex; align-items: flex-start; gap: 1rem; }
+  .solution-name { font-size: 1.25rem; margin-top: 0.25rem; }
+  .solution-desc { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.65; max-width: none; }
+
+  .solution-uses h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .solution-uses ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .solution-uses li {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.2rem 0.65rem;
+    max-width: none;
+  }
+  .solution-cta { align-self: flex-start; margin-top: auto; }
+
+  .contact-band {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+  .contact-band .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .contact-band p { color: var(--text-muted); font-size: 1.0625rem; max-width: none; }
+</style>

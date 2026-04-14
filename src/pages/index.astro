@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import ProductsGrid from '../components/home/ProductsGrid.astro';
+import IndustriesSection from '../components/home/IndustriesSection.astro';
+import WhySection from '../components/home/WhySection.astro';
+import CtaBand from '../components/home/CtaBand.astro';
+---
+
+<BaseLayout
+  title="Kronteq — Průmyslová lepidla a lepicí systémy"
+  description="Kronteq dodává průmyslová lepidla, tmeliva a lepicí systémy pro automobilový průmysl, elektroniku a průmyslovou výrobu. Technická poradenství a rychlá dodávka."
+  lang="cs"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Kronteq",
+    "url": "https://www.kronteq.com",
+    "inLanguage": "cs-CZ",
+    "description": "Průmyslová lepidla a lepicí systémy pro evropský trh",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.kronteq.com/kontakt/"
+    }
+  })} />
+
+  <Hero lang="cs" />
+  <ProductsGrid lang="cs" />
+  <IndustriesSection lang="cs" />
+  <WhySection lang="cs" />
+  <CtaBand lang="cs" />
+</BaseLayout>

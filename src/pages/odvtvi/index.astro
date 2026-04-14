@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLang } from '../../i18n/strings';
+import { industries } from '../../data/industries';
+
+const t = getLang('cs');
+---
+
+<BaseLayout
+  title="Odvětví — Kronteq"
+  description="Lepicí systémy pro automobilový průmysl, elektroniku, stavebnictví a průmyslovou výrobu. Specializovaná řešení pro každé odvětví."
+  lang="cs"
+>
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Kronteq</p>
+      <h1>{t.industriesTitle}</h1>
+      <p class="page-desc">{t.industriesDesc}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="industries-list" data-reveal-stagger>
+        {industries.map((industry, idx) => {
+          const name = industry.nameCs;
+          const desc = industry.descCs;
+          const challenges = industry.challengesCs;
+          return (
+            <article class="industry-detail" id={industry.slug}>
+              <div class="industry-meta">
+                <span class="industry-num">0{idx + 1}</span>
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={industry.icon} />
+                  </svg>
+                </div>
+              </div>
+              <div class="industry-content">
+                <h2>{name}</h2>
+                <p>{desc}</p>
+                <div class="challenges">
+                  <h3>Výzvy, které řešíme</h3>
+                  <ul role="list">
+                    {challenges.map(c => <li>{c}</li>)}
+                  </ul>
+                </div>
+                <a href="/kontakt/" class="btn-outline-dark">
+                  Poptávka pro {name}
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(72px + 4rem);
+    padding-bottom: 4rem;
+  }
+  .page-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+  .page-hero h1 { color: #fff; }
+  .page-desc {
+    color: var(--text-dark-muted);
+    font-size: 1.125rem;
+    margin-top: 1rem;
+    max-width: 56ch;
+  }
+
+  .industries-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .industry-detail {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: border-color var(--duration) var(--ease);
+  }
+  .industry-detail:hover { border-color: var(--border-accent); }
+
+  .industry-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding-right: 2rem;
+    border-right: 1px solid var(--border);
+  }
+  .industry-num {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-dim);
+    color: rgba(124,58,237,0.25);
+    line-height: 1;
+  }
+
+  .industry-content { display: flex; flex-direction: column; gap: 1rem; }
+  .industry-content h2 { font-size: 1.5rem; }
+  .industry-content > p { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.65; max-width: none; }
+
+  .challenges h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .challenges ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .challenges li {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding-left: 1.25rem;
+    position: relative;
+    max-width: none;
+  }
+  .challenges li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
+
+  @media (max-width: 640px) {
+    .industry-detail { grid-template-columns: 1fr; }
+    .industry-meta { flex-direction: row; border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 1rem; }
+  }
+</style>
