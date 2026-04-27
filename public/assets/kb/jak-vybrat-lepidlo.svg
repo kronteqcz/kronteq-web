@@ -1,0 +1,133 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter diagram: pevnost vs. pružnost průmyslových lepidel — PUR, epoxid, MMA, kyanoakrylát, silikon">
+  <defs>
+    <linearGradient id="jvBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D0820"/><stop offset="100%" stop-color="#160F2E"/>
+    </linearGradient>
+    <linearGradient id="jvGrid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#jvBg)"/>
+  <rect x="0" y="0" width="1200" height="48" fill="#1D1038" opacity="0.9"/>
+  <text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.12em" fill="#A78BFA" opacity="0.85">KRONTEQ — VÝBĚR LEPIDLA</text>
+  <text x="1160" y="30" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#4a4060">Scatter diagram: pevnost vs. pružnost</text>
+
+  <!-- Chart area -->
+  <!-- Grid lines -->
+  <g stroke="#A78BFA" stroke-width="1" opacity="0.07">
+    <line x1="140" y1="70" x2="140" y2="440"/>
+    <line x1="140" y1="440" x2="960" y2="440"/>
+    <!-- Vertical grid -->
+    <line x1="300" y1="70" x2="300" y2="440"/>
+    <line x1="460" y1="70" x2="460" y2="440"/>
+    <line x1="620" y1="70" x2="620" y2="440"/>
+    <line x1="780" y1="70" x2="780" y2="440"/>
+    <line x1="940" y1="70" x2="940" y2="440"/>
+    <!-- Horizontal grid -->
+    <line x1="140" y1="100" x2="960" y2="100"/>
+    <line x1="140" y1="168" x2="960" y2="168"/>
+    <line x1="140" y1="236" x2="960" y2="236"/>
+    <line x1="140" y1="304" x2="960" y2="304"/>
+    <line x1="140" y1="372" x2="960" y2="372"/>
+  </g>
+
+  <!-- Axes -->
+  <line x1="140" y1="70" x2="140" y2="450" stroke="#6b7280" stroke-width="2"/>
+  <line x1="130" y1="440" x2="970" y2="440" stroke="#6b7280" stroke-width="2"/>
+
+  <!-- Axis arrows -->
+  <polygon points="140,65 133,82 147,82" fill="#6b7280"/>
+  <polygon points="975,440 958,433 958,447" fill="#6b7280"/>
+
+  <!-- Axis labels -->
+  <text x="555" y="480" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#9ca3af">Pružnost / elongace při přetržení →</text>
+  <text x="60" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#9ca3af" transform="rotate(-90, 60, 260)">Pevnost ve smyku (MPa) →</text>
+
+  <!-- Axis ticks + values -->
+  <g font-family="system-ui, sans-serif" font-size="11" fill="#4a4060" text-anchor="middle">
+    <text x="140" y="458">nízká</text>
+    <text x="300" y="458">10 %</text>
+    <text x="460" y="458">50 %</text>
+    <text x="620" y="458">150 %</text>
+    <text x="780" y="458">400 %</text>
+    <text x="940" y="458">vysoká</text>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="11" fill="#4a4060" text-anchor="end">
+    <text x="130" y="444">0</text>
+    <text x="130" y="372">5</text>
+    <text x="130" y="304">10</text>
+    <text x="130" y="236">20</text>
+    <text x="130" y="168">30</text>
+    <text x="130" y="100">40+</text>
+  </g>
+
+  <!-- === DATA POINTS === -->
+  <!-- Epoxid: high strength, low flexibility -->
+  <ellipse cx="215" cy="105" rx="52" ry="38" fill="#7C3AED" opacity="0.18"/>
+  <circle cx="215" cy="108" r="20" fill="#7C3AED" opacity="0.85"/>
+  <text x="215" y="113" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fff">EP</text>
+  <text x="215" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#C4B5FD">Epoxid</text>
+  <text x="215" y="96" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">25–45 MPa · &lt;5 %</text>
+
+  <!-- MMA: high strength, medium flexibility -->
+  <ellipse cx="360" cy="142" rx="55" ry="40" fill="#06b6d4" opacity="0.15"/>
+  <circle cx="358" cy="145" r="20" fill="#06b6d4" opacity="0.85"/>
+  <text x="358" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fff">MMA</text>
+  <text x="360" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#67e8f9">MMA</text>
+  <text x="360" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">15–30 MPa · 10–50 %</text>
+
+  <!-- Kyanoakrylat: medium strength, very low flex -->
+  <ellipse cx="165" cy="248" rx="40" ry="32" fill="#f59e0b" opacity="0.15"/>
+  <circle cx="165" cy="250" r="18" fill="#f59e0b" opacity="0.85"/>
+  <text x="165" y="255" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff">CA</text>
+  <text x="165" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fcd34d">Kyanoakrylát</text>
+  <text x="165" y="236" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">10–20 MPa · &lt;3 %</text>
+
+  <!-- PUR: medium-high, medium flex -->
+  <ellipse cx="490" cy="200" rx="58" ry="44" fill="#22c55e" opacity="0.15"/>
+  <circle cx="490" cy="202" r="22" fill="#22c55e" opacity="0.85"/>
+  <text x="490" y="208" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fff">PUR</text>
+  <text x="490" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#86efac">PUR</text>
+  <text x="490" y="186" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">8–20 MPa · 50–200 %</text>
+
+  <!-- MS Polymer: medium, high flex -->
+  <ellipse cx="680" cy="305" rx="55" ry="38" fill="#e879f9" opacity="0.15"/>
+  <circle cx="678" cy="307" r="20" fill="#e879f9" opacity="0.85"/>
+  <text x="678" y="312" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff">MS</text>
+  <text x="680" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f0abfc">MS Polymer</text>
+  <text x="680" y="292" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">2–6 MPa · 150–400 %</text>
+
+  <!-- Silikon: low strength, very high flex -->
+  <ellipse cx="870" cy="385" rx="52" ry="36" fill="#f97316" opacity="0.15"/>
+  <circle cx="870" cy="387" r="20" fill="#f97316" opacity="0.85"/>
+  <text x="870" y="392" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff">SI</text>
+  <text x="870" y="358" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fdba74">Silikon</text>
+  <text x="870" y="372" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">0,5–2 MPa · 400 %+</text>
+
+  <!-- Zone labels -->
+  <text x="550" y="105" font-family="system-ui, sans-serif" font-size="12" fill="#A78BFA" opacity="0.45" font-style="italic">konstrukční zóna</text>
+  <text x="620" y="380" font-family="system-ui, sans-serif" font-size="12" fill="#A78BFA" opacity="0.45" font-style="italic">elastická / těsnicí zóna</text>
+
+  <!-- Legend -->
+  <rect x="1000" y="68" width="180" height="290" rx="8" fill="#1D1038" opacity="0.85"/>
+  <text x="1090" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#A78BFA">Typy lepidel</text>
+  <g font-family="system-ui, sans-serif" font-size="12" fill="#EDE9F8">
+    <circle cx="1022" cy="120" r="8" fill="#7C3AED" opacity="0.85"/>
+    <text x="1036" y="124">Epoxid (EP)</text>
+    <circle cx="1022" cy="150" r="8" fill="#06b6d4" opacity="0.85"/>
+    <text x="1036" y="154">MMA</text>
+    <circle cx="1022" cy="180" r="8" fill="#f59e0b" opacity="0.85"/>
+    <text x="1036" y="184">Kyanoakrylát</text>
+    <circle cx="1022" cy="210" r="8" fill="#22c55e" opacity="0.85"/>
+    <text x="1036" y="214">PUR</text>
+    <circle cx="1022" cy="240" r="8" fill="#e879f9" opacity="0.85"/>
+    <text x="1036" y="244">MS Polymer</text>
+    <circle cx="1022" cy="270" r="8" fill="#f97316" opacity="0.85"/>
+    <text x="1036" y="274">Silikon</text>
+  </g>
+  <text x="1090" y="308" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">Velikost bubliny ≈</text>
+  <text x="1090" y="322" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">teplotní odolnost</text>
+  <text x="1090" y="338" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">a cena</text>
+</svg>

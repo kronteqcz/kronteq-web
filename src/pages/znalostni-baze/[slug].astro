@@ -108,6 +108,21 @@ const breadcrumb = [
     </div>
   </div>
 
+  {article.data.heroImage && (
+    <div class="hero-image-band">
+      <div class="container">
+        <img
+          src={article.data.heroImage}
+          alt={article.data.title}
+          class="hero-diagram"
+          width="1200"
+          height="520"
+          loading="eager"
+        />
+      </div>
+    </div>
+  )}
+
   <div class="article-layout section">
     <div class="container article-container">
       <article class="article-body prose kb-prose" data-reveal>
@@ -192,9 +207,22 @@ const breadcrumb = [
   .back-link { font-size: 0.875rem; color: var(--text-dim); text-decoration: none; padding: 0.5rem 0; }
   .back-link:hover { color: var(--accent); }
 
+  /* Hero diagram */
+  .hero-image-band { background: var(--bg-dark-2); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .hero-image-band .container { padding-block: 0; }
+  .hero-diagram {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    max-height: 420px;
+    object-fit: contain;
+  }
+
   @media (max-width: 900px) {
     .article-container { grid-template-columns: 1fr; }
     .article-sidebar { position: static; }
     .kb-prose { max-width: 100%; }
+    .hero-diagram { max-height: 260px; }
   }
 </style>

@@ -20,6 +20,7 @@ const kbCollection = defineCollection({
     tags: z.array(z.string()).default([]),
     primaryKeyword: z.string(),
     readingTimeMinutes: z.number().optional(),
+    heroImage: z.string().optional(), // in-article hero visual (SVG diagram, photo, etc.)
     ogImage: z.string().optional(),
     draft: z.boolean().default(false),
   }),

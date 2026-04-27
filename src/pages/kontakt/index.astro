@@ -24,11 +24,30 @@ const t = getLang('cs');
       <div class="contact-layout" data-reveal>
         <!-- Form -->
         <div class="contact-form-wrap">
-          <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/dekujeme/">
-            <input type="hidden" name="form-name" value="contact" />
+          <!--
+            Napojení formuláře:
+            Možnost A — Formspree: zaregistruj se na formspree.io, nahraď action URL:
+              action="https://formspree.io/f/XXXXXXXX" method="POST"
+            Možnost B — n8n webhook: nastav webhook URL v n8n a použij:
+              action="https://your-n8n.domain/webhook/contact" method="POST"
+          -->
+          <form
+            id="contactForm"
+            class="contact-form"
+            method="POST"
+            action="/api/contact"
+            novalidate
+          >
+            <!-- Honeypot — skryté pole; pokud ho bot vyplní, formulář se zahodí -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="hp_website">Website</label>
+              <input type="text" id="hp_website" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div class="field">
               <label for="name">{t.contactFormName} <span aria-hidden="true">*</span></label>
               <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jan Novák" />
+              <span class="field-error" id="nameError">Vyplňte jméno</span>
             </div>
             <div class="field">
               <label for="company">{t.contactFormCompany}</label>
@@ -38,6 +57,7 @@ const t = getLang('cs');
               <div class="field">
                 <label for="email">{t.contactFormEmail} <span aria-hidden="true">*</span></label>
                 <input type="email" id="email" name="email" required autocomplete="email" placeholder="jan@firma.cz" />
+                <span class="field-error" id="emailError">Zadejte platný e-mail</span>
               </div>
               <div class="field">
                 <label for="phone">{t.contactFormPhone}</label>
@@ -47,11 +67,16 @@ const t = getLang('cs');
             <div class="field">
               <label for="message">{t.contactFormMessage} <span aria-hidden="true">*</span></label>
               <textarea id="message" name="message" required rows="5" placeholder={t.contactFormMessagePlaceholder}></textarea>
+              <span class="field-error" id="messageError">Napište zprávu</span>
             </div>
             <div class="form-footer">
               <p class="form-note">{t.contactFormNote}</p>
-              <button type="submit" class="btn-primary">{t.contactFormSubmit}</button>
+              <button type="submit" class="btn-primary" id="submitBtn">
+                <span class="btn-label">{t.contactFormSubmit}</span>
+                <span class="btn-sending" aria-hidden="true">Odesílám…</span>
+              </button>
             </div>
+            <div class="form-error-msg" id="formError" role="alert" aria-live="polite"></div>
           </form>
         </div>
 
@@ -242,4 +267,116 @@ const t = getLang('cs');
     color: var(--accent);
     max-width: none;
   }
+
+  /* Honeypot — absolutně skryté pro člověka, viditeln pro boty */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    tab-index: -1;
+  }
+
+  /* Validation feedback */
+  .field { position: relative; }
+  .field-error {
+    display: none;
+    font-size: 0.8125rem;
+    color: #ef4444;
+    margin-top: 0.2rem;
+  }
+  .field.has-error input,
+  .field.has-error textarea {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+  .field.has-error .field-error { display: block; }
+
+  /* Submit button states */
+  .btn-sending { display: none; }
+  #submitBtn[data-sending] .btn-label { display: none; }
+  #submitBtn[data-sending] .btn-sending { display: inline; }
+  #submitBtn[data-sending] { opacity: 0.7; pointer-events: none; }
+
+  .form-error-msg {
+    font-size: 0.875rem;
+    color: #ef4444;
+    text-align: center;
+    min-height: 1.2em;
+  }
 </style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot check — pokud je vyplněno, tiše zahodit
+      const hp = form.querySelector<HTMLInputElement>('[name="_gotcha"]');
+      if (hp && hp.value.trim() !== '') {
+        window.location.href = '/dekujeme/';
+        return;
+      }
+
+      // Client-side validation
+      let valid = true;
+      const fields = [
+        { id: 'name', errorId: 'nameError' },
+        { id: 'email', errorId: 'emailError' },
+        { id: 'message', errorId: 'messageError' },
+      ];
+      fields.forEach(({ id, errorId }) => {
+        const input = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+        const wrap = input?.closest('.field');
+        const err = document.getElementById(errorId);
+        if (!input || !wrap) return;
+        const isEmpty = input.value.trim() === '';
+        const isEmailInvalid = id === 'email' && !isEmpty && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+        if (isEmpty || isEmailInvalid) {
+          wrap.classList.add('has-error');
+          valid = false;
+        } else {
+          wrap.classList.remove('has-error');
+        }
+      });
+      if (!valid) return;
+
+      // Submit
+      const btn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+      const errMsg = document.getElementById('formError');
+      btn?.setAttribute('data-sending', '');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        const json = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          window.location.href = '/dekujeme/';
+        } else {
+          throw new Error(json.error ?? `HTTP ${res.status}`);
+        }
+      } catch (err: unknown) {
+        btn?.removeAttribute('data-sending');
+        const msg = err instanceof Error ? err.message : 'Odesílání selhalo.';
+        if (errMsg) errMsg.textContent = msg + ' Nebo nás kontaktujte přímo e-mailem.';
+      }
+    });
+
+    // Live validation — odstraní chybu při opravě
+    form.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', () => {
+        el.closest('.field')?.classList.remove('has-error');
+      });
+    });
+  }
+</script>

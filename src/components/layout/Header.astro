@@ -31,7 +31,10 @@ const homeHref = lang === 'en' ? '/en/' : '/';
   <div class="header-inner container">
     <!-- Logo -->
     <a href={homeHref} class="logo" aria-label="Kronteq — zpět na úvod">
-      <img src="/assets/logo-monogram.png" alt="Kronteq logo" class="logo-img" width="38" height="38" />
+      <picture>
+        <source srcset="/assets/logo-monogram-nav.webp" type="image/webp" />
+        <img src="/assets/logo-monogram.png" alt="Kronteq logo" class="logo-img" width="38" height="38" />
+      </picture>
       <span class="logo-name">KRONTEQ</span>
     </a>
 

@@ -1,0 +1,129 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma hybridního spoje weld-bonding — bodový svár kombinovaný s konstrukčním lepidlem">
+  <defs>
+    <linearGradient id="wbBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D0820"/>
+      <stop offset="100%" stop-color="#160F2E"/>
+    </linearGradient>
+    <linearGradient id="wbSteelTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c0c8d8"/>
+      <stop offset="100%" stop-color="#8090a8"/>
+    </linearGradient>
+    <linearGradient id="wbSteelBot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8090a8"/>
+      <stop offset="100%" stop-color="#5a6880"/>
+    </linearGradient>
+    <linearGradient id="wbAdhesive" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </linearGradient>
+    <radialGradient id="wbWeld" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF3C7"/>
+      <stop offset="30%" stop-color="#FCD34D"/>
+      <stop offset="60%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#92400E" stop-opacity="0.1"/>
+    </radialGradient>
+    <radialGradient id="wbHAZ" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#F59E0B" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.35"/>
+    </radialGradient>
+    <filter id="wbGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowRight" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#A78BFA" opacity="0.7"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#A78BFA" opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="520" fill="url(#wbBg)"/>
+
+  <!-- Subtle horizontal grid -->
+  <g opacity="0.04" stroke="#A78BFA" stroke-width="1">
+    <line x1="0" y1="130" x2="1200" y2="130"/>
+    <line x1="0" y1="260" x2="1200" y2="260"/>
+    <line x1="0" y1="390" x2="1200" y2="390"/>
+  </g>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1200" height="48" fill="#1D1038" opacity="0.9"/>
+  <text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.12em" fill="#A78BFA" opacity="0.85">KRONTEQ — TECHNOLOGIE HYBRIDNÍCH SPOJŮ</text>
+  <text x="1160" y="30" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#4a4060">Weld-bonding: svár + lepidlo</text>
+
+  <!-- ===== TOP STEEL SHEET ===== -->
+  <rect x="100" y="68" width="1000" height="110" rx="4" fill="url(#wbSteelTop)"/>
+  <rect x="100" y="68" width="1000" height="22" rx="4" fill="white" opacity="0.08"/>
+  <!-- Thickness indicator -->
+  <line x1="80" y1="68" x2="80" y2="178" stroke="#9ca3af" stroke-width="1.5"/>
+  <line x1="74" y1="68" x2="86" y2="68" stroke="#9ca3af" stroke-width="1.5"/>
+  <line x1="74" y1="178" x2="86" y2="178" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="60" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af" transform="rotate(-90, 60, 128)">1,5 mm</text>
+  <!-- Label -->
+  <text x="600" y="130" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1a1025">Plech A — BH340 (karoserie)</text>
+
+  <!-- ===== ADHESIVE LAYER (interrupted at weld) ===== -->
+  <!-- Left adhesive segment -->
+  <rect x="100" y="178" width="300" height="72" fill="url(#wbAdhesive)"/>
+  <!-- Right adhesive segment -->
+  <rect x="520" y="178" width="580" height="72" fill="url(#wbAdhesive)"/>
+  <!-- Texture lines in adhesive -->
+  <g opacity="0.12" stroke="#C4B5FD" stroke-width="1">
+    <line x1="100" y1="196" x2="400" y2="196"/> <line x1="520" y1="196" x2="1100" y2="196"/>
+    <line x1="100" y1="214" x2="400" y2="214"/> <line x1="520" y1="214" x2="1100" y2="214"/>
+    <line x1="100" y1="232" x2="400" y2="232"/> <line x1="520" y1="232" x2="1100" y2="232"/>
+  </g>
+  <!-- Adhesive border glow -->
+  <rect x="100" y="178" width="300" height="72" fill="none" stroke="#A78BFA" stroke-width="1" opacity="0.3"/>
+  <rect x="520" y="178" width="580" height="72" fill="none" stroke="#A78BFA" stroke-width="1" opacity="0.3"/>
+
+  <!-- ===== BOTTOM STEEL SHEET ===== -->
+  <rect x="100" y="250" width="1000" height="110" rx="4" fill="url(#wbSteelBot)"/>
+  <!-- Label -->
+  <text x="600" y="312" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#EDE9F8" opacity="0.85">Plech B — DP600 (výztuha)</text>
+
+  <!-- ===== SPOT WELD ===== -->
+  <!-- HAZ (heat affected zone) — large ellipse -->
+  <ellipse cx="410" cy="214" rx="120" ry="108" fill="url(#wbHAZ)"/>
+  <!-- Weld electrode marks (top) -->
+  <ellipse cx="410" cy="82" rx="28" ry="14" fill="#374151" opacity="0.6"/>
+  <!-- Weld electrode marks (bottom) -->
+  <ellipse cx="410" cy="346" rx="28" ry="14" fill="#374151" opacity="0.6"/>
+  <!-- Weld nugget -->
+  <ellipse cx="410" cy="214" rx="56" ry="64" fill="url(#wbWeld)" filter="url(#wbGlow)"/>
+  <!-- Weld nugget center (brightest) -->
+  <ellipse cx="410" cy="214" rx="28" ry="32" fill="#FEF9C3" opacity="0.6"/>
+  <!-- HAZ boundary dashed ring -->
+  <ellipse cx="410" cy="214" rx="100" ry="90" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
+
+  <!-- ===== LABELS (below diagram) ===== -->
+  <!-- Spot weld label -->
+  <line x1="410" y1="380" x2="410" y2="425" stroke="#F59E0B" stroke-width="1.5" opacity="0.7"/>
+  <text x="410" y="443" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#FCD34D">Bodový svár</text>
+  <text x="410" y="459" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">⌀ 5–7 mm, HAZ ⌀ ~20 mm</text>
+
+  <!-- Adhesive label left -->
+  <line x1="240" y1="250" x2="240" y2="425" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="240" y="443" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#A78BFA">Konstrukční lepidlo</text>
+  <text x="240" y="459" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">epoxid / hybrid, t = 0,2 mm</text>
+
+  <!-- Adhesive label right -->
+  <line x1="800" y1="250" x2="800" y2="425" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="800" y="443" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#A78BFA">Lepidlo distribuuje napětí</text>
+  <text x="800" y="459" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">eliminuje koncentraci u sváru</text>
+
+  <!-- ===== STRENGTH COMPARISON BAR ===== -->
+  <rect x="100" y="478" width="1000" height="30" rx="6" fill="#1D1038" opacity="0.7"/>
+  <!-- Solo weld -->
+  <rect x="116" y="484" width="160" height="18" rx="3" fill="#F59E0B" opacity="0.7"/>
+  <text x="116" y="498" font-family="system-ui, sans-serif" font-size="11" fill="#FEF3C7" font-weight="600" dx="4">Svár: 100 %</text>
+  <!-- Weld-bonding -->
+  <rect x="290" y="484" width="400" height="18" rx="3" fill="#7C3AED"/>
+  <text x="290" y="498" font-family="system-ui, sans-serif" font-size="11" fill="#EDE9F8" font-weight="600" dx="4">Weld-bonding: až 250 % pevnosti ve smyku</text>
+  <!-- Rivet-bonding -->
+  <rect x="705" y="484" width="260" height="18" rx="3" fill="#4B21B6" opacity="0.8"/>
+  <text x="705" y="498" font-family="system-ui, sans-serif" font-size="11" fill="#C4B5FD" font-weight="600" dx="4">Rivet-bonding: ~200 % + těsnost</text>
+</svg>

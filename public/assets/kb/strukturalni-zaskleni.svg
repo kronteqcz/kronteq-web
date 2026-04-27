@@ -1,0 +1,128 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strukturální zasklívání — SSG fasáda, vrstvení sklo-silikon-rám, 25letá životnost">
+  <defs>
+    <linearGradient id="ssBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c1523"/><stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="ssSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/><stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="ssGlass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="ssFrame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9ca3af"/><stop offset="100%" stop-color="#6b7280"/>
+    </linearGradient>
+    <filter id="ssShadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="ssGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#ssBg)"/>
+  <rect x="0" y="48" width="1200" height="472" fill="url(#ssSky)" opacity="0.4"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1200" height="48" fill="#0c1523" opacity="0.95"/>
+  <text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.12em" fill="#A78BFA" opacity="0.85">KRONTEQ — STAVEBNICTVÍ</text>
+  <text x="1160" y="30" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#4a4060">Strukturální zasklívání (SSG)</text>
+
+  <!-- === FACADE GRID === -->
+  <!-- Main facade grid (3×4 panels) -->
+  <!-- Horizontal frames -->
+  <g fill="url(#ssFrame)">
+    <rect x="100" y="65" width="520" height="18" rx="2"/> <!-- top -->
+    <rect x="100" y="185" width="520" height="14" rx="2"/>
+    <rect x="100" y="305" width="520" height="14" rx="2"/>
+    <rect x="100" y="425" width="520" height="18" rx="2"/> <!-- bottom -->
+    <!-- Vertical frames -->
+    <rect x="100" y="65" width="18" height="378" rx="2"/>
+    <rect x="272" y="65" width="14" height="378" rx="2"/>
+    <rect x="444" y="65" width="14" height="378" rx="2"/>
+    <rect x="602" y="65" width="18" height="378" rx="2"/>
+  </g>
+
+  <!-- Glass panels -->
+  <!-- Row 1 -->
+  <rect x="118" y="83" width="154" height="102" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <rect x="286" y="83" width="158" height="102" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <rect x="458" y="83" width="144" height="102" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <!-- Row 2 -->
+  <rect x="118" y="199" width="154" height="106" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <rect x="286" y="199" width="158" height="106" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <rect x="458" y="199" width="144" height="106" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <!-- Row 3 -->
+  <rect x="118" y="319" width="154" height="106" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <rect x="286" y="319" width="158" height="106" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+  <rect x="458" y="319" width="144" height="106" rx="0" fill="url(#ssGlass)" filter="url(#ssShadow)"/>
+
+  <!-- Sky + cloud reflection in glass panels (subtle) -->
+  <g opacity="0.08">
+    <ellipse cx="196" cy="120" rx="50" ry="20" fill="#EDE9F8"/>
+    <ellipse cx="365" cy="240" rx="60" ry="22" fill="#EDE9F8"/>
+    <ellipse cx="530" cy="360" rx="45" ry="18" fill="#EDE9F8"/>
+  </g>
+
+  <!-- === CROSS-SECTION CALLOUT === -->
+  <!-- Zoom indicator line from panel edge -->
+  <line x1="620" y1="185" x2="700" y2="200" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="620" y1="305" x2="700" y2="290" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <rect x="700" y="100" width="440" height="310" rx="10" fill="#1D1038" opacity="0.88"/>
+  <text x="920" y="126" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#A78BFA">Průřez SSG spojem — detail</text>
+
+  <!-- Cross-section layers inside card -->
+  <!-- Outer glass -->
+  <rect x="730" y="140" width="380" height="38" rx="3" fill="#bfdbfe" opacity="0.25" stroke="#93c5fd" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="920" y="163" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#93c5fd">Skleněná tabule (6 mm / 8 mm TVG)</text>
+
+  <!-- Primary silicone (structural) -->
+  <rect x="730" y="178" width="380" height="24" rx="0" fill="#7C3AED" opacity="0.5" filter="url(#ssGlow)"/>
+  <text x="920" y="194" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#C4B5FD">Konstrukční silikon — primární spoj (šířka 12 mm)</text>
+
+  <!-- Frame -->
+  <rect x="730" y="202" width="380" height="52" rx="2" fill="url(#ssFrame)" opacity="0.7"/>
+  <text x="920" y="232" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#1a1025" font-weight="600">Hliníkový rám / mullion</text>
+
+  <!-- Secondary silicone (weather seal) -->
+  <rect x="730" y="254" width="380" height="18" rx="0" fill="#4338ca" opacity="0.5"/>
+  <text x="920" y="267" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#a5b4fc">Těsnicí silikon — sekundární (8 mm)</text>
+
+  <!-- Inner glass -->
+  <rect x="730" y="272" width="380" height="30" rx="3" fill="#bfdbfe" opacity="0.15" stroke="#93c5fd" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="920" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6b7280">Zasklívací lišta (mechanická záloha)</text>
+
+  <!-- Key specs -->
+  <g font-family="system-ui, sans-serif">
+    <text x="920" y="320" text-anchor="middle" font-size="12" font-weight="600" fill="#EDE9F8">Normativní požadavky</text>
+    <text x="820" y="338" font-size="11" fill="#9ca3af">• ETAG 002 / EN 15434</text>
+    <text x="820" y="354" font-size="11" fill="#9ca3af">• normativní životnost: 25 let</text>
+    <text x="820" y="370" font-size="11" fill="#9ca3af">• teplotní rozsah: −40 až +90 °C</text>
+    <text x="820" y="386" font-size="11" fill="#9ca3af">• pohyb spoje (creep): &lt;0,1 mm/rok</text>
+  </g>
+
+  <!-- Silicone labels on right side of cross-section -->
+  <line x1="1110" y1="190" x2="1140" y2="190" stroke="#7C3AED" stroke-width="1.5" opacity="0.6"/>
+  <text x="1145" y="194" font-family="system-ui, sans-serif" font-size="10" fill="#A78BFA">SS-S</text>
+  <line x1="1110" y1="263" x2="1140" y2="263" stroke="#4338ca" stroke-width="1.5" opacity="0.6"/>
+  <text x="1145" y="267" font-family="system-ui, sans-serif" font-size="10" fill="#a5b4fc">SS-W</text>
+
+  <!-- === BOTTOM STATS === -->
+  <rect x="100" y="455" width="520" height="52" rx="8" fill="#1D1038" opacity="0.7"/>
+  <g font-family="system-ui, sans-serif" text-anchor="middle">
+    <text x="233" y="475" font-size="13" font-weight="700" fill="#A78BFA">25 let</text>
+    <text x="233" y="492" font-size="11" fill="#9ca3af">životnost silikon. spoje</text>
+
+    <line x1="360" y1="462" x2="360" y2="500" stroke="#A78BFA" stroke-width="1" opacity="0.2"/>
+
+    <text x="430" y="475" font-size="13" font-weight="700" fill="#A78BFA">0 viditelných</text>
+    <text x="430" y="492" font-size="11" fill="#9ca3af">upevňovacích prvků</text>
+
+    <line x1="540" y1="462" x2="540" y2="500" stroke="#A78BFA" stroke-width="1" opacity="0.2"/>
+
+    <text x="600" y="475" font-size="13" font-weight="700" fill="#A78BFA">±15 %</text>
+    <text x="600" y="492" font-size="11" fill="#9ca3af">pohyb spoje (teplotní)</text>
+  </g>
+</svg>

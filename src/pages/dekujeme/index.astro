@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Děkujeme za zprávu — Kronteq"
+  description="Vaše zpráva byla odeslána. Ozveme se do 24 hodin."
+  lang="cs"
+>
+  <div class="thankyou-page section-dark">
+    <div class="container">
+      <div class="thankyou-inner">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h1>Děkujeme za zprávu!</h1>
+        <p>Kristýna Ondráčková se vám ozve do 24 hodin. Pro urgentní dotazy volejte přímo na <a href="tel:+420608558833">+420 608 558 833</a>.</p>
+        <div class="thankyou-btns">
+          <a href="/" class="btn-outline">← Zpět na úvod</a>
+          <a href="/znalostni-baze/" class="btn-primary">Znalostní báze</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .thankyou-page {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+  }
+  .thankyou-inner {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.15);
+    border: 2px solid rgba(34, 197, 94, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-wrap svg {
+    width: 36px;
+    height: 36px;
+    stroke: #22c55e;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  h1 { color: #fff; font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  p { color: var(--text-dark-muted); font-size: 1.0625rem; line-height: 1.7; max-width: 44ch; }
+  p a { color: var(--accent-light); }
+  .thankyou-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+</style>

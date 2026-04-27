@@ -23,27 +23,45 @@ function initScrollTracker() {
 
 /* ── 2. Reveal Observer: [data-reveal], [data-reveal-group], .reveal ── */
 function initRevealObserver() {
+  const allTargets = document.querySelectorAll('[data-reveal],[data-reveal-stagger],[data-reveal-group],.reveal');
+
   if (rm) {
-    document.querySelectorAll('[data-reveal],[data-reveal-group],.reveal').forEach(el => {
-      el.classList.add('is-visible', 'revealed');
-    });
+    allTargets.forEach(el => el.classList.add('is-visible', 'revealed'));
     return;
   }
+
+  function reveal(el) {
+    el.classList.add('is-visible', 'revealed');
+    if (el.hasAttribute('data-reveal-group')) {
+      Array.from(el.children).forEach((child, i) => {
+        child.style.transitionDelay = `${i * 80}ms`;
+      });
+    }
+  }
+
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
-      el.classList.add('is-visible', 'revealed');
-      if (el.hasAttribute('data-reveal-group')) {
-        Array.from(el.children).forEach((child, i) => {
-          child.style.transitionDelay = `${i * 80}ms`;
-        });
-      }
-      obs.unobserve(el);
+      reveal(entry.target);
+      obs.unobserve(entry.target);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
-  document.querySelectorAll('[data-reveal],[data-reveal-group],.reveal').forEach(el => obs.observe(el));
+  /* On load: immediately reveal elements already in viewport.
+     Batch: all getBoundingClientRect reads FIRST, then writes — prevents forced reflow. */
+  requestAnimationFrame(() => {
+    const vh = window.innerHeight;
+    // Phase 1 — READ all rects (no DOM writes yet)
+    const checks = Array.from(allTargets).map(el => ({
+      el,
+      inView: (() => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < vh; })(),
+    }));
+    // Phase 2 — WRITE (classList changes, style.transitionDelay)
+    checks.forEach(({ el, inView }) => {
+      if (inView) reveal(el);
+      else obs.observe(el);
+    });
+  });
 }
 
 /* ── 3. Crowd Scrub: .crowd-section scroll-scrubbed video ── */
@@ -110,6 +128,21 @@ function initHeroController() {
   let rafPending = false;
   let curCx  = 0; // aktuální cursor x offset (−1..1)
 
+  /* Cached hero page-relative rect — getBoundingClientRect reads happen only on
+     init/resize, NOT inside mousemove (which fires many times per frame). */
+  let heroCachedLeft = 0;
+  let heroCachedTop  = 0;
+  let heroCachedW    = 1;
+  let heroCachedH    = 1;
+  function cacheHeroRect() {
+    const r = hero.getBoundingClientRect();
+    heroCachedLeft = r.left + window.scrollX;
+    heroCachedTop  = r.top  + window.scrollY;
+    heroCachedW    = r.width  || 1;
+    heroCachedH    = r.height || 1;
+  }
+  cacheHeroRect();
+
   /* updateCones — každý kužel rotuje kolem svého oka
      scroll=0: 80°, scroll=1: 28° (rozsah 52°)
      cursor posunuje ±12°                          */
@@ -144,7 +177,11 @@ function initHeroController() {
         rafPending = true;
       }
     }, { passive: true });
-    window.addEventListener('resize', () => { heroH = hero.offsetHeight; }, { passive: true });
+    window.addEventListener('resize', () => {
+      heroH = hero.offsetHeight;
+      // Batch resize reads into next rAF — avoids forced reflow during resize burst
+      requestAnimationFrame(cacheHeroRect);
+    }, { passive: true });
     applyScrollPhase();
     updateCones(0, 0); // inicializace — kužele na klávesnici Macu
   }
@@ -188,24 +225,42 @@ function initHeroController() {
     const visObs = new IntersectionObserver(entries => { heroVisible = entries[0].isIntersecting; });
     visObs.observe(hero);
 
-    /* Mouse — desktop */
+    /* Mouse — desktop.
+       clientX/Y captured at event time; pointer computation deferred to rAF
+       so writes from the previous applyPointer have already committed — no forced reflow. */
     hero.addEventListener('mousemove', (e) => {
-      if (!heroVisible) return;
-      const rect = hero.getBoundingClientRect();
-      const cx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
-      const cy = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
-      applyPointer(cx, cy);
+      if (!heroVisible || rafPending) return;
+      rafPending = true;
+      const cx0 = e.clientX;
+      const cy0 = e.clientY;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        const viewL = heroCachedLeft - window.scrollX;
+        const viewT = heroCachedTop  - window.scrollY;
+        applyPointer(
+          ((cx0 - viewL) / heroCachedW - 0.5) * 2,
+          ((cy0 - viewT) / heroCachedH - 0.5) * 2,
+        );
+      });
     });
     hero.addEventListener('mouseleave', resetPointer);
 
     /* Touch — mobilní a dotykové notebooky */
     hero.addEventListener('touchmove', (e) => {
-      if (!heroVisible) return;
+      if (!heroVisible || rafPending) return;
+      rafPending = true;
       const t = e.touches[0];
-      const rect = hero.getBoundingClientRect();
-      const cx = ((t.clientX - rect.left) / rect.width  - 0.5) * 2;
-      const cy = ((t.clientY - rect.top)  / rect.height - 0.5) * 2;
-      applyPointer(cx, cy);
+      const cx0 = t.clientX;
+      const cy0 = t.clientY;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        const viewL = heroCachedLeft - window.scrollX;
+        const viewT = heroCachedTop  - window.scrollY;
+        applyPointer(
+          ((cx0 - viewL) / heroCachedW - 0.5) * 2,
+          ((cy0 - viewT) / heroCachedH - 0.5) * 2,
+        );
+      });
     }, { passive: true });
     hero.addEventListener('touchend', resetPointer, { passive: true });
   }

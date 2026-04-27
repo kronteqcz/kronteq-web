@@ -6,6 +6,10 @@ import Footer from '../components/layout/Footer.astro';
 import type { Lang } from '../i18n/strings';
 import { getLang } from '../i18n/strings';
 
+// Preload primary (latin) font variants for faster LCP
+import outfitUrl from '@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url';
+import dmSansUrl from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+
 interface Props {
   title: string;
   description: string;
@@ -32,6 +36,8 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
 <!DOCTYPE html>
 <html lang={t.htmlLang}>
   <head>
+    <!-- Detect JS before first paint — prevents invisible content on load. Crawlers see all content. -->
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
@@ -59,6 +65,10 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <!-- Font preloads — critical for LCP (avoids FOIT on first paint) -->
+    <link rel="preload" as="font" type="font/woff2" href={outfitUrl} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={dmSansUrl} crossorigin />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -120,17 +130,17 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
       }
       .skip-link:focus { top: 0; }
 
-      .reveal {
+      .js .reveal {
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
       }
-      .reveal.revealed {
+      .js .reveal.revealed {
         opacity: 1;
         transform: translateY(0);
       }
       @media (prefers-reduced-motion: reduce) {
-        .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
       }
     </style>
   </body>

@@ -1,0 +1,145 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tři kroky přípravy povrchu pro lepení: mechanické čištění, odmašťování, aktivace">
+  <defs>
+    <linearGradient id="ppBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D0820"/><stop offset="100%" stop-color="#160F2E"/>
+    </linearGradient>
+    <linearGradient id="ppStep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1D1038"/><stop offset="100%" stop-color="#160F2E"/>
+    </linearGradient>
+    <linearGradient id="ppArrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#ppBg)"/>
+  <rect x="0" y="0" width="1200" height="48" fill="#1D1038" opacity="0.9"/>
+  <text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.12em" fill="#A78BFA" opacity="0.85">KRONTEQ — TECHNOLOGIE</text>
+  <text x="1160" y="30" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#4a4060">Příprava povrchu — 3 kroky</text>
+
+  <!-- Step cards -->
+  <!-- STEP 1: Mechanical cleaning -->
+  <rect x="60" y="72" width="310" height="380" rx="12" fill="url(#ppStep)" stroke="#7C3AED" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Step number badge -->
+  <circle cx="110" cy="112" r="28" fill="#7C3AED" opacity="0.15"/>
+  <circle cx="110" cy="112" r="20" fill="#7C3AED"/>
+  <text x="110" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#fff">1</text>
+  <!-- Step title -->
+  <text x="148" y="104" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#EDE9F8">Mechanické</text>
+  <text x="148" y="122" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#EDE9F8">čištění</text>
+  <!-- Divider -->
+  <line x1="80" y1="148" x2="350" y2="148" stroke="#7C3AED" stroke-width="1" opacity="0.3"/>
+  <!-- Icon: abrasive lines on surface -->
+  <g transform="translate(130, 175)">
+    <rect x="0" y="0" width="110" height="60" rx="4" fill="#374151"/>
+    <!-- Abrasive marks -->
+    <g stroke="#A78BFA" stroke-width="2" opacity="0.7">
+      <line x1="10" y1="15" x2="100" y2="12"/>
+      <line x1="8" y1="28" x2="102" y2="25"/>
+      <line x1="12" y1="41" x2="98" y2="38"/>
+      <line x1="6" y1="52" x2="104" y2="50"/>
+    </g>
+    <!-- Sandpaper -->
+    <rect x="0" y="-14" width="110" height="14" rx="2" fill="#9ca3af" opacity="0.4"/>
+    <g fill="#6b7280" opacity="0.5" font-size="8" font-family="system-ui, sans-serif">
+      <text x="40" y="-4">P80–P240</text>
+    </g>
+  </g>
+  <!-- Content -->
+  <g font-family="system-ui, sans-serif">
+    <text x="215" y="262" text-anchor="middle" font-size="13" font-weight="600" fill="#C4B5FD">Cíl: Ra 2–6 µm</text>
+    <text x="215" y="292" text-anchor="middle" font-size="12" fill="#9ca3af">• brusivo P80–P240</text>
+    <text x="215" y="312" text-anchor="middle" font-size="12" fill="#9ca3af">• tryskání (ocel, hliník)</text>
+    <text x="215" y="332" text-anchor="middle" font-size="12" fill="#9ca3af">• laserová ablace (CFRP)</text>
+    <text x="215" y="352" text-anchor="middle" font-size="12" fill="#9ca3af">• kotvící profil pro lepidlo</text>
+  </g>
+  <!-- Warning -->
+  <rect x="80" y="378" width="270" height="58" rx="6" fill="#92400E" opacity="0.25"/>
+  <text x="215" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#fcd34d">⚠ Po broušení max. 2 hodiny</text>
+  <text x="215" y="416" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">do nanesení lepidla — oxidace!</text>
+  <text x="215" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">hliník: max 30 min.</text>
+
+  <!-- Arrow 1→2 -->
+  <rect x="378" y="215" width="62" height="32" rx="6" fill="url(#ppArrow)"/>
+  <polygon points="440,231 430,219 430,243" fill="#A78BFA" opacity="0.7"/>
+  <text x="409" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#A78BFA">pak</text>
+
+  <!-- STEP 2: Degreasing -->
+  <rect x="448" y="72" width="310" height="380" rx="12" fill="url(#ppStep)" stroke="#7C3AED" stroke-width="1.5" stroke-opacity="0.4"/>
+  <circle cx="498" cy="112" r="28" fill="#7C3AED" opacity="0.15"/>
+  <circle cx="498" cy="112" r="20" fill="#7C3AED"/>
+  <text x="498" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#fff">2</text>
+  <text x="536" y="104" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#EDE9F8">Odmašťování</text>
+  <text x="536" y="122" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#EDE9F8">/ čistění</text>
+  <line x1="468" y1="148" x2="738" y2="148" stroke="#7C3AED" stroke-width="1" opacity="0.3"/>
+  <!-- Icon: solvent wipe -->
+  <g transform="translate(508, 158)">
+    <!-- Surface -->
+    <rect x="0" y="40" width="130" height="30" rx="3" fill="#374151"/>
+    <!-- Oil drops (before) -->
+    <ellipse cx="20" cy="35" rx="10" ry="8" fill="#f59e0b" opacity="0.6"/>
+    <ellipse cx="50" cy="33" rx="8" ry="7" fill="#f59e0b" opacity="0.5"/>
+    <ellipse cx="80" cy="36" rx="11" ry="9" fill="#f59e0b" opacity="0.6"/>
+    <!-- Wipe cloth -->
+    <rect x="50" y="20" width="80" height="25" rx="4" fill="#EDE9F8" opacity="0.15" stroke="#EDE9F8" stroke-width="1" stroke-opacity="0.3"/>
+    <!-- Arrow showing wipe direction -->
+    <line x1="60" y1="8" x2="120" y2="8" stroke="#A78BFA" stroke-width="2" marker-end="url(#ppArrow)" stroke-dasharray="4,3"/>
+    <text x="65" y="5" font-family="system-ui, sans-serif" font-size="9" fill="#A78BFA">→ směr stírání</text>
+  </g>
+  <g font-family="system-ui, sans-serif">
+    <text x="603" y="262" text-anchor="middle" font-size="13" font-weight="600" fill="#C4B5FD">Řez povrch → čistý</text>
+    <text x="603" y="292" text-anchor="middle" font-size="12" fill="#9ca3af">• IPA (izopropanol 99 %)</text>
+    <text x="603" y="312" text-anchor="middle" font-size="12" fill="#9ca3af">• aceton (kovy, CFRP)</text>
+    <text x="603" y="332" text-anchor="middle" font-size="12" fill="#9ca3af">• MEK (průmyslové aplikace)</text>
+    <text x="603" y="352" text-anchor="middle" font-size="12" fill="#9ca3af">• vždy 2-tah: nečistý → čistý</text>
+  </g>
+  <rect x="468" y="378" width="270" height="58" rx="6" fill="#92400E" opacity="0.25"/>
+  <text x="603" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#fcd34d">⚠ Nikdy necirkulovat hadříkem</text>
+  <text x="603" y="416" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">nečistotu roztíráte zpátky na plochu</text>
+  <text x="603" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">čisté rukavice bez pudru</text>
+
+  <!-- Arrow 2→3 -->
+  <rect x="766" y="215" width="62" height="32" rx="6" fill="url(#ppArrow)"/>
+  <polygon points="828,231 818,219 818,243" fill="#A78BFA" opacity="0.7"/>
+  <text x="797" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#A78BFA">pak</text>
+
+  <!-- STEP 3: Activation / Primer -->
+  <rect x="836" y="72" width="310" height="380" rx="12" fill="url(#ppStep)" stroke="#22c55e" stroke-width="1.5" stroke-opacity="0.5"/>
+  <circle cx="886" cy="112" r="28" fill="#22c55e" opacity="0.15"/>
+  <circle cx="886" cy="112" r="20" fill="#22c55e" opacity="0.9"/>
+  <text x="886" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#fff">3</text>
+  <text x="924" y="104" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#EDE9F8">Aktivace</text>
+  <text x="924" y="122" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#86efac">/ Primer</text>
+  <line x1="856" y1="148" x2="1126" y2="148" stroke="#22c55e" stroke-width="1" opacity="0.3"/>
+  <!-- Icon: primer layer -->
+  <g transform="translate(890, 158)">
+    <rect x="0" y="50" width="120" height="25" rx="3" fill="#374151"/>
+    <rect x="0" y="24" width="120" height="26" rx="2" fill="#22c55e" opacity="0.35"/>
+    <text x="60" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#86efac">primer vrstva</text>
+    <!-- Plasma/corona representation -->
+    <g stroke="#A78BFA" stroke-width="1.5" opacity="0.5">
+      <line x1="10" y1="18" x2="20" y2="4"/>
+      <line x1="30" y1="20" x2="35" y2="3"/>
+      <line x1="50" y1="18" x2="55" y2="2"/>
+      <line x1="70" y1="19" x2="72" y2="4"/>
+      <line x1="90" y1="17" x2="94" y2="3"/>
+      <line x1="108" y1="18" x2="110" y2="5"/>
+    </g>
+    <text x="60" y="-2" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#A78BFA" opacity="0.7">plasma / UV aktivace</text>
+  </g>
+  <g font-family="system-ui, sans-serif">
+    <text x="991" y="262" text-anchor="middle" font-size="13" font-weight="600" fill="#86efac">Volitelný, ale klíčový</text>
+    <text x="991" y="292" text-anchor="middle" font-size="12" fill="#9ca3af">• primer (SIKA, Bostik, 3M)</text>
+    <text x="991" y="312" text-anchor="middle" font-size="12" fill="#9ca3af">• plazmová aktivace</text>
+    <text x="991" y="332" text-anchor="middle" font-size="12" fill="#9ca3af">• UV / koronový výboj</text>
+    <text x="991" y="352" text-anchor="middle" font-size="12" fill="#9ca3af">• silany pro CFRP a sklo</text>
+  </g>
+  <rect x="856" y="378" width="270" height="58" rx="6" fill="#14532d" opacity="0.4"/>
+  <text x="991" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#86efac">✓ Zvýšení pevnosti spoje až 3×</text>
+  <text x="991" y="416" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">na kritických materiálech nutný</text>
+  <text x="991" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">(PP, PE, PTFE, CFRP)</text>
+
+  <!-- Bottom note -->
+  <rect x="60" y="464" width="1086" height="40" rx="6" fill="#1D1038" opacity="0.6"/>
+  <text x="603" y="489" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#EDE9F8">90 % selhání lepeného spoje má příčinu v nedostatečné přípravě povrchu — ne ve špatném výběru lepidla.</text>
+</svg>

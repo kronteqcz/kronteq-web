@@ -1,0 +1,129 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lepení v leteckém průmyslu — kompozitní křídlo, CFRP panely, rivet-bonding, podíl lepených spojů">
+  <defs>
+    <linearGradient id="letBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#060c1f"/><stop offset="100%" stop-color="#0d1535"/>
+    </linearGradient>
+    <linearGradient id="letSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <linearGradient id="letWing" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#374151"/><stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <linearGradient id="letCFRP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#292524"/><stop offset="100%" stop-color="#1c1917"/>
+    </linearGradient>
+    <radialGradient id="letGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#letBg)"/>
+  <!-- Sky gradient area -->
+  <rect x="0" y="0" width="1200" height="520" fill="url(#letSky)" opacity="0.4"/>
+
+  <!-- Stars -->
+  <g fill="#EDE9F8" opacity="0.3">
+    <circle cx="80" cy="80" r="1"/><circle cx="200" cy="50" r="1.5"/><circle cx="350" cy="100" r="1"/>
+    <circle cx="500" cy="60" r="1"/><circle cx="700" cy="90" r="1.5"/><circle cx="900" cy="40" r="1"/>
+    <circle cx="1050" cy="80" r="1"/><circle cx="1150" cy="55" r="1.5"/><circle cx="450" cy="130" r="1"/>
+  </g>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1200" height="48" fill="#060c1f" opacity="0.9"/>
+  <text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.12em" fill="#A78BFA" opacity="0.85">KRONTEQ — LETECKÝ PRŮMYSL</text>
+  <text x="1160" y="30" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#4a4060">Lepení v kompozitních konstrukcích</text>
+
+  <!-- === AIRCRAFT WING CROSS-SECTION (simplified) === -->
+  <!-- Wing profile -->
+  <path d="M 100 280 Q 300 200 700 240 Q 900 248 1100 260 Q 900 280 700 280 Q 300 310 100 280 Z"
+        fill="url(#letWing)" opacity="0.9"/>
+
+  <!-- CFRP skin layers visible at leading edge -->
+  <path d="M 100 280 Q 160 240 240 236 Q 200 250 180 268 Q 140 276 100 280 Z"
+        fill="url(#letCFRP)"/>
+  <!-- CFRP weave texture -->
+  <g opacity="0.3" stroke="#52525b" stroke-width="1">
+    <line x1="110" y1="258" x2="235" y2="242"/>
+    <line x1="108" y1="266" x2="230" y2="250"/>
+    <line x1="108" y1="272" x2="195" y2="264"/>
+  </g>
+
+  <!-- Adhesive bond line (structural) -->
+  <path d="M 240 236 Q 500 228 800 244 Q 900 246 1000 252"
+        fill="none" stroke="#7C3AED" stroke-width="5" opacity="0.7"/>
+  <path d="M 240 264 Q 500 272 800 268 Q 900 268 1000 268"
+        fill="none" stroke="#7C3AED" stroke-width="5" opacity="0.5"/>
+
+  <!-- Rivet-bonding marks -->
+  <g fill="#9ca3af" opacity="0.5">
+    <circle cx="300" cy="250" r="4"/><circle cx="360" cy="248" r="4"/><circle cx="420" cy="246" r="4"/>
+    <circle cx="480" cy="245" r="4"/><circle cx="540" cy="244" r="4"/><circle cx="600" cy="244" r="4"/>
+    <circle cx="660" cy="245" r="4"/><circle cx="720" cy="246" r="4"/>
+  </g>
+
+  <!-- Internal spar structure (visible cutaway) -->
+  <rect x="350" y="240" width="12" height="30" rx="2" fill="#4b5563" opacity="0.6"/>
+  <rect x="600" y="237" width="12" height="36" rx="2" fill="#4b5563" opacity="0.6"/>
+  <rect x="800" y="240" width="10" height="32" rx="2" fill="#4b5563" opacity="0.5"/>
+
+  <!-- === CALLOUT MARKERS === -->
+  <!-- 1. CFRP skin -->
+  <line x1="175" y1="255" x2="120" y2="190" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="175" cy="255" r="6" fill="#7C3AED"/>
+  <text x="175" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#fff">1</text>
+  <rect x="40" y="170" width="160" height="36" rx="6" fill="#1D1038" opacity="0.85"/>
+  <text x="120" y="187" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#C4B5FD">CFRP potah</text>
+  <text x="120" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">t = 2–5 mm, 0°/90°/±45°</text>
+
+  <!-- 2. Structural adhesive line -->
+  <line x1="500" y1="235" x2="500" y2="170" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <circle cx="500" cy="236" r="6" fill="#7C3AED"/>
+  <text x="500" y="241" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#fff">2</text>
+  <rect x="400" y="148" width="200" height="36" rx="6" fill="#1D1038" opacity="0.85"/>
+  <text x="500" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#C4B5FD">Konstrukční lepidlo</text>
+  <text x="500" y="178" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">epoxid / film adhesive</text>
+
+  <!-- 3. Rivet-bonding -->
+  <line x1="480" y1="246" x2="430" y2="320" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="330" y="320" width="200" height="36" rx="6" fill="#1D1038" opacity="0.85"/>
+  <text x="430" y="337" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#EDE9F8">Rivet-bonding</text>
+  <text x="430" y="350" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">nýt + lepidlo — standardní spoj</text>
+
+  <!-- 4. Spar -->
+  <line x1="606" y1="256" x2="650" y2="320" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="570" y="320" width="200" height="36" rx="6" fill="#1D1038" opacity="0.85"/>
+  <text x="670" y="337" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#EDE9F8">Hlavní nosník (spar)</text>
+  <text x="670" y="350" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">CFRP / hliník, lepeno na potah</text>
+
+  <!-- === STATS BOX === -->
+  <rect x="860" y="140" width="310" height="160" rx="10" fill="#1D1038" opacity="0.88"/>
+  <text x="1015" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.06em" fill="#9ca3af">BOEING 787 DREAMLINER</text>
+  <text x="1015" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="52" font-weight="800" fill="#A78BFA">&gt;50 %</text>
+  <text x="1015" y="240" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#EDE9F8">hmotnosti tvoří kompozity</text>
+  <text x="1015" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#6b7280">lepené, ne svařované</text>
+  <text x="1015" y="284" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#4a4060">Airbus A350: 53 % CFRP</text>
+
+  <!-- Bottom facts -->
+  <rect x="60" y="400" width="1080" height="90" rx="8" fill="#1D1038" opacity="0.6"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="300" y="425" text-anchor="middle" font-size="13" font-weight="700" fill="#C4B5FD">Certifikace spoje</text>
+    <text x="300" y="445" text-anchor="middle" font-size="11" fill="#9ca3af">DO-160 / CS-25 / ASTM</text>
+    <text x="300" y="462" text-anchor="middle" font-size="11" fill="#9ca3af">termální testování −65 °C / +120 °C</text>
+    <text x="300" y="479" text-anchor="middle" font-size="11" fill="#9ca3af">NDT: ultrazvuk, termografie</text>
+
+    <line x1="520" y1="408" x2="520" y2="482" stroke="#A78BFA" stroke-width="1" opacity="0.2"/>
+
+    <text x="660" y="425" text-anchor="middle" font-size="13" font-weight="700" fill="#C4B5FD">Adheziva v aerospace</text>
+    <text x="660" y="445" text-anchor="middle" font-size="11" fill="#9ca3af">epoxidové filmové lepidlo (film adhesive)</text>
+    <text x="660" y="462" text-anchor="middle" font-size="11" fill="#9ca3af">vytvrzení 120–180 °C (autoclave)</text>
+    <text x="660" y="479" text-anchor="middle" font-size="11" fill="#9ca3af">tloušťka spoje 0,05–0,2 mm</text>
+
+    <line x1="840" y1="408" x2="840" y2="482" stroke="#A78BFA" stroke-width="1" opacity="0.2"/>
+
+    <text x="1000" y="425" text-anchor="middle" font-size="13" font-weight="700" fill="#C4B5FD">Výhoda vs. nýtování</text>
+    <text x="1000" y="445" text-anchor="middle" font-size="11" fill="#9ca3af">plošná distribuce napětí</text>
+    <text x="1000" y="462" text-anchor="middle" font-size="11" fill="#9ca3af">únava materiálu −40 %</text>
+    <text x="1000" y="479" text-anchor="middle" font-size="11" fill="#9ca3af">hmotnostní úspora ~15 %</text>
+  </g>
+</svg>

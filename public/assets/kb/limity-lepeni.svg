@@ -1,0 +1,114 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Limity lepených spojů: teplotní odolnost různých typů lepidel — sloupcový diagram">
+  <defs>
+    <linearGradient id="limBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D0820"/><stop offset="100%" stop-color="#160F2E"/>
+    </linearGradient>
+    <linearGradient id="limBarEp" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="limBarMMA" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0891b2"/><stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="limBarPUR" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#15803d"/><stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="limBarSI" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#c2410c"/><stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <linearGradient id="limBarMS" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#e879f9"/>
+    </linearGradient>
+    <linearGradient id="limBarCA" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#854d0e"/><stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#limBg)"/>
+  <rect x="0" y="0" width="1200" height="48" fill="#1D1038" opacity="0.9"/>
+  <text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.12em" fill="#A78BFA" opacity="0.85">KRONTEQ — LIMITY LEPENÍ</text>
+  <text x="1160" y="30" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#4a4060">Teplotní odolnost dle typu lepidla</text>
+
+  <!-- Y axis -->
+  <line x1="140" y1="65" x2="140" y2="420" stroke="#6b7280" stroke-width="2"/>
+  <line x1="130" y1="420" x2="1150" y2="420" stroke="#6b7280" stroke-width="2"/>
+  <!-- Y arrow -->
+  <polygon points="140,60 133,78 147,78" fill="#6b7280"/>
+
+  <!-- Y grid + labels (temperature scale 0–350°C, 70px = 100°C) -->
+  <!-- 0°C = y420, 100°C = y350, 200°C = y280, 300°C = y210, 350°C = y175 -->
+  <g stroke="#A78BFA" stroke-width="1" opacity="0.06">
+    <line x1="140" y1="350" x2="1150" y2="350"/>
+    <line x1="140" y1="280" x2="1150" y2="280"/>
+    <line x1="140" y1="210" x2="1150" y2="210"/>
+    <line x1="140" y1="175" x2="1150" y2="175"/>
+    <line x1="140" y1="140" x2="1150" y2="140"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="12" fill="#4a4060" text-anchor="end">
+    <text x="128" y="424">0 °C</text>
+    <text x="128" y="354">100 °C</text>
+    <text x="128" y="284">200 °C</text>
+    <text x="128" y="214">300 °C</text>
+    <text x="128" y="179">350 °C</text>
+    <text x="128" y="144">400 °C</text>
+  </g>
+
+  <!-- Y axis label -->
+  <text x="62" y="255" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#9ca3af" transform="rotate(-90, 62, 255)">Max. provozní teplota →</text>
+
+  <!-- === BAR CHART === -->
+  <!-- bar width = 110, gap = 50, start x = 200 -->
+
+  <!-- Epoxid: max 180°C → (180/400)*280 = 126px → top y = 420-126 = 294 -->
+  <rect x="200" y="294" width="110" height="126" rx="4" fill="url(#limBarEp)"/>
+  <rect x="200" y="280" width="110" height="14" rx="3" fill="#7C3AED" opacity="0.25"/>
+  <text x="255" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#C4B5FD">180 °C</text>
+  <text x="255" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#A78BFA">Epoxid</text>
+  <text x="255" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">EP 1-K / 2-K</text>
+
+  <!-- MMA: max 120°C → 84px → top y = 336 -->
+  <rect x="360" y="336" width="110" height="84" rx="4" fill="url(#limBarMMA)"/>
+  <rect x="360" y="322" width="110" height="14" rx="3" fill="#0891b2" opacity="0.25"/>
+  <text x="415" y="332" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#67e8f9">120 °C</text>
+  <text x="415" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#22d3ee">MMA</text>
+  <text x="415" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">methakrylát</text>
+
+  <!-- PUR: max 100°C → 70px → top y = 350 -->
+  <rect x="520" y="350" width="110" height="70" rx="4" fill="url(#limBarPUR)"/>
+  <rect x="520" y="336" width="110" height="14" rx="3" fill="#15803d" opacity="0.25"/>
+  <text x="575" y="346" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#86efac">100 °C</text>
+  <text x="575" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4ade80">PUR</text>
+  <text x="575" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">polyuretan</text>
+
+  <!-- Silikon: max 300°C → 210px → top y = 210 -->
+  <rect x="680" y="210" width="110" height="210" rx="4" fill="url(#limBarSI)"/>
+  <rect x="680" y="196" width="110" height="14" rx="3" fill="#c2410c" opacity="0.25"/>
+  <text x="735" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fdba74">300 °C</text>
+  <text x="735" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#fb923c">Silikon</text>
+  <text x="735" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">HT typy</text>
+
+  <!-- MS Polymer: max 90°C → 63px → top y = 357 -->
+  <rect x="840" y="357" width="110" height="63" rx="4" fill="url(#limBarMS)"/>
+  <rect x="840" y="343" width="110" height="14" rx="3" fill="#9333ea" opacity="0.25"/>
+  <text x="895" y="353" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f0abfc">90 °C</text>
+  <text x="895" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#e879f9">MS Polymer</text>
+  <text x="895" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">hybridní tmely</text>
+
+  <!-- Kyanoakrylát: max 80°C → 56px → top y = 364 -->
+  <rect x="1000" y="364" width="110" height="56" rx="4" fill="url(#limBarCA)"/>
+  <rect x="1000" y="350" width="110" height="14" rx="3" fill="#854d0e" opacity="0.25"/>
+  <text x="1055" y="360" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fde68a">80 °C</text>
+  <text x="1055" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#fbbf24">Kyanoakrylát</text>
+  <text x="1055" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">okamžité lepidlo</text>
+
+  <!-- Reference lines -->
+  <!-- 120°C automotive interior -->
+  <line x1="140" y1="336" x2="1150" y2="336" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
+  <text x="1155" y="332" font-family="system-ui, sans-serif" font-size="10" fill="#f59e0b" opacity="0.7">motor. interiér</text>
+  <!-- 200°C under-hood -->
+  <line x1="140" y1="280" x2="1150" y2="280" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
+  <text x="1155" y="276" font-family="system-ui, sans-serif" font-size="10" fill="#ef4444" opacity="0.7">pod kapotou</text>
+
+  <!-- Info note -->
+  <rect x="140" y="474" width="870" height="34" rx="6" fill="#1D1038" opacity="0.6"/>
+  <text x="575" y="496" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#EDE9F8">Hodnoty platí pro dlouhodobou provozní teplotu. Krátkodobé špičky jsou u většiny typů o 20–40 °C vyšší.</text>
+</svg>
