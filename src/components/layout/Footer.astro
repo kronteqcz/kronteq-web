@@ -40,7 +40,7 @@ const navItems = [
 
       <!-- Nav -->
       <div class="footer-nav">
-        <h4 class="footer-nav-title">{t.footerNavTitle}</h4>
+        <h2 class="footer-nav-title">{t.footerNavTitle}</h2>
         <ul role="list">
           {navItems.map(item => (
             <li><a href={item.href}>{item.label}</a></li>
@@ -50,7 +50,7 @@ const navItems = [
 
       <!-- Contact -->
       <div class="footer-nav">
-        <h4 class="footer-nav-title">{t.footerContactTitle}</h4>
+        <h2 class="footer-nav-title">{t.footerContactTitle}</h2>
         <ul role="list">
           <li>
             <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
