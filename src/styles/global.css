@@ -31,7 +31,7 @@
   /* Text — light sections */
   --text: #2C2040;
   --text-muted: #6B5F80;
-  --text-dim: #9D90B0;
+  --text-dim: #6E6485; /* a11y: ztmaveno z #9D90B0 (2.75:1) na 5.08:1 na bg-base (WCAG AA) */
   --text-heading: #1A0E35;
 
   /* Text — dark sections */
