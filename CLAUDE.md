@@ -19,14 +19,18 @@ Cílová skupina: průmysloví technici a nákupčí v automotive, elektronice, 
 
 | Vrstva | Technologie |
 |---|---|
-| Framework | Astro 5, output: `hybrid` |
-| Adapter | `@astrojs/node` (standalone SSR) |
+| Framework | Astro 4.16.19, output: `hybrid` |
+| Adapter | `@astrojs/vercel/serverless` (deploy na Vercel). `engines.node`=20.x kvůli runtime |
 | Obsah | MDX content collections (`@astrojs/mdx`) |
 | Fonty | Variable fonty přes `@fontsource-variable` (DM Sans, Inter, Outfit, Space Grotesk) |
 | Email | nodemailer (kontaktní formulář → SMTP) |
 | Jazyk | TypeScript |
-| Build | `npm run build` → `dist/` |
-| Spuštění | `node dist/server/entry.mjs` nebo `node server.mjs` |
+| Build | `npm run build` → `.vercel/output/` |
+| Spuštění | Vercel (auto deploy z GitHubu, `kronteq.vercel.app`) |
+
+> ⚠️ Po přechodu na vercel adaptér se **`dist/` už negeneruje** — self-host přes
+> `server.mjs` / `node dist/server/entry.mjs` / `npm start` proto **NEfunguje** (mrtvý kód).
+> Pro návrat k self-hostu by se musel vrátit `@astrojs/node`.
 
 ---
 
@@ -213,20 +217,15 @@ Detaily viz jednotlivé soubory:
 
 ## Deploy
 
-Projekt je připravený na SSR deploy (Astro hybrid mode, Node adapter).
+**Nasazeno na Vercel:** `kronteq.vercel.app` (repo `kronteqcz/kronteq-web`, větev `main`, auto deploy z GitHubu).
 
-**Vercel:**
-```bash
-# Stačí připojit GitHub repo, Astro preset detekuje automaticky
-# Env proměnné nastavit v Vercel dashboard
-```
+**Klíčové pro Vercel (jinak 404 / invalid runtime):**
+- Adaptér **musí** být `@astrojs/vercel/serverless`, NE `@astrojs/node`. Node adaptér vyrábí
+  `dist/client` + `dist/server` bez root `index.html` → Vercel preset vrací 404 na všem.
+- `package.json` → `"engines": { "node": "20.x" }` — bez toho Vercel buildí na novém Node,
+  který `@astrojs/vercel` v7 nezná, spadne na zrušený `nodejs18.x` → „invalid runtime".
+- Env proměnné (SMTP) nastavit ve Vercel dashboardu (Project Settings → Environment Variables).
+- Pozn.: upgrade na `@astrojs/vercel` v8 (vyžaduje Astro 5+) by Node 20 pin učinil zbytečným.
 
-**Vlastní server (Coolify / Docker / PM2):**
-```bash
-npm run build
-node dist/server/entry.mjs
-# nebo přes PM2:
-pm2 start dist/server/entry.mjs --name kronteq
-```
-
-Nginx reverse proxy — viz `nginx.conf` v root složce projektu.
+**Self-host (Coolify / Docker / PM2):** aktuálně NEpodporováno — vyžadovalo by návrat
+`@astrojs/node` adaptéru (viz poznámka ve Stacku). `nginx.conf` v rootu je z té doby.
