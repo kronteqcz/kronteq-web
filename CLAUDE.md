@@ -19,8 +19,8 @@ Cílová skupina: průmysloví technici a nákupčí v automotive, elektronice, 
 
 | Vrstva | Technologie |
 |---|---|
-| Framework | Astro 4.16.19, output: `hybrid` |
-| Adapter | `@astrojs/vercel/serverless` (deploy na Vercel). `engines.node`=20.x kvůli runtime |
+| Framework | Astro 7.0.4, output: `static` (jen `api/contact` má `prerender = false`) |
+| Adapter | `@astrojs/vercel` v11 (deploy na Vercel). `engines.node`=22.x, runtime `nodejs22.x` |
 | Obsah | MDX content collections (`@astrojs/mdx`) |
 | Fonty | Variable fonty přes `@fontsource-variable` (DM Sans, Inter, Outfit, Space Grotesk) |
 | Email | nodemailer (kontaktní formulář → SMTP) |
@@ -91,14 +91,16 @@ const t = strings[lang];  // lang: 'cs' | 'en'
 **Content Collections** (`src/content/kb/`) — dlouhé MDX články:
 - `src/content/kb/cs/` — 10 českých článků
 - `src/content/kb/en/` — 10 anglických článků (mirror překlady)
-- Schéma v `src/content/config.ts` (Zod validace frontmatter)
+- Schéma v `src/content.config.ts` — **Content Layer** (`glob()` loader, base `./src/content/kb`), Zod validace frontmatter. (Astro 7 zrušil legacy collections.)
 
 ### Slug handling v MDX
 
-Soubory v podsložkách (`cs/`, `en/`) generují slug s prefixem (`cs/nazev-clanku`).
-Routovací soubory prefix odstraňují:
+Content Layer: entry má **`.id`** (ne `.slug`), pro `cs/nazev-clanku.mdx` = `cs/nazev-clanku`.
+Routovací soubory prefix odstraňují, render je přes `render()` z `astro:content`:
 ```ts
-article.slug.replace(/^cs\//, '')  // nebo /^en\//
+import { getCollection, render } from 'astro:content';
+article.id.replace(/^cs\//, '')        // nebo /^en\//
+const { Content } = await render(article);  // ne article.render()
 ```
 
 ### MDX gotcha — JSX escaping
@@ -220,12 +222,12 @@ Detaily viz jednotlivé soubory:
 **Nasazeno na Vercel:** `kronteq.vercel.app` (repo `kronteqcz/kronteq-web`, větev `main`, auto deploy z GitHubu).
 
 **Klíčové pro Vercel (jinak 404 / invalid runtime):**
-- Adaptér **musí** být `@astrojs/vercel/serverless`, NE `@astrojs/node`. Node adaptér vyrábí
+- Adaptér **musí** být `@astrojs/vercel`, NE `@astrojs/node`. Node adaptér vyrábí
   `dist/client` + `dist/server` bez root `index.html` → Vercel preset vrací 404 na všem.
-- `package.json` → `"engines": { "node": "20.x" }` — bez toho Vercel buildí na novém Node,
-  který `@astrojs/vercel` v7 nezná, spadne na zrušený `nodejs18.x` → „invalid runtime".
+- `package.json` → `"engines": { "node": "22.x" }` — sjednocené s Astro 7 (vyžaduje ≥22.12)
+  a runtime `nodejs22.x`. Bez pinu hrozí build na neznámém Node → invalid runtime.
 - Env proměnné (SMTP) nastavit ve Vercel dashboardu (Project Settings → Environment Variables).
-- Pozn.: upgrade na `@astrojs/vercel` v8 (vyžaduje Astro 5+) by Node 20 pin učinil zbytečným.
+- `.vercel/` je v `.gitignore` — build output se necommituje (Vercel si ho staví sám).
 
 **Self-host (Coolify / Docker / PM2):** aktuálně NEpodporováno — vyžadovalo by návrat
 `@astrojs/node` adaptéru (viz poznámka ve Stacku). `nginx.conf` v rootu je z té doby.
