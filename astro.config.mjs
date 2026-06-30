@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   integrations: [mdx()],
   adapter: vercel(),
   site: 'https://www.kronteq.com',
-  output: 'hybrid',
+  output: 'static',
   trailingSlash: 'always',
   build: {
     inlineStylesheets: 'always',

@@ -34,7 +34,7 @@ const categoryLabels: Record<string, string> = {
     <div class="container">
       <div class="kb-grid" data-reveal-stagger>
         {articles.map(article => (
-          <a href={`/en/knowledge-base/${article.slug.replace(/^en\//, '')}/`} class="kb-card card">
+          <a href={`/en/knowledge-base/${article.id.replace(/^en\//, '')}/`} class="kb-card card">
             <div class="kb-category">
               <span class="category-badge">{categoryLabels[article.data.category] || article.data.category}</span>
             </div>

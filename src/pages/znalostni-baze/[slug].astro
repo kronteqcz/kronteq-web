@@ -1,24 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { getLang } from '../../i18n/strings';
 
 export async function getStaticPaths() {
   const articles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
   return articles.map(article => ({
-    params: { slug: article.slug.replace(/^cs\//, '') },
+    params: { slug: article.id.replace(/^cs\//, '') },
     props: { article },
   }));
 }
 
 const { article } = Astro.props;
-const { Content } = await article.render();
+const { Content } = await render(article);
 const t = getLang('cs');
-const cleanSlug = article.slug.replace(/^cs\//, '');
+const cleanSlug = article.id.replace(/^cs\//, '');
 
 const allArticles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
 const related = allArticles
-  .filter(a => a.slug !== article.slug && a.data.category === article.data.category)
+  .filter(a => a.id !== article.id && a.data.category === article.data.category)
   .slice(0, 3);
 
 const categoryLabels: Record<string, string> = {
@@ -135,7 +135,7 @@ const breadcrumb = [
             <h3>{t.kbRelated}</h3>
             <ul class="sidebar-links">
               {related.map(r => (
-                <li><a href={`/znalostni-baze/${r.slug.replace(/^cs\//, '')}/`}>{r.data.title}</a></li>
+                <li><a href={`/znalostni-baze/${r.id.replace(/^cs\//, '')}/`}>{r.data.title}</a></li>
               ))}
             </ul>
           </div>

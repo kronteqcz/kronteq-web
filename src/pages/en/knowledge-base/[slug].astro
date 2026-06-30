@@ -1,24 +1,24 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { getLang } from '../../../i18n/strings';
 
 export async function getStaticPaths() {
   const articles = await getCollection('kb', ({ data }) => data.lang === 'en' && !data.draft);
   return articles.map(article => ({
-    params: { slug: article.slug.replace(/^en\//, '') },
+    params: { slug: article.id.replace(/^en\//, '') },
     props: { article },
   }));
 }
 
 const { article } = Astro.props;
-const { Content } = await article.render();
+const { Content } = await render(article);
 const t = getLang('en');
-const cleanSlug = article.slug.replace(/^en\//, '');
+const cleanSlug = article.id.replace(/^en\//, '');
 
 const allArticles = await getCollection('kb', ({ data }) => data.lang === 'en' && !data.draft);
 const related = allArticles
-  .filter(a => a.slug !== article.slug && a.data.category === article.data.category)
+  .filter(a => a.id !== article.id && a.data.category === article.data.category)
   .slice(0, 3);
 
 const categoryLabels: Record<string, string> = {
@@ -114,7 +114,7 @@ const breadcrumb = [
             <h3>{t.kbRelated}</h3>
             <ul class="sidebar-links">
               {related.map(r => (
-                <li><a href={`/en/knowledge-base/${r.slug.replace(/^en\//, '')}/`}>{r.data.title}</a></li>
+                <li><a href={`/en/knowledge-base/${r.id.replace(/^en\//, '')}/`}>{r.data.title}</a></li>
               ))}
             </ul>
           </div>
