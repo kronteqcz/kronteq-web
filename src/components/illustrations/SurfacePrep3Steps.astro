@@ -53,13 +53,13 @@ const steps = [
 
         <!-- Step number badge -->
         <circle cx={cx} cy="52" r="22" fill={`${step.color}22`} stroke={step.color} stroke-width="1.5"/>
-        <text x={cx} y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill={step.color}>{step.n}</text>
+        <text x={cx} y="58" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="20" font-weight="700" fill={step.color}>{step.n}</text>
 
         <!-- Title -->
-        <text x={cx} y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#fff">{step.title}</text>
+        <text x={cx} y="98" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="14" font-weight="700" fill="#fff">{step.title}</text>
 
         <!-- Subtitle -->
-        <text x={cx} y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">{step.subtitle}</text>
+        <text x={cx} y="116" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">{step.subtitle}</text>
 
         <!-- Connector arrow (not after last) -->
         {i < 2 && (
@@ -74,26 +74,26 @@ const steps = [
           <g>
             <!-- Before: bead -->
             <ellipse cx={cx - 20} cy="144" rx="8" ry="8" fill="#60a5fa" opacity="0.7"/>
-            <text x={cx - 20} y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">před</text>
+            <text x={cx - 20} y="162" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">před</text>
             <!-- After: flat drop -->
             <ellipse cx={cx + 20} cy="147" rx="14" ry="5" fill="#60a5fa" opacity="0.7"/>
-            <text x={cx + 20} y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">po</text>
+            <text x={cx + 20} y="162" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">po</text>
           </g>
         )}
 
         <!-- Surface energy indicator (step 2 only) -->
         {i === 1 && (
           <g>
-            <text x={cx} y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill={step.color}>↑ povrchová energie</text>
-            <text x={cx} y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.3)">&gt;38 mN/m</text>
+            <text x={cx} y="144" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill={step.color}>↑ povrchová energie</text>
+            <text x={cx} y="158" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="8" fill="rgba(255,255,255,0.3)">&gt;38 mN/m</text>
           </g>
         )}
 
         <!-- Bond strength indicator (step 3 only) -->
         {i === 2 && (
           <g>
-            <text x={cx} y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill={step.color}>max. adheze</text>
-            <text x={cx} y="158" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.3)">do 24 h</text>
+            <text x={cx} y="144" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill={step.color}>max. adheze</text>
+            <text x={cx} y="158" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="8" fill="rgba(255,255,255,0.3)">do 24 h</text>
           </g>
         )}
       </g>

@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { contact } from '../../data/contact';
+---
+
+<BaseLayout
+  title="Ochrana osobních údajů — Kronteq"
+  description="Jak Kronteq zpracovává osobní údaje z kontaktního formuláře: rozsah, účel, doba uchování, práva subjektu údajů a informace o cookies."
+  lang="cs"
+>
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Kronteq</p>
+      <h1>Ochrana osobních údajů</h1>
+      <p class="page-desc">
+        Informace o zpracování osobních údajů podle nařízení (EU) 2016/679 (GDPR), čl. 13.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="legal-prose">
+        <h2>Správce osobních údajů</h2>
+        <p>
+          Správcem osobních údajů je společnost <strong>Kronteq</strong>,
+          se sídlem {contact.addressLine1}, 130 00 Praha 3, Česká republika.
+        </p>
+        <p>
+          Kontakt ve věcech ochrany osobních údajů:
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>,
+          telefon <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>.
+        </p>
+        <p>Správce nejmenoval pověřence pro ochranu osobních údajů — není k tomu zákonem povinen.</p>
+
+        <h2>Jaké údaje zpracováváme</h2>
+        <p>Zpracováváme pouze údaje, které nám sami předáte prostřednictvím kontaktního formuláře nebo e-mailu:</p>
+        <ul>
+          <li><strong>jméno a příjmení</strong> — abychom věděli, komu odpovídáme;</li>
+          <li><strong>e-mailová adresa</strong> — pro odpověď na poptávku;</li>
+          <li><strong>telefonní číslo</strong> (nepovinné) — pokud si přejete odpověď telefonicky;</li>
+          <li><strong>název společnosti</strong> (nepovinné) — pro posouzení technického zadání;</li>
+          <li><strong>obsah zprávy</strong> — technické zadání, které nám sdělíte;</li>
+          <li><strong>IP adresa odesílatele a čas odeslání</strong> — technický údaj sloužící k ochraně formuláře před spamem a zneužitím.</li>
+        </ul>
+
+        <h2>Účel a právní základ zpracování</h2>
+        <p>
+          Údaje zpracováváme za jediným účelem: <strong>vyřízení vaší poptávky nebo dotazu</strong> —
+          tedy technické posouzení zadání, příprava nabídky a komunikace s vámi.
+        </p>
+        <p>
+          Právním základem je čl. 6 odst. 1 písm. b) GDPR (opatření přijatá před uzavřením smlouvy
+          na vaši žádost), u údajů souvisejících se zabezpečením formuláře čl. 6 odst. 1 písm. f)
+          GDPR (oprávněný zájem správce na ochraně webu před zneužitím).
+        </p>
+        <p>
+          Údaje <strong>nepoužíváme k marketingovému oslovování</strong>, neposíláme newsletter
+          a nevytváříme profily.
+        </p>
+
+        <h2>Doba uchování</h2>
+        <ul>
+          <li>Poptávky, které nevedly ke spolupráci: <strong>12 měsíců</strong> od poslední komunikace.</li>
+          <li>Poptávky, které vedly k obchodnímu vztahu: po dobu trvání spolupráce a dále po dobu
+            zákonných archivačních lhůt (zejména účetní a daňové předpisy).</li>
+          <li>Technické záznamy o odeslání formuláře (IP adresa): <strong>maximálně 12 měsíců</strong>.</li>
+        </ul>
+
+        <h2>Komu údaje předáváme</h2>
+        <p>
+          Osobní údaje <strong>neprodáváme ani nepředáváme třetím stranám k jejich vlastním účelům</strong>.
+          Zpracování se účastní pouze naši technologičtí dodavatelé v roli zpracovatelů:
+        </p>
+        <ul>
+          <li>poskytovatel hostingu webu a serverového běhu formuláře;</li>
+          <li>poskytovatel e-mailové služby, jejímž prostřednictvím se poptávka doručuje.</li>
+        </ul>
+        <p>
+          Údaje jsou zpracovávány v Evropské unii, případně v zemích se srovnatelnou úrovní ochrany
+          na základě standardních smluvních doložek Evropské komise.
+        </p>
+
+        <h2>Cookies a měření návštěvnosti</h2>
+        <p>
+          Tento web <strong>nepoužívá cookies třetích stran</strong>, neobsahuje analytické skripty,
+          reklamní pixely ani nástroje sociálních sítí. Nesledujeme chování návštěvníků
+          a nepotřebujeme proto cookie lištu.
+        </p>
+
+        <h2>Vaše práva</h2>
+        <p>Ve vztahu ke svým osobním údajům máte právo:</p>
+        <ul>
+          <li><strong>na přístup</strong> — dozvědět se, jaké údaje o vás zpracováváme (čl. 15 GDPR);</li>
+          <li><strong>na opravu</strong> nepřesných nebo neúplných údajů (čl. 16 GDPR);</li>
+          <li><strong>na výmaz</strong> — „právo být zapomenut" (čl. 17 GDPR);</li>
+          <li><strong>na omezení zpracování</strong> (čl. 18 GDPR);</li>
+          <li><strong>na přenositelnost údajů</strong> ve strojově čitelném formátu (čl. 20 GDPR);</li>
+          <li><strong>vznést námitku</strong> proti zpracování z titulu oprávněného zájmu (čl. 21 GDPR).</li>
+        </ul>
+        <p>
+          Kterékoli z těchto práv uplatníte e-mailem na
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>. Odpovíme nejpozději do jednoho měsíce.
+        </p>
+        <p>
+          Pokud máte za to, že zpracováním vašich údajů porušujeme GDPR, můžete podat stížnost
+          u dozorového úřadu: <strong>Úřad pro ochranu osobních údajů</strong>,
+          Pplk. Sochora 27, 170 00 Praha 7,
+          <a href="https://www.uoou.cz" target="_blank" rel="noopener">www.uoou.cz</a>.
+        </p>
+
+        <h2>Zabezpečení</h2>
+        <p>
+          Web běží výhradně přes šifrované spojení HTTPS. Přístup k doručeným poptávkám má pouze
+          odpovědná osoba správce. Formulář je chráněn proti automatizovanému zneužití.
+        </p>
+
+        <p class="legal-updated">Poslední aktualizace: 3. srpna 2026</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label {
+    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent-light);
+    margin-bottom: 1rem; max-width: none;
+  }
+  .page-hero h1 { color: #fff; }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.125rem; margin-top: 1rem; max-width: 56ch; }
+
+  .legal-prose { max-width: 72ch; }
+  .legal-prose h2 {
+    font-size: 1.375rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-heading);
+  }
+  .legal-prose h2:first-child { margin-top: 0; }
+  .legal-prose p { margin-bottom: 1rem; line-height: 1.75; }
+  .legal-prose ul { margin: 0 0 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .legal-prose li { line-height: 1.7; }
+  .legal-prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+  .legal-prose a:hover { color: var(--accent-hover); }
+  .legal-updated {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+</style>

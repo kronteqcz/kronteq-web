@@ -52,7 +52,7 @@ export const faqItems: FaqItem[] = [
     categoryEn: 'technology',
     questionCs: 'Co je weld-bonding a kdy ho použít?',
     questionEn: 'What is weld-bonding and when should I use it?',
-    answerCs: `Weld-bonding kombinuje bodové svařování s lepením. Postup: na povrchy se nanese lepidlo, díly se sestaví, provede se bodový svár (fixuje polohu a zajišťuje okamžitou pevnost) a lepidlo vytvrdne. Výsledkem je spoj výrazně tužší a korozně odolnější než pouhý svár — a pevnější než samotné lepení. Uplatnění: karoserie vozidel (zvýšení torzní tuhosti), letecké panely, průmyslové přepravky. Podmínkou je, aby lepidlo sneslo teplo sváru a nebylo příliš silné (max. ~0,3 mm vrstva pro bodový svár).`,
+    answerCs: `Weld-bonding kombinuje bodové svařování s lepením. Postup: na povrchy se nanese lepidlo, díly se sestaví, provede se bodový svar (fixuje polohu a zajišťuje okamžitou pevnost) a lepidlo vytvrdne. Výsledkem je spoj výrazně tužší a korozně odolnější než pouhý svar — a pevnější než samotné lepení. Uplatnění: karoserie vozidel (zvýšení torzní tuhosti), letecké panely, průmyslové přepravky. Podmínkou je, aby lepidlo sneslo teplo svaru a nebylo příliš silné (max. ~0,3 mm vrstva pro bodový svar).`,
     answerEn: `Weld-bonding combines spot welding with adhesive bonding. The process: adhesive is applied to the surfaces, parts are assembled, a spot weld is made (fixing position and providing immediate strength) and the adhesive cures. The result is a joint significantly stiffer and more corrosion-resistant than welding alone — and stronger than bonding alone. Applications: vehicle body structures (increasing torsional stiffness), aerospace panels, industrial containers. The requirement is that the adhesive can withstand welding heat and is not too thick (max ~0.3 mm layer for spot welding).`,
   },
   // ── Produkty ──────────────────────────────────────────────
@@ -80,7 +80,7 @@ export const faqItems: FaqItem[] = [
     categoryEn: 'products',
     questionCs: 'Hodí se kyanoakrylát pro průmyslové konstrukce?',
     questionEn: 'Are cyanoacrylates suitable for industrial structural applications?',
-    answerCs: `Kyanoakryláty (vteřinová lepidla) jsou ideální pro malé plochy, rychlou montáž, fixaci součástek nebo opravy — tam, kde je rychlost klíčová a spoj není trvale dynamicky zatížen. Pro konstrukční aplikace s velkými plochami, vibracemi nebo teplotními cykly nad 80 °C nejsou vhodné: jsou křehké, citlivé na vlhkost při dlouhodobém vystavení a odlupovací pevnost je nízká. V průmyslu se používají typicky pro fixaci ložisek, zálitkování elektroniky nebo zajišťování šroubů (kde je výhodná oproti anaerobním lepidlům jen v určitých případech).`,
+    answerCs: `Kyanoakryláty (vteřinová lepidla) jsou ideální pro malé plochy, rychlou montáž, fixaci součástek nebo opravy — tam, kde je rychlost klíčová a spoj není trvale dynamicky zatížen. Pro konstrukční aplikace s velkými plochami, vibracemi nebo teplotními cykly nad 80 °C nejsou vhodné: jsou křehké, citlivé na vlhkost při dlouhodobém vystavení a odlupovací pevnost je nízká. V průmyslu se používají typicky pro fixaci ložisek, zalévání (potting) elektroniky nebo zajišťování šroubů (kde je výhodná oproti anaerobním lepidlům jen v určitých případech).`,
     answerEn: `Cyanoacrylates (instant adhesives) are ideal for small areas, rapid assembly, component fixation or repairs — wherever speed is critical and the joint is not subject to sustained dynamic loading. For structural applications with large bond areas, vibration or thermal cycling above 80 °C they are not suitable: they are brittle, moisture-sensitive with prolonged exposure, and peel strength is low. Industrial uses include bearing fixation, electronic potting or thread locking (where they have an advantage over anaerobic adhesives only in specific cases).`,
   },
   {
@@ -89,7 +89,7 @@ export const faqItems: FaqItem[] = [
     categoryEn: 'products',
     questionCs: 'Musím vždy používat primer?',
     questionEn: 'Do I always need to use a primer?',
-    answerCs: `Ne vždy, ale u určitých substrátů je primer výrazně zvýší spolehlivost spoje. Primer je nutný nebo silně doporučený pro: nesnadno lepitelné plasty (PP, PE, PTFE), lakované nebo práškově lakované povrchy, pokovené nebo anodizované kovy, a vždy tam kde prostředí zahrnuje vlhkost nebo immerzi. Na dobře odmašťovaném nerezovém nebo hliníkovém povrchu many lepidel funguje bez primeru. Vždy konzultujte konkrétní kombinaci substrátu a lepidla — správný primer je lepší prevencí selhání než dražší lepidlo.`,
+    answerCs: `Ne vždy, ale u určitých substrátů je primer výrazně zvýší spolehlivost spoje. Primer je nutný nebo silně doporučený pro: nesnadno lepitelné plasty (PP, PE, PTFE), lakované nebo práškově lakované povrchy, pokovené nebo anodizované kovy, a vždy tam kde prostředí zahrnuje vlhkost nebo trvalý ponor. Na dobře odmašťovaném nerezovém nebo hliníkovém povrchu mnoho lepidel funguje bez primeru. Vždy konzultujte konkrétní kombinaci substrátu a lepidla — správný primer je lepší prevencí selhání než dražší lepidlo.`,
     answerEn: `Not always, but for certain substrates a primer will significantly improve bond reliability. A primer is required or strongly recommended for: difficult-to-bond plastics (PP, PE, PTFE), painted or powder-coated surfaces, plated or anodised metals, and wherever the environment involves moisture or immersion. On well-degreased stainless steel or aluminium surfaces many adhesives work without a primer. Always consult the specific substrate and adhesive combination — the right primer is better defect prevention than a more expensive adhesive.`,
   },
   // ── Spolupráce ─────────────────────────────────────────────
@@ -118,7 +118,7 @@ export const faqItems: FaqItem[] = [
     questionCs: 'Jak rychle odpovídáte na technické dotazy?',
     questionEn: 'How quickly do you respond to technical enquiries?',
     answerCs: `Na e-maily a formulářové poptávky odpovídáme do 24 hodin v pracovní dny. Pro urgentní technické otázky (reklamace v sérii, přerušení výroby) je k dispozici přímá telefonická linka Kristýny Ondráčkové.`,
-    answerEn: `We respond to emails and form enquiries within 24 business hours. For urgent technical issues (in-series warranty claims, production stoppages) Kristýna Ondráčková's direct telephone line is available.`,
+    answerEn: `We respond to emails and form enquiries within 24 hours on business days. For urgent technical issues (in-series warranty claims, production stoppages) Kristýna Ondráčková's direct telephone line is available.`,
   },
   {
     id: 'faq-certifikat-eae',
@@ -126,8 +126,8 @@ export const faqItems: FaqItem[] = [
     categoryEn: 'collaboration',
     questionCs: 'Co je European Adhesive Engineer (EAE)?',
     questionEn: 'What is a European Adhesive Engineer (EAE)?',
-    answerCs: `European Adhesive Engineer (EAE) je nejvyšší profesní certifikace pro specialisty na lepicí technologie v Evropě. Vydává ji FEICA (Association of the European Adhesive & Sealant Industry) prostřednictvím akreditovaných technických universit. Certifikace pokrývá chemii lepidel, mechaniku spojů, přípravu povrchu, procesní technologie a normativní požadavky. Kristýna Ondráčková je certifikovanou EAE — garanc odborné kvality každého doporučení.`,
-    answerEn: `European Adhesive Engineer (EAE) is the highest professional certification for bonding technology specialists in Europe. It is issued by FEICA (Association of the European Adhesive & Sealant Industry) through accredited technical universities. The certification covers adhesive chemistry, joint mechanics, surface preparation, process technology and normative requirements. Kristýna Ondráčková is a certified EAE — the professional quality guarantee behind every recommendation.`,
+    answerCs: `European Adhesive Engineer (EAE) je nejvyšší profesní certifikace pro specialisty na lepicí technologie v Evropě. Uděluje ji Evropská federace pro svařování a lepení (EWF) prostřednictvím akreditovaných školicích center. Certifikace pokrývá chemii lepidel, mechaniku spojů, přípravu povrchu, procesní technologie a normativní požadavky. Kristýna Ondráčková je certifikovanou EAE — garance odborné kvality každého doporučení.`,
+    answerEn: `European Adhesive Engineer (EAE) is the highest professional certification for bonding technology specialists in Europe. It is awarded by the European Federation for Welding, Joining and Cutting (EWF) through accredited training centres. The certification covers adhesive chemistry, joint mechanics, surface preparation, process technology and normative requirements. Kristýna Ondráčková is a certified EAE — the professional quality guarantee behind every recommendation.`,
   },
   // ── Dodávky ────────────────────────────────────────────────
   {

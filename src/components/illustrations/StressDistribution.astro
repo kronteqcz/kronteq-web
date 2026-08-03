@@ -22,7 +22,7 @@ const { width = 560, height = 240, class: className = '' } = Astro.props;
   <rect width={width} height={height} fill="#1a0f35" rx="12"/>
 
   <!-- Left panel: screw/rivet = concentrated stress -->
-  <text x="140" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">ŠROUB / NÝT</text>
+  <text x="140" y="28" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">ŠROUB / NÝT</text>
 
   <!-- Substrate plates -->
   <rect x="30" y="40" width="220" height="28" rx="3" fill="#2d1b55" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
@@ -55,14 +55,14 @@ const { width = 560, height = 240, class: className = '' } = Astro.props;
   <line x1="150" y1="156" x2="152" y2="178" stroke="#f87171" stroke-width="1.5" opacity="0.5"/>
 
   <!-- Stress concentration label -->
-  <text x="140" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#f87171" font-weight="500">Koncentrace napětí</text>
-  <text x="140" y="224" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">riziko únavového lomu</text>
+  <text x="140" y="210" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="#f87171" font-weight="500">Koncentrace napětí</text>
+  <text x="140" y="224" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">riziko únavového lomu</text>
 
   <!-- Divider -->
   <line x1="280" y1="20" x2="280" y2={height - 20} stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
 
   <!-- Right panel: adhesive = uniform stress -->
-  <text x="420" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">LEPIDLO</text>
+  <text x="420" y="28" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">LEPIDLO</text>
 
   <!-- Substrate plates -->
   <rect x="310" y="40" width="220" height="28" rx="3" fill="#2d1b55" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
@@ -70,7 +70,7 @@ const { width = 560, height = 240, class: className = '' } = Astro.props;
 
   <!-- Adhesive layer -->
   <rect x="310" y="68" width="220" height="60" rx="2" fill="rgba(124,58,237,0.25)" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
-  <text x="420" y="102" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(124,58,237,0.9)" font-weight="500">lepidlo</text>
+  <text x="420" y="102" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="rgba(124,58,237,0.9)" font-weight="500">lepidlo</text>
 
   <!-- Uniform stress arrows top -->
   {[320, 345, 370, 395, 420, 445, 470, 495, 515].map((x) => (
@@ -89,6 +89,6 @@ const { width = 560, height = 240, class: className = '' } = Astro.props;
   ))}
 
   <!-- Uniform distribution label -->
-  <text x="420" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#4ade80" font-weight="500">Rovnoměrná distribuce</text>
-  <text x="420" y="224" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">nižší špičkové napětí</text>
+  <text x="420" y="210" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="#4ade80" font-weight="500">Rovnoměrná distribuce</text>
+  <text x="420" y="224" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">nižší špičkové napětí</text>
 </svg>

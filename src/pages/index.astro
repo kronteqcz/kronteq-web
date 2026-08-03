@@ -9,6 +9,7 @@ import CtaBand from '../components/home/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import { technologies } from '../data/technologies';
 import { services } from '../data/services';
+import { contact } from '../data/contact';
 
 const kbArticles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
 const latestKb = kbArticles
@@ -27,7 +28,7 @@ const categoryLabels: Record<string, string> = {
 
 <BaseLayout
   title="Kronteq — Průmyslová lepidla a lepicí systémy"
-  description="Kronteq dodává průmyslová lepidla, tmeliva a lepicí systémy pro automotive, elektroniku a průmyslovou výrobu. Certifikovaní specialisté EAE, technická poradna a rychlá dodávka."
+  description="Průmyslová lepidla a lepicí systémy pro konstrukční spoje: PUR, epoxidy, MMA i kyanoakryláty. Výběr technologie, příprava povrchu a validace spoje."
   lang="cs"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify({
@@ -40,7 +41,7 @@ const categoryLabels: Record<string, string> = {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "technical support",
-      "email": "kristyna@kronteq.com",
+      "email": contact.email,
       "availableLanguage": ["Czech", "English"]
     },
     "sameAs": []
@@ -53,7 +54,7 @@ const categoryLabels: Record<string, string> = {
     <div class="container">
       <div class="section-header" data-reveal>
         <span class="label">Co děláme</span>
-        <h2>Služby, které jdou za pouhý prodej</h2>
+        <h2>Víc než prodej lepidel</h2>
         <p>Nejsme jen distributor lepidel — jsme technický partner. Od výběru produktu přes přípravu povrchu až po validaci procesu.</p>
       </div>
       <div class="services-grid" data-reveal-stagger>

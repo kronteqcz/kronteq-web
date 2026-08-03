@@ -1,19 +1,56 @@
 # llms.txt — https://llmstxt.org
 
-> Blog agentury První pozice zaměřený na SEO, GEO (Generative Engine Optimization) a využití umělé inteligence v digitálním marketingu.
+> Kronteq je český specializovaný dodavatel průmyslových lepidel, tmeliv a lepicích systémů
+> pro konstrukční lepení. Zaměřuje se na technické poradenství: výběr lepicí technologie,
+> přípravu povrchu, návrh a validaci spoje. Vedoucí technická specialistka je držitelkou
+> certifikace European Adhesive Engineer (EAE).
 
 ## Sekce
 
-- [Všechny články](https://blog.prvni-pozice.com/)
-- [AI – umělá inteligence v marketingu](https://blog.prvni-pozice.com/ai/)
-- [GEO – Generative Engine Optimization](https://blog.prvni-pozice.com/geo/)
+- [Úvod](https://www.kronteq.com/)
+- [Služby](https://www.kronteq.com/sluzby/) — výběr technologie, příprava povrchu, návrh hybridních spojů, testování a validace, dodávky, školení
+- [Produkty](https://www.kronteq.com/produkty/) — 9 kategorií: strukturální, reaktivní, tavná, kyanoakrylátová a anaerobní lepidla, tmeliva, pásky, primery, čističe
+- [Technologie lepení](https://www.kronteq.com/technologie/) — anatomie spoje, typy lepidel, hybridní spoje, příprava povrchu
+- [Znalostní báze](https://www.kronteq.com/znalostni-baze/) — 10 odborných článků o konstrukčním lepení
+- [Odvětví](https://www.kronteq.com/odvetvi/) — automotive, letectví, elektronika, stavebnictví
+- [Časté otázky](https://www.kronteq.com/faq/)
+- [O nás](https://www.kronteq.com/o-nas/)
+- [Kontakt](https://www.kronteq.com/kontakt/)
+- [Ochrana osobních údajů](https://www.kronteq.com/ochrana-osobnich-udaju/)
+
+## Znalostní báze (CS)
+
+- [Anatomie lepeného spoje: adheze, koheze, princip nejslabšího článku](https://www.kronteq.com/znalostni-baze/anatomie-spoje-adheze-koheze/)
+- [Jak vybrat lepidlo: PUR, epoxid, nebo MMA](https://www.kronteq.com/znalostni-baze/jak-vybrat-lepidlo-pur-epoxid-mma/)
+- [Příprava povrchu krok za krokem](https://www.kronteq.com/znalostni-baze/priprava-povrchu-krok-za-krokem/)
+- [Hybridní spoje: weld-bonding a rivet-bonding](https://www.kronteq.com/znalostni-baze/hybridni-spoje-weld-bonding-rivet-bonding/)
+- [Limity lepených spojů](https://www.kronteq.com/znalostni-baze/limity-lepenych-spoju/)
+- [Nahradí lepení svařování?](https://www.kronteq.com/znalostni-baze/nahradi-lepeni-svareni/)
+- [Lepení v automotive](https://www.kronteq.com/znalostni-baze/lepeni-v-automotive/)
+- [Lepení v letectví](https://www.kronteq.com/znalostni-baze/lepeni-v-letectvi/)
+- [Lepení v elektronice](https://www.kronteq.com/znalostni-baze/lepeni-v-elektronice/)
+- [Strukturální zasklení ve stavebnictví](https://www.kronteq.com/znalostni-baze/strukturalni-zaskleni-stavebnictvi/)
+
+## English version
+
+- [Home](https://www.kronteq.com/en/)
+- [Services](https://www.kronteq.com/en/services/)
+- [Products](https://www.kronteq.com/en/products/)
+- [Bonding technology](https://www.kronteq.com/en/technology/)
+- [Knowledge base](https://www.kronteq.com/en/knowledge-base/) — 10 technical articles
+- [Industries](https://www.kronteq.com/en/industries/)
+- [FAQ](https://www.kronteq.com/en/faq/)
+- [About](https://www.kronteq.com/en/about/)
+- [Contact](https://www.kronteq.com/en/contact/)
 
 ## Strojové zdroje
 
-- [RSS feed](https://blog.prvni-pozice.com/rss.xml)
-- [Sitemap](https://blog.prvni-pozice.com/sitemap.xml)
+- [Sitemap](https://www.kronteq.com/sitemap.xml)
 
-## O autorovi
+## O firmě
 
-První pozice je česká digitální agentura specializující se na SEO, GEO a online marketing.
-Web: https://www.prvni-pozice.com
+Kronteq — dodavatel průmyslových lepicích systémů.
+Roháčova 145/14, 130 00 Praha 3, Česká republika.
+Kontakt: ondrackova@kronteq.com, +420 608 558 833.
+Web: https://www.kronteq.com
+Jazyky obsahu: čeština (výchozí), angličtina (/en/).

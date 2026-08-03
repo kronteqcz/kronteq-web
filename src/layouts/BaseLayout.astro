@@ -5,6 +5,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import type { Lang } from '../i18n/strings';
 import { getLang } from '../i18n/strings';
+import { alternatePath, languageHomeHref } from '../i18n/routes';
 
 // Preload primary (latin) font variants for faster LCP
 import outfitUrl from '@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url';
@@ -17,6 +18,10 @@ interface Props {
   ogImage?: string;
   canonicalURL?: string;
   type?: 'website' | 'article';
+  /** Cesta ekvivalentní stránky v druhém jazyce (detailní stránky si ji předávají samy). */
+  altPath?: string;
+  /** Vyřadit stránku z indexace (děkovací stránky, 404). */
+  noindex?: boolean;
 }
 
 const {
@@ -26,11 +31,20 @@ const {
   ogImage = '/og-default.png',
   canonicalURL = Astro.url.href,
   type = 'website',
+  altPath,
+  noindex = false,
 } = Astro.props;
 
 const t = getLang(lang);
 const siteUrl = 'https://www.kronteq.com';
 const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
+
+// Hreflang — ekvivalent v druhém jazyce; explicitní altPath má přednost
+const resolvedAlt = altPath ?? alternatePath(Astro.url.pathname, lang);
+const selfPath = Astro.url.pathname;
+const csPath = lang === 'cs' ? selfPath : resolvedAlt;
+const enPath = lang === 'en' ? selfPath : resolvedAlt;
+const switchLangHref = resolvedAlt ?? languageHomeHref(lang);
 ---
 
 <!DOCTYPE html>
@@ -45,11 +59,12 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
-    <!-- Hreflang -->
-    <link rel="alternate" hreflang="cs" href={siteUrl + '/'} />
-    <link rel="alternate" hreflang="en" href={siteUrl + '/en/'} />
-    <link rel="alternate" hreflang="x-default" href={siteUrl + '/'} />
+    <!-- Hreflang — párové cesty CS ↔ EN (viz src/i18n/routes.ts) -->
+    {!noindex && csPath && <link rel="alternate" hreflang="cs" href={siteUrl + csPath} />}
+    {!noindex && enPath && <link rel="alternate" hreflang="en" href={siteUrl + enPath} />}
+    {!noindex && csPath && <link rel="alternate" hreflang="x-default" href={siteUrl + csPath} />}
 
     <!-- Open Graph -->
     <meta property="og:type" content={type} />
@@ -87,6 +102,7 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
         "@type": "PostalAddress",
         "streetAddress": "Roháčova 145/14",
         "addressLocality": "Praha 3",
+        "postalCode": "130 00",
         "addressCountry": "CZ"
       },
       "contactPoint": {
@@ -107,7 +123,7 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
 
   <body>
     <a href="#main" class="skip-link">{lang === 'en' ? 'Skip to content' : 'Přeskočit na obsah'}</a>
-    <Header lang={lang} />
+    <Header lang={lang} switchLangHref={switchLangHref} />
     <main id="main">
       <slot />
     </main>
@@ -140,6 +156,10 @@ const fullTitle = title.includes('Kronteq') ? title : `${title} | Kronteq`;
         transform: translateY(0);
       }
       @media (prefers-reduced-motion: reduce) {
+        .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      }
+      /* Tisk a screenshoty — reveal animace nesmí schovat obsah */
+      @media print {
         .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
       }
     </style>

@@ -1,4 +1,32 @@
 {
+  "redirects": [
+    { "source": "/odvtvi", "destination": "/odvetvi/", "permanent": true },
+    { "source": "/odvtvi/:path*", "destination": "/odvetvi/:path*", "permanent": true },
+    { "source": "/reseni", "destination": "/produkty/", "permanent": true },
+    { "source": "/reseni/:path*", "destination": "/produkty/", "permanent": true },
+    { "source": "/en/solutions", "destination": "/en/products/", "permanent": true },
+    { "source": "/en/solutions/:path*", "destination": "/en/products/", "permanent": true },
+    {
+      "source": "/znalostni-baze/anatomie-spoje-adheze-koheeze",
+      "destination": "/znalostni-baze/anatomie-spoje-adheze-koheze/",
+      "permanent": true
+    },
+    {
+      "source": "/znalostni-baze/anatomie-spoje-adheze-koheeze/",
+      "destination": "/znalostni-baze/anatomie-spoje-adheze-koheze/",
+      "permanent": true
+    },
+    {
+      "source": "/znalostni-baze/nahradil-lepeni-svareni",
+      "destination": "/znalostni-baze/nahradi-lepeni-svareni/",
+      "permanent": true
+    },
+    {
+      "source": "/znalostni-baze/nahradil-lepeni-svareni/",
+      "destination": "/znalostni-baze/nahradi-lepeni-svareni/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

@@ -2,7 +2,7 @@ export const contact = {
   name: 'Kristýna Ondráčková',
   titleCs: 'European Adhesive Engineer | Sales Manager',
   titleEn: 'European Adhesive Engineer | Sales Manager',
-  phone: '+420 608 55 88 33',
+  phone: '+420 608 558 833',
   email: 'ondrackova@kronteq.com',
   website: 'www.kronteq.com',
   addressLine1: 'Roháčova 145/14',

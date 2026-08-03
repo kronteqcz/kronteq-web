@@ -8,7 +8,7 @@ const t = getLang('cs');
 
 <BaseLayout
   title="Kontakt — Kronteq"
-  description="Kontaktujte Kronteq. Odpovídáme do 24 hodin. Kristýna Ondráčková, European Adhesive Engineer, Praha 3."
+  description="Technická konzultace k lepenému spoji: popište materiály, teploty a proces. Odpověď od European Adhesive Engineer do 24 hodin v pracovní dny."
   lang="cs"
 >
   <div class="page-hero section-dark">
@@ -21,16 +21,24 @@ const t = getLang('cs');
 
   <section class="section">
     <div class="container">
+      <!-- Přímý kontakt nad formulářem — urgentní volající nesmí scrollovat -->
+      <div class="contact-direct-bar" data-reveal>
+        <p class="direct-label">{t.contactDirectTitle}</p>
+        <div class="direct-links">
+          <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="direct-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            {contact.phone}
+          </a>
+          <a href={`mailto:${contact.email}`} class="direct-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            {contact.email}
+          </a>
+        </div>
+      </div>
+
       <div class="contact-layout" data-reveal>
         <!-- Form -->
         <div class="contact-form-wrap">
-          <!--
-            Napojení formuláře:
-            Možnost A — Formspree: zaregistruj se na formspree.io, nahraď action URL:
-              action="https://formspree.io/f/XXXXXXXX" method="POST"
-            Možnost B — n8n webhook: nastav webhook URL v n8n a použij:
-              action="https://your-n8n.domain/webhook/contact" method="POST"
-          -->
           <form
             id="contactForm"
             class="contact-form"
@@ -43,6 +51,7 @@ const t = getLang('cs');
               <label for="hp_website">Website</label>
               <input type="text" id="hp_website" name="_gotcha" tabindex="-1" autocomplete="off" />
             </div>
+            <input type="hidden" name="lang" value="cs" />
 
             <div class="field">
               <label for="name">{t.contactFormName} <span aria-hidden="true">*</span></label>
@@ -76,6 +85,10 @@ const t = getLang('cs');
                 <span class="btn-sending" aria-hidden="true">Odesílám…</span>
               </button>
             </div>
+            <p class="form-consent">
+              Odesláním souhlasíte se zpracováním osobních údajů.
+              Podrobnosti v <a href="/ochrana-osobnich-udaju/">ochraně osobních údajů</a>.
+            </p>
             <div class="form-error-msg" id="formError" role="alert" aria-live="polite"></div>
           </form>
         </div>
@@ -301,6 +314,29 @@ const t = getLang('cs');
   #submitBtn[data-sending] .btn-label { display: none; }
   #submitBtn[data-sending] .btn-sending { display: inline; }
   #submitBtn[data-sending] { opacity: 0.7; pointer-events: none; }
+
+  /* Blok přímého kontaktu */
+  .contact-direct-bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem;
+    padding: 1rem 1.5rem; margin-bottom: 2.5rem;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  }
+  .direct-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-dim); max-width: none; margin: 0;
+  }
+  .direct-links { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; }
+  .direct-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-sans); font-size: 1.0625rem; font-weight: 600;
+    color: var(--text-heading); text-decoration: none; padding: 0.35rem 0;
+    transition: color var(--duration) var(--ease);
+  }
+  .direct-link svg { stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .direct-link:hover { color: var(--accent); }
+
+  .form-consent { font-size: 0.8125rem; color: var(--text-muted); max-width: none; }
+  .form-consent a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
 
   .form-error-msg {
     font-size: 0.875rem;

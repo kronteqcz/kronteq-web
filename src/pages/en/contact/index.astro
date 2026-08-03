@@ -8,7 +8,7 @@ const t = getLang('en');
 
 <BaseLayout
   title="Contact — Kronteq"
-  description="Contact Kronteq. We respond within 24 hours. Kristýna Ondráčková, European Adhesive Engineer, Prague."
+  description="Technical consultation on your bonded joint: describe materials, temperatures and process. Answer from a European Adhesive Engineer within 24 hours."
   lang="en"
 >
   <div class="page-hero section-dark">
@@ -21,13 +21,41 @@ const t = getLang('en');
 
   <section class="section">
     <div class="container">
+      <!-- Direct contact above the form — an urgent caller must not have to scroll -->
+      <div class="contact-direct-bar" data-reveal>
+        <p class="direct-label">{t.contactDirectTitle}</p>
+        <div class="direct-links">
+          <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="direct-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            {contact.phone}
+          </a>
+          <a href={`mailto:${contact.email}`} class="direct-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            {contact.email}
+          </a>
+        </div>
+      </div>
+
       <div class="contact-layout" data-reveal>
         <div class="contact-form-wrap">
-          <form class="contact-form" name="contact-en" method="POST" data-netlify="true" action="/en/thank-you/">
-            <input type="hidden" name="form-name" value="contact-en" />
+          <form
+            id="contactForm"
+            class="contact-form"
+            method="POST"
+            action="/api/contact"
+            novalidate
+          >
+            <!-- Honeypot — hidden field; if a bot fills it in, the submission is discarded -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="hp_website">Website</label>
+              <input type="text" id="hp_website" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="lang" value="en" />
+
             <div class="field">
               <label for="name">{t.contactFormName} <span aria-hidden="true">*</span></label>
               <input type="text" id="name" name="name" required autocomplete="name" placeholder="John Smith" />
+              <span class="field-error" id="nameError">Please enter your name</span>
             </div>
             <div class="field">
               <label for="company">{t.contactFormCompany}</label>
@@ -37,20 +65,30 @@ const t = getLang('en');
               <div class="field">
                 <label for="email">{t.contactFormEmail} <span aria-hidden="true">*</span></label>
                 <input type="email" id="email" name="email" required autocomplete="email" placeholder="john@company.com" />
+                <span class="field-error" id="emailError">Please enter a valid email address</span>
               </div>
               <div class="field">
                 <label for="phone">{t.contactFormPhone}</label>
-                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+44 000 000 0000" />
+                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+420 000 000 000" />
               </div>
             </div>
             <div class="field">
               <label for="message">{t.contactFormMessage} <span aria-hidden="true">*</span></label>
               <textarea id="message" name="message" required rows="5" placeholder={t.contactFormMessagePlaceholder}></textarea>
+              <span class="field-error" id="messageError">Please write a message</span>
             </div>
             <div class="form-footer">
               <p class="form-note">{t.contactFormNote}</p>
-              <button type="submit" class="btn-primary">{t.contactFormSubmit}</button>
+              <button type="submit" class="btn-primary" id="submitBtn">
+                <span class="btn-label">{t.contactFormSubmit}</span>
+                <span class="btn-sending" aria-hidden="true">Sending…</span>
+              </button>
             </div>
+            <p class="form-consent">
+              By submitting this form you agree to the processing of your personal data.
+              See our <a href="/en/privacy/">privacy policy</a>.
+            </p>
+            <div class="form-error-msg" id="formError" role="alert" aria-live="polite"></div>
           </form>
         </div>
 
@@ -134,4 +172,114 @@ const t = getLang('en');
   .map-link:hover { color: var(--accent-hover); }
   .map-link svg { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   .response-time { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 700; color: var(--accent); max-width: none; }
+
+  /* Direct contact bar */
+  .contact-direct-bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem;
+    padding: 1rem 1.5rem; margin-bottom: 2.5rem;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  }
+  .direct-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-dim); max-width: none; margin: 0;
+  }
+  .direct-links { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; }
+  .direct-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-sans); font-size: 1.0625rem; font-weight: 600;
+    color: var(--text-heading); text-decoration: none; padding: 0.35rem 0;
+    transition: color var(--duration) var(--ease);
+  }
+  .direct-link svg { stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .direct-link:hover { color: var(--accent); }
+
+  /* Honeypot — hidden from humans, visible to bots */
+  .hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+
+  /* Validation feedback */
+  .field { position: relative; }
+  .field-error { display: none; font-size: 0.8125rem; color: #ef4444; margin-top: 0.2rem; }
+  .field.has-error input, .field.has-error textarea { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+  .field.has-error .field-error { display: block; }
+
+  /* Submit button states */
+  .btn-sending { display: none; }
+  #submitBtn[data-sending] .btn-label { display: none; }
+  #submitBtn[data-sending] .btn-sending { display: inline; }
+  #submitBtn[data-sending] { opacity: 0.7; pointer-events: none; }
+
+  .form-consent { font-size: 0.8125rem; color: var(--text-muted); max-width: none; }
+  .form-consent a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+
+  .form-error-msg { font-size: 0.875rem; color: #ef4444; text-align: center; min-height: 1.2em; }
 </style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot — silently discard bot submissions
+      const hp = form.querySelector<HTMLInputElement>('[name="_gotcha"]');
+      if (hp && hp.value.trim() !== '') {
+        window.location.href = '/en/thank-you/';
+        return;
+      }
+
+      // Client-side validation
+      let valid = true;
+      const fields = [
+        { id: 'name', errorId: 'nameError' },
+        { id: 'email', errorId: 'emailError' },
+        { id: 'message', errorId: 'messageError' },
+      ];
+      fields.forEach(({ id }) => {
+        const input = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+        const wrap = input?.closest('.field');
+        if (!input || !wrap) return;
+        const isEmpty = input.value.trim() === '';
+        const isEmailInvalid = id === 'email' && !isEmpty && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+        if (isEmpty || isEmailInvalid) {
+          wrap.classList.add('has-error');
+          valid = false;
+        } else {
+          wrap.classList.remove('has-error');
+        }
+      });
+      if (!valid) return;
+
+      // Submit
+      const btn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+      const errMsg = document.getElementById('formError');
+      btn?.setAttribute('data-sending', '');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        const json = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          window.location.href = '/en/thank-you/';
+        } else {
+          throw new Error(json.error ?? `HTTP ${res.status}`);
+        }
+      } catch (err: unknown) {
+        btn?.removeAttribute('data-sending');
+        const msg = err instanceof Error ? err.message : 'Sending failed.';
+        if (errMsg) errMsg.textContent = msg + ' Or contact us directly by email.';
+      }
+    });
+
+    // Live validation — clears the error as soon as the field is corrected
+    form.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', () => {
+        el.closest('.field')?.classList.remove('has-error');
+      });
+    });
+  }
+</script>

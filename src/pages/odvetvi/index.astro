@@ -36,12 +36,12 @@ const stats = [
     "@type": "WebPage",
     "name": "Odvětví — Kronteq",
     "description": "Lepicí systémy pro automotive, letectví, elektroniku a stavebnictví",
-    "url": "https://www.kronteq.com/odvtvi/",
+    "url": "https://www.kronteq.com/odvetvi/",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Kronteq", "item": "https://www.kronteq.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Odvětví", "item": "https://www.kronteq.com/odvtvi/" }
+        { "@type": "ListItem", "position": 2, "name": "Odvětví", "item": "https://www.kronteq.com/odvetvi/" }
       ]
     }
   })} />
@@ -79,7 +79,7 @@ const stats = [
           return (
             <article class="industry-detail" id={industry.slug}>
               <div class="industry-meta">
-                <span class="industry-num">0{idx + 1}</span>
+                <span class="industry-num" aria-hidden="true">0{idx + 1}</span>
                 <div class="icon-box">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d={industry.icon} />

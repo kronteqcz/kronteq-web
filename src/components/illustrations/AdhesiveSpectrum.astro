@@ -47,22 +47,22 @@ const types = [
   <line x1="60" y1={height - 44} x2={width - 20} y2={height - 44} stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
 
   <!-- Axis labels -->
-  <text x="32" y={height / 2} text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)" transform={`rotate(-90, 18, ${height/2})`}>Pevnost (MPa)</text>
-  <text x={width / 2} y={height - 6} text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">Pružnost / Tažnost (%)</text>
+  <text x="32" y={height / 2} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="rgba(255,255,255,0.45)" transform={`rotate(-90, 18, ${height/2})`}>Pevnost (MPa)</text>
+  <text x={width / 2} y={height - 6} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">Pružnost / Tažnost (%)</text>
 
   <!-- Y axis ticks -->
-  <text x="54" y="40" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">90</text>
-  <text x="54" y="88" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">70</text>
-  <text x="54" y="136" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">40</text>
-  <text x="54" y="184" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">20</text>
-  <text x="54" y="232" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">5</text>
+  <text x="54" y="40" text-anchor="end" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">90</text>
+  <text x="54" y="88" text-anchor="end" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">70</text>
+  <text x="54" y="136" text-anchor="end" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">40</text>
+  <text x="54" y="184" text-anchor="end" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">20</text>
+  <text x="54" y="232" text-anchor="end" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">5</text>
 
   <!-- X axis ticks -->
-  <text x="60" y={height - 28} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">0</text>
-  <text x="156" y={height - 28} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">100</text>
-  <text x="252" y={height - 28} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">300</text>
-  <text x="348" y={height - 28} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">500</text>
-  <text x="444" y={height - 28} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">800</text>
+  <text x="60" y={height - 28} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">0</text>
+  <text x="156" y={height - 28} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">100</text>
+  <text x="252" y={height - 28} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">300</text>
+  <text x="348" y={height - 28} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">500</text>
+  <text x="444" y={height - 28} text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">800</text>
 
   <!-- Trend arrow: inverse correlation -->
   <path d="M 80 46 Q 260 130 440 228" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="6,4" fill="none"/>
@@ -76,7 +76,7 @@ const types = [
         x={t.x + 60}
         y={t.y - t.radius - 6}
         text-anchor="middle"
-        font-family="Inter, sans-serif"
+        font-family="'DM Sans Variable', sans-serif"
         font-size="11"
         font-weight="600"
         fill={t.color}
@@ -85,5 +85,5 @@ const types = [
   ))}
 
   <!-- Title -->
-  <text x={width / 2} y="14" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="0.05em">PEVNOST × PRUŽNOST</text>
+  <text x={width / 2} y="14" text-anchor="middle" font-family="'DM Sans Variable', sans-serif" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="0.05em">PEVNOST × PRUŽNOST</text>
 </svg>

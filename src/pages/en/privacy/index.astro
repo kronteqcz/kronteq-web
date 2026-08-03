@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { contact } from '../../../data/contact';
+---
+
+<BaseLayout
+  title="Privacy Policy — Kronteq"
+  description="How Kronteq processes personal data from the contact form: scope, purpose, retention period, your rights under GDPR and information about cookies."
+  lang="en"
+>
+  <div class="page-hero section-dark">
+    <div class="container">
+      <p class="page-label">Kronteq</p>
+      <h1>Privacy Policy</h1>
+      <p class="page-desc">
+        Information on the processing of personal data under Regulation (EU) 2016/679 (GDPR), Article 13.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="legal-prose">
+        <h2>Data controller</h2>
+        <p>
+          The controller of personal data is <strong>Kronteq</strong>,
+          registered at {contact.addressLine1}, 130 00 Prague 3, Czech Republic.
+        </p>
+        <p>
+          Contact for data protection matters:
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>,
+          phone <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>.
+        </p>
+        <p>The controller has not appointed a Data Protection Officer — it is not legally required to do so.</p>
+
+        <h2>What data we process</h2>
+        <p>We only process data you provide yourself via the contact form or by email:</p>
+        <ul>
+          <li><strong>full name</strong> — so we know who we are replying to;</li>
+          <li><strong>email address</strong> — to answer your inquiry;</li>
+          <li><strong>phone number</strong> (optional) — if you prefer a reply by phone;</li>
+          <li><strong>company name</strong> (optional) — to assess the technical brief;</li>
+          <li><strong>message content</strong> — the technical brief you send us;</li>
+          <li><strong>sender IP address and submission time</strong> — a technical record protecting the form against spam and abuse.</li>
+        </ul>
+
+        <h2>Purpose and legal basis</h2>
+        <p>
+          We process the data for a single purpose: <strong>handling your inquiry</strong> —
+          technical assessment of the brief, preparing a quotation and communicating with you.
+        </p>
+        <p>
+          The legal basis is Article 6(1)(b) GDPR (steps taken at your request prior to entering into
+          a contract) and, for data related to form security, Article 6(1)(f) GDPR (the controller's
+          legitimate interest in protecting the website from abuse).
+        </p>
+        <p>
+          We <strong>do not use the data for marketing outreach</strong>, we send no newsletter
+          and we build no profiles.
+        </p>
+
+        <h2>Retention period</h2>
+        <ul>
+          <li>Inquiries that did not lead to cooperation: <strong>12 months</strong> from the last communication.</li>
+          <li>Inquiries that led to a business relationship: for the duration of the cooperation and
+            thereafter for the statutory archiving periods (in particular accounting and tax rules).</li>
+          <li>Technical records of form submission (IP address): <strong>12 months at most</strong>.</li>
+        </ul>
+
+        <h2>Who we share data with</h2>
+        <p>
+          We <strong>do not sell personal data or pass it to third parties for their own purposes</strong>.
+          Only our technology suppliers act as processors:
+        </p>
+        <ul>
+          <li>the website hosting provider running the form endpoint;</li>
+          <li>the email service provider delivering the inquiry to us.</li>
+        </ul>
+        <p>
+          Data is processed within the European Union, or in countries with a comparable level of
+          protection on the basis of the European Commission's standard contractual clauses.
+        </p>
+
+        <h2>Cookies and analytics</h2>
+        <p>
+          This website <strong>uses no third-party cookies</strong> and contains no analytics scripts,
+          advertising pixels or social network widgets. We do not track visitor behaviour,
+          so no cookie banner is required.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>In relation to your personal data you have the right:</p>
+        <ul>
+          <li><strong>of access</strong> — to learn what data we process about you (Art. 15 GDPR);</li>
+          <li><strong>to rectification</strong> of inaccurate or incomplete data (Art. 16 GDPR);</li>
+          <li><strong>to erasure</strong> — the "right to be forgotten" (Art. 17 GDPR);</li>
+          <li><strong>to restriction of processing</strong> (Art. 18 GDPR);</li>
+          <li><strong>to data portability</strong> in a machine-readable format (Art. 20 GDPR);</li>
+          <li><strong>to object</strong> to processing based on legitimate interest (Art. 21 GDPR).</li>
+        </ul>
+        <p>
+          You can exercise any of these rights by emailing
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>. We will respond within one month at the latest.
+        </p>
+        <p>
+          If you believe our processing of your data breaches the GDPR, you may lodge a complaint
+          with the supervisory authority: <strong>Office for Personal Data Protection</strong>
+          (Úřad pro ochranu osobních údajů), Pplk. Sochora 27, 170 00 Prague 7,
+          <a href="https://www.uoou.cz" target="_blank" rel="noopener">www.uoou.cz</a>.
+        </p>
+
+        <h2>Security</h2>
+        <p>
+          The website runs exclusively over an encrypted HTTPS connection. Only the controller's
+          responsible person has access to received inquiries. The form is protected against
+          automated abuse.
+        </p>
+
+        <p class="legal-updated">Last updated: 3 August 2026</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: calc(72px + 4rem); padding-bottom: 4rem; }
+  .page-label {
+    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent-light);
+    margin-bottom: 1rem; max-width: none;
+  }
+  .page-hero h1 { color: #fff; }
+  .page-desc { color: var(--text-dark-muted); font-size: 1.125rem; margin-top: 1rem; max-width: 56ch; }
+
+  .legal-prose { max-width: 72ch; }
+  .legal-prose h2 {
+    font-size: 1.375rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-heading);
+  }
+  .legal-prose h2:first-child { margin-top: 0; }
+  .legal-prose p { margin-bottom: 1rem; line-height: 1.75; }
+  .legal-prose ul { margin: 0 0 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .legal-prose li { line-height: 1.7; }
+  .legal-prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+  .legal-prose a:hover { color: var(--accent-hover); }
+  .legal-updated {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+</style>

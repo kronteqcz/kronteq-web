@@ -39,6 +39,11 @@ const breadcrumb = [
   { name: 'Knowledge Base', url: '/en/knowledge-base/' },
   { name: article.data.title, url: `/en/knowledge-base/${cleanSlug}/` },
 ];
+
+// Hreflang — Czech counterpart is paired via `translationKey`
+const csArticles = await getCollection('kb', ({ data }) => data.lang === 'cs' && !data.draft);
+const csTwin = csArticles.find(a => a.data.translationKey === article.data.translationKey);
+const altPath = csTwin ? `/znalostni-baze/${csTwin.id.replace(/^cs\//, '')}/` : undefined;
 ---
 
 <BaseLayout
@@ -46,6 +51,7 @@ const breadcrumb = [
   description={article.data.description}
   lang="en"
   type="article"
+  altPath={altPath}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -140,12 +146,12 @@ const breadcrumb = [
   .page-hero { padding-top: calc(72px + 3rem); padding-bottom: 3rem; }
   .page-hero h1 { color: #fff; font-size: clamp(1.625rem, 3vw, 2.25rem); line-height: 1.25; }
   .page-desc { color: var(--text-dark-muted); font-size: 1.0625rem; margin-top: 0.75rem; max-width: 68ch; }
-  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; max-width: none; }
-  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb { font-size: 0.8125rem; color: var(--text-dark-muted); margin-bottom: 1rem; max-width: none; }
+  .breadcrumb a { color: rgba(255,255,255,0.85); text-decoration: underline; text-underline-offset: 0.2em; }
   .breadcrumb a:hover { color: #fff; }
   .article-header { margin-bottom: 0.75rem; }
-  .category-badge { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.25); border-radius: 100px; padding: 0.2rem 0.6rem; }
-  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.4); max-width: none; flex-wrap: wrap; }
+  .category-badge { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-light); background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.25); border-radius: 100px; padding: 0.2rem 0.6rem; }
+  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: var(--text-dark-muted); max-width: none; flex-wrap: wrap; }
   .article-container { display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: flex-start; }
   .kb-prose { max-width: 72ch; }
   .kb-prose :global(h2) { font-size: 1.375rem; margin: 2.5rem 0 0.875rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
@@ -154,7 +160,7 @@ const breadcrumb = [
   .kb-prose :global(ul), .kb-prose :global(ol) { margin: 0.75rem 0 1.25rem 1.5rem; }
   .kb-prose :global(li) { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem; max-width: none; }
   .kb-prose :global(strong) { color: var(--text); font-weight: 600; }
-  .kb-prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
+  .kb-prose :global(table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
   .kb-prose :global(th) { background: var(--bg-2); padding: 0.625rem 0.875rem; text-align: left; font-weight: 600; border: 1px solid var(--border); color: var(--text); }
   .kb-prose :global(td) { padding: 0.5rem 0.875rem; border: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
   .kb-prose :global(tr:hover td) { background: var(--bg-2); }

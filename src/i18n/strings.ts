@@ -5,7 +5,6 @@ export const strings = {
     lang: 'cs' as Lang,
     htmlLang: 'cs',
     switchLang: 'EN',
-    switchLangHref: '/en/',
 
     // Nav
     navSolutions: 'Řešení',
@@ -109,7 +108,7 @@ Zákazníkům nabízíme kompletní servis: od technické konzultace a výběru 
 
     // Knowledge base
     kbTitle: 'Znalostní báze',
-    kbDesc: 'Technické články pro průmyslové konstruktéry, technology a kupce. Přesná terminologie, konkrétní čísla, žádné marketingové fráze.',
+    kbDesc: 'Technické články pro průmyslové konstruktéry, technology a nákupčí. Přesná terminologie, konkrétní čísla, žádné marketingové fráze.',
     kbReadMore: 'Číst celý článek',
     kbRelated: 'Související články',
     kbAuthor: 'Autor',
@@ -137,7 +136,6 @@ Zákazníkům nabízíme kompletní servis: od technické konzultace a výběru 
     lang: 'en' as Lang,
     htmlLang: 'en',
     switchLang: 'CS',
-    switchLangHref: '/',
 
     // Nav
     navSolutions: 'Solutions',

@@ -153,7 +153,7 @@ Weld-bonding combines adhesive with resistance spot welding. The process:
 
 **Where used:** Automotive (body, roof, body sides), aerospace (fuselage panels), industrial containers.
 
-**Note:** Adhesive must withstand welding temperature (short thermal pulse ~6,000 °C at the weld point, surroundings <200 °C). Crash-durable epoxies for weld-bonding are formulated specifically for thermal pulse resistance.
+**Note:** Adhesive must withstand welding temperature (short thermal pulse in the order of 1,500–2,500 °C at the weld point, surroundings <200 °C). Crash-durable epoxies for weld-bonding are formulated specifically for thermal pulse resistance.
 
 ## Rivet-bonding: adhesive + rivets
 
@@ -162,7 +162,7 @@ Rivet-bonding combines rivets (or clinched joints) with adhesive. Rivet and adhe
 - **Rivet:** carries peak dynamic and impact loading along the joint axis. Fixes parts immediately after riveting.
 - **Adhesive:** transfers shear stress over an area, damps vibration, prevents fatigue crack propagation from the rivet hole.
 
-Without adhesive, cracks propagate from the rivet hole — this effect is called fretting. With adhesive, the adhesive fills the gap around the hole and eliminates the crack initiation site.
+Without adhesive, the sheets micro-move against each other around the rivet hole — this frictional wear is called fretting and is a classic fatigue crack initiation site. The adhesive fills the gap, eliminates the micro-movement and removes the initiation site.
 
 **Where used:** Aerospace industry (standard for composite panels and aluminium structures), buses and trams, industrial enclosures.
 
@@ -361,10 +361,10 @@ const breadcrumb = [
   .page-hero { padding-top: calc(72px + 3rem); padding-bottom: 3rem; }
   .page-hero h1 { color: #fff; font-size: clamp(1.75rem, 3vw, 2.5rem); }
   .page-desc { color: var(--text-dark-muted); font-size: 1.0625rem; margin-top: 0.75rem; max-width: 64ch; }
-  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; max-width: none; }
-  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb { font-size: 0.8125rem; color: var(--text-dark-muted); margin-bottom: 1rem; max-width: none; }
+  .breadcrumb a { color: rgba(255,255,255,0.85); text-decoration: underline; text-underline-offset: 0.2em; }
   .breadcrumb a:hover { color: #fff; }
-  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.4); max-width: none; }
+  .article-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; color: var(--text-dark-muted); max-width: none; }
   .article-container { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: flex-start; }
   .article-body { max-width: 72ch; }
   .article-body h2 { font-size: 1.375rem; margin: 2rem 0 0.75rem; }

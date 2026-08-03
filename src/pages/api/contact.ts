@@ -20,18 +20,38 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
+// Hlášky pro obě jazykové mutace formuláře (pole `lang` v těle požadavku)
+const messages = {
+  cs: {
+    rateLimit: 'Příliš mnoho pokusů. Zkuste to za chvíli.',
+    invalidData: 'Neplatná data.',
+    requiredFields: 'Vyplňte všechna povinná pole.',
+    invalidEmail: 'Neplatný formát e-mailu.',
+    serverConfig: 'Chyba konfigurace serveru.',
+    sendFailed: 'Odeslání selhalo. Zkuste to znovu.',
+  },
+  en: {
+    rateLimit: 'Too many attempts. Please try again shortly.',
+    invalidData: 'Invalid data.',
+    requiredFields: 'Please fill in all required fields.',
+    invalidEmail: 'Invalid email format.',
+    serverConfig: 'Server configuration error.',
+    sendFailed: 'Sending failed. Please try again.',
+  },
+} as const;
+
 export const POST: APIRoute = async ({ request }) => {
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     request.headers.get('cf-connecting-ip') ??
     '0.0.0.0';
 
-  // Rate limit
+  // Rate limit — jazyk ještě neznáme, hláška je dvojjazyčná
   if (!checkRateLimit(ip)) {
-    return new Response(JSON.stringify({ error: 'Příliš mnoho pokusů. Zkuste to za chvíli.' }), {
-      status: 429,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ error: `${messages.cs.rateLimit} / ${messages.en.rateLimit}` }),
+      { status: 429, headers: { 'Content-Type': 'application/json' } },
+    );
   }
 
   let body: Record<string, string>;
@@ -46,8 +66,13 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
   } catch {
-    return new Response(JSON.stringify({ error: 'Neplatná data.' }), { status: 400 });
+    return new Response(
+      JSON.stringify({ error: `${messages.cs.invalidData} / ${messages.en.invalidData}` }),
+      { status: 400 },
+    );
   }
+
+  const m = body.lang === 'en' ? messages.en : messages.cs;
 
   // Honeypot — _gotcha nesmí být vyplněno
   if (body._gotcha && body._gotcha.trim() !== '') {
@@ -58,10 +83,10 @@ export const POST: APIRoute = async ({ request }) => {
   // Validace povinných polí
   const { name, email, message, company = '', phone = '' } = body;
   if (!name?.trim() || !email?.trim() || !message?.trim()) {
-    return new Response(JSON.stringify({ error: 'Vyplňte všechna povinná pole.' }), { status: 422 });
+    return new Response(JSON.stringify({ error: m.requiredFields }), { status: 422 });
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return new Response(JSON.stringify({ error: 'Neplatný formát e-mailu.' }), { status: 422 });
+    return new Response(JSON.stringify({ error: m.invalidEmail }), { status: 422 });
   }
 
   // SMTP config z env proměnných
@@ -77,7 +102,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !SMTP_TO) {
     console.error('[contact] SMTP není nakonfigurováno');
-    return new Response(JSON.stringify({ error: 'Chyba konfigurace serveru.' }), { status: 500 });
+    return new Response(JSON.stringify({ error: m.serverConfig }), { status: 500 });
   }
 
   const port = parseInt(SMTP_PORT ?? '587', 10);
@@ -90,7 +115,8 @@ export const POST: APIRoute = async ({ request }) => {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
-  const subject = `[Kronteq] Nová poptávka od ${name}${company ? ` (${company})` : ''}`;
+  const langTag = body.lang === 'en' ? ' [EN]' : '';
+  const subject = `[Kronteq]${langTag} Nová poptávka od ${name}${company ? ` (${company})` : ''}`;
 
   const html = `
 <table style="font-family:sans-serif;font-size:15px;color:#2C2040;max-width:600px">
@@ -126,7 +152,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (err) {
     console.error('[contact] SMTP error:', err);
-    return new Response(JSON.stringify({ error: 'Odeslání selhalo. Zkuste to znovu.' }), { status: 500 });
+    return new Response(JSON.stringify({ error: m.sendFailed }), { status: 500 });
   }
 };
 

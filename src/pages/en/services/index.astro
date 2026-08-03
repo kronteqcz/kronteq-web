@@ -8,7 +8,7 @@ const t = getLang('en');
 
 <BaseLayout
   title="Services — Adhesive Selection, Surface Preparation, Hybrid Joints | Kronteq"
-  description="Technical consulting in bonding technology: adhesive selection, surface preparation, hybrid joint design, validation, supply and training. Certified European Adhesive Engineer."
+  description="Consulting in bonding technology: adhesive selection, surface preparation, hybrid joint design, validation and training, led by a certified EAE."
   lang="en"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify({
@@ -43,7 +43,7 @@ const t = getLang('en');
         {services.map((service, idx) => (
           <article class="service-card card" id={service.slug}>
             <div class="service-header">
-              <div class="service-num">0{idx + 1}</div>
+              <div class="service-num" aria-hidden="true">0{idx + 1}</div>
               <div class="icon-box">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d={service.icon} />

@@ -10,3 +10,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 .vscode/
+
+# Review artefakty — screenshoty a raw JSON auditu (6 MB) do repa nepatří
+review/shots/
+review/phase0.json
