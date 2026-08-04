@@ -155,3 +155,6 @@ Automatická kontrola po opravách: 0 stran s meta popiskem mimo rozsah (bylo 33
 0 zbytků vývojářských poznámek (byly 3), 0 nefunkčních vnitřních adres.
 
 Zbývá doplnit údaje od klienta (body 1–7 výše) a rozhodnout o nasazení.
+
+
+> **Upřesnění (4. 8. 2026):** § 435 NOZ vyžaduje na webu jméno a sídlo podnikatele. Údaj o zápisu v rejstříku včetně oddílu a vložky (spisová značka) zákon váže na **obchodní listiny** — faktury, smlouvy, objednávky — nikoli výslovně na web. Doporučení „doplnit spisovou značku do patičky" bylo v původním znění reportu přeceněné; do patičky patří jméno, sídlo a IČO.

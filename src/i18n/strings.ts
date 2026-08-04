@@ -35,7 +35,7 @@ export const strings = {
 
     // Why section items
     why1Title: 'Certifikovaní specialisté EAE',
-    why1Text: 'Naše technická specialistka je držitelkou titulu European Adhesive Engineer (EAE) — nejvyšší oborové certifikace v Evropě. Spolupracujeme přímo s předními výrobci lepicích systémů.',
+    why1Text: 'Náš technický tým tvoří držitelé titulu European Adhesive Engineer (EAE) — nejvyšší oborové certifikace v Evropě. Spolupracujeme přímo s předními výrobci lepicích systémů.',
     why2Title: 'Správný produkt pro každou aplikaci',
     why2Text: 'PUR, epoxidy, MMA akryláty, kyanoakryláty, anaerobní lepidla — známe jejich vlastnosti do hloubky. Správný výběr závisí na desítkách faktorů. My je umíme posoudit.',
     why3Title: 'Příprava povrchu je základ',
@@ -55,7 +55,7 @@ export const strings = {
     aboutDesc: 'Kronteq je specializovaný dodavatel průmyslových lepicích systémů s pokrytím celého evropského trhu.',
     aboutText: `Kronteq je česká společnost specializovaná na průmyslová lepidla, tmeliva a lepicí systémy pro náročné průmyslové aplikace.
 
-Vedoucí technická specialistka Kristýna Ondráčková je držitelkou titulu European Adhesive Engineer (EAE) — nejvyšší oborové certifikace v Evropě pro specialisty na lepicí technologie. Spolupracujeme přímo s předními světovými výrobci a přinášíme jejich know-how českým a evropským průmyslovým zákazníkům.
+Naši technici jsou držiteli titulu European Adhesive Engineer (EAE) — nejvyšší oborové certifikace v Evropě pro specialisty na lepicí technologie. Spolupracujeme přímo s předními světovými výrobci a přinášíme jejich know-how českým a evropským průmyslovým zákazníkům.
 
 Víme, že úspěch lepeného spoje nestojí jen na výběru správného lepidla. Klíčem je precizní příprava povrchu — mechanické čištění, chemické odmašťování a aktivace. Právě v tom vám radíme jako první.
 
@@ -166,7 +166,7 @@ Zákazníkům nabízíme kompletní servis: od technické konzultace a výběru 
 
     // Why section items
     why1Title: 'EAE Certified Specialists',
-    why1Text: 'Our technical specialist holds the European Adhesive Engineer (EAE) title — the highest professional certification in Europe for bonding technology. We work directly with leading adhesive manufacturers.',
+    why1Text: 'Our technical team holds the European Adhesive Engineer (EAE) title — the highest professional certification in Europe for bonding technology. We work directly with leading adhesive manufacturers.',
     why2Title: 'The right product for every application',
     why2Text: 'PUR, epoxies, MMA acrylates, cyanoacrylates, anaerobic adhesives — we know their properties in depth. The right choice depends on dozens of factors. We know how to assess them.',
     why3Title: 'Surface preparation is the foundation',
@@ -186,7 +186,7 @@ Zákazníkům nabízíme kompletní servis: od technické konzultace a výběru 
     aboutDesc: 'Kronteq is a specialised supplier of industrial adhesive systems with European market coverage.',
     aboutText: `Kronteq is a Czech company specialising in industrial adhesives, sealants and bonding systems for demanding industrial applications.
 
-Our lead technical specialist Kristýna Ondráčková holds the European Adhesive Engineer (EAE) title — the highest professional certification in Europe for bonding technology specialists. We work directly with leading global manufacturers and bring their expertise to Czech and European industrial customers.
+Our technical staff hold the European Adhesive Engineer (EAE) title — the highest professional certification in Europe for bonding technology specialists. We work directly with leading global manufacturers and bring their expertise to Czech and European industrial customers.
 
 We know that the success of a bonded joint doesn't rely on adhesive selection alone. The key is precise surface preparation — mechanical cleaning, chemical degreasing and activation. That's where we advise first.
 

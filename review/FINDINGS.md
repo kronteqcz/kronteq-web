@@ -118,3 +118,6 @@ P2-20  research/             competitors-notes.md odkazuje na zaniklý chemikol.
   og-default.png                                 200, 1200×630
   meta descriptions mimo 120–160                 0 (z 33)
   zbytky TODO / XXX / Formspree / data-netlify   0
+
+
+> **Upřesnění (4. 8. 2026):** § 435 NOZ vyžaduje na webu jméno a sídlo podnikatele. Údaj o zápisu v rejstříku včetně oddílu a vložky (spisová značka) zákon váže na **obchodní listiny** — faktury, smlouvy, objednávky — nikoli výslovně na web. Doporučení „doplnit spisovou značku do patičky" bylo v původním znění reportu přeceněné; do patičky patří jméno, sídlo a IČO.

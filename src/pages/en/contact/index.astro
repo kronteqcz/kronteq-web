@@ -38,6 +38,11 @@ const t = getLang('en');
 
       <div class="contact-layout" data-reveal>
         <div class="contact-form-wrap">
+          <p class="form-preview-notice" role="status">
+            <strong>This form is a test preview.</strong> Submissions are not delivered yet —
+            please e-mail <a href="mailto:ondrackova@kronteq.com">ondrackova@kronteq.com</a>
+            or call us directly.
+          </p>
           <form
             id="contactForm"
             class="contact-form"
@@ -212,6 +217,17 @@ const t = getLang('en');
   .form-consent a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
 
   .form-error-msg { font-size: 0.875rem; color: #ef4444; text-align: center; min-height: 1.2em; }
+
+  .form-preview-notice {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--accent-light, #A78BFA);
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.08);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .form-preview-notice a { text-decoration: underline; text-underline-offset: 2px; }
 </style>
 
 <script>

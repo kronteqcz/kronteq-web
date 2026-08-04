@@ -39,6 +39,11 @@ const t = getLang('cs');
       <div class="contact-layout" data-reveal>
         <!-- Form -->
         <div class="contact-form-wrap">
+          <p class="form-preview-notice" role="status">
+            <strong>Formulář je v testovacím náhledu.</strong> Odeslání zatím nikam nedoručí —
+            napište prosím přímo na <a href="mailto:ondrackova@kronteq.com">ondrackova@kronteq.com</a>
+            nebo zavolejte.
+          </p>
           <form
             id="contactForm"
             class="contact-form"
@@ -344,6 +349,17 @@ const t = getLang('cs');
     text-align: center;
     min-height: 1.2em;
   }
+
+  .form-preview-notice {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--accent-light, #A78BFA);
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.08);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .form-preview-notice a { text-decoration: underline; text-underline-offset: 2px; }
 </style>
 
 <script>

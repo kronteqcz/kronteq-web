@@ -50,3 +50,6 @@ Konkurence ověřena: Gluetec (bez CZ, mělčí KB), Permabond (bez CZ, žádné
 
 ## Fáze 2 verdikt zákazníka
 Obsahově imponuje (jazyk inženýra, EAE, KB) — ale urgentní volající hledá telefon dlouho, EN poptávka končí na 404, KB článek se na mobilu rozpadá, bez IČO/referencí neprojde interním schválením dodavatele. Po opravě P0 + právního minima důvěryhodný web.
+
+
+> **Upřesnění (4. 8. 2026):** § 435 NOZ vyžaduje na webu jméno a sídlo podnikatele. Údaj o zápisu v rejstříku včetně oddílu a vložky (spisová značka) zákon váže na **obchodní listiny** — faktury, smlouvy, objednávky — nikoli výslovně na web. Doporučení „doplnit spisovou značku do patičky" bylo v původním znění reportu přeceněné; do patičky patří jméno, sídlo a IČO.
