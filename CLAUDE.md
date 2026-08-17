@@ -19,8 +19,8 @@ Cílová skupina: průmysloví technici a nákupčí v automotive, elektronice, 
 
 | Vrstva | Technologie |
 |---|---|
-| Framework | Astro 7.0.4, output: `static` (jen `api/contact` má `prerender = false`) |
-| Adapter | `@astrojs/vercel` v11 (deploy na Vercel). `engines.node`=22.x, runtime `nodejs22.x` |
+| Framework | Astro 7.2.2, output: `static` (jen `api/contact` má `prerender = false`) |
+| Adapter | `@astrojs/vercel` v11 (deploy na Vercel). `engines.node`=`>=22.12`, runtime se odvodí z build Node |
 | Obsah | MDX content collections (`@astrojs/mdx`) |
 | Fonty | Variable fonty přes `@fontsource-variable` (DM Sans, Inter, Outfit, Space Grotesk) |
 | Email | nodemailer (kontaktní formulář → SMTP) |
@@ -224,8 +224,12 @@ Detaily viz jednotlivé soubory:
 **Klíčové pro Vercel (jinak 404 / invalid runtime):**
 - Adaptér **musí** být `@astrojs/vercel`, NE `@astrojs/node`. Node adaptér vyrábí
   `dist/client` + `dist/server` bez root `index.html` → Vercel preset vrací 404 na všem.
-- `package.json` → `"engines": { "node": "22.x" }` — sjednocené s Astro 7 (vyžaduje ≥22.12)
-  a runtime `nodejs22.x`. Bez pinu hrozí build na neznámém Node → invalid runtime.
+- `package.json` → `"engines": { "node": ">=22.12" }` — jen spodní hranice podle Astra 7,
+  ne pin na jeden major. Adaptér v11 si runtime funkce odvodí z verze Node, na které běží
+  build (Node 22 → `nodejs22.x`, Node 24 → `nodejs24.x`), takže se sjednotí sám a k mismatchi
+  nedojde. Ověřeno buildem na obou verzích (17. 8. 2026). Původní pin `22.x` byl reakce na
+  adaptér v7, který uměl spadnout na zrušený `nodejs18.x` — u v11 už to nehrozí, ten
+  v nejhorším případě spadne zpátky na `nodejs24.x`.
 - Env proměnné (SMTP) nastavit ve Vercel dashboardu (Project Settings → Environment Variables).
 - `.vercel/` je v `.gitignore` — build output se necommituje (Vercel si ho staví sám).
 
